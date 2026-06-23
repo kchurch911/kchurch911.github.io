@@ -717,6 +717,26 @@ footer{
 .diag-result-btns{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
 .diag-disclaimer{font-size:.7rem;color:var(--muted);margin-top:18px;line-height:1.6}
 
+/* ── SVG ICONS ── */
+.ic{
+  width:1em;height:1em;display:inline-block;vertical-align:-0.125em;
+  fill:none;stroke:currentColor;stroke-width:1.6;
+  stroke-linecap:round;stroke-linejoin:round;
+}
+.hp-tag .ic{width:1.05em;height:1.05em;margin-right:2px}
+.vc-icon,.coach-icon,.bam-icon,.partner-icon,.price-icon{color:var(--gold)}
+.coach-icon{color:var(--teal-l)}
+.diag-emoji,.diag-badge .ic{color:var(--gold)}
+.btn-gold .ic{margin-right:6px}
+.btn-submit .ic{margin-right:6px;vertical-align:-0.15em}
+.pc-guide .prod-emoji{color:#4ecdc4}
+.pc-altar .prod-emoji{color:var(--gold)}
+.pc-app .prod-emoji{color:#82e0aa}
+.pc-lingua .prod-emoji{color:#f0a56a}
+.rx-head .ic{color:var(--gold);margin-right:2px}
+.diag-rx-tool .ic{color:var(--teal-l);margin-right:4px}
+.diag-grade .dot{font-size:.8em;vertical-align:.08em;margin-right:4px}
+
 /* ── RESPONSIVE ── */
 @media(max-width:900px){
   nav{padding:14px 20px}
@@ -748,10 +768,39 @@ footer{
 </head>
 <body>
 
+<!-- SVG ICON SPRITE -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="ic-crown" viewBox="0 0 24 24"><path d="M3 17h18l-1.4 3H4.4z M3 17l1.5-9 4.5 4 3-6 3 6 4.5-4 1.5 9"/></symbol>
+    <symbol id="ic-pulse" viewBox="0 0 24 24"><path d="M3 12h4l2.5-7 4 14 2.5-7H21"/></symbol>
+    <symbol id="ic-sprout" viewBox="0 0 24 24"><path d="M12 21v-9 M12 12c0-3.3-2.7-6-6-6 0 3.3 2.7 6 6 6z M12 12c0-2.8 2.2-5 5-5 0 2.8-2.2 5-5 5z"/></symbol>
+    <symbol id="ic-cap" viewBox="0 0 24 24"><path d="M12 4 2 9l10 5 10-5z M6 11.5V16c0 1.1 2.7 2 6 2s6-.9 6-2v-4.5 M22 9v5"/></symbol>
+    <symbol id="ic-chart" viewBox="0 0 24 24"><path d="M4 4v16h16 M8 14l3-3 3 2 5-6 M21 7h-4 M21 7v4"/></symbol>
+    <symbol id="ic-cycle" viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 13.7-5.6L20 8 M20 3v5h-5 M20 12a8 8 0 0 1-13.7 5.6L4 16 M4 21v-5h5"/></symbol>
+    <symbol id="ic-church" viewBox="0 0 24 24"><path d="M12 3v4 M10 5h4 M5 21V11l7-4 7 4v10 M5 21h14 M9.5 21v-4a2.5 2.5 0 0 1 5 0v4"/></symbol>
+    <symbol id="ic-home" viewBox="0 0 24 24"><path d="M4 11 12 5l8 6 M6 9.5V20h12V9.5 M10 20v-5h4v5"/></symbol>
+    <symbol id="ic-briefcase" viewBox="0 0 24 24"><path d="M3 8h18v11H3z M8 8V5.5A1.5 1.5 0 0 1 9.5 4h5A1.5 1.5 0 0 1 16 5.5V8 M3 13h18"/></symbol>
+    <symbol id="ic-globe" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z M3 12h18 M12 3c2.5 2.7 2.5 15.3 0 18 M12 3c-2.5 2.7-2.5 15.3 0 18"/></symbol>
+    <symbol id="ic-map" viewBox="0 0 24 24"><path d="M9 4 3 6.5v13.5l6-2.5 6 2.5 6-2.5V3l-6 2.5z M9 4v13.5 M15 6.5V20"/></symbol>
+    <symbol id="ic-gear" viewBox="0 0 24 24"><path d="M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z M12 2v3 M12 19v3 M4.2 4.2l2.1 2.1 M17.7 17.7l2.1 2.1 M2 12h3 M19 12h3 M4.2 19.8l2.1-2.1 M17.7 6.3l2.1-2.1"/></symbol>
+    <symbol id="ic-flame" viewBox="0 0 24 24"><path d="M12 3c1 4 5 5 5 9a5 5 0 0 1-10 0c0-2 1-3 2-4 0 1.5 1 2 1.5 2.5C12 8 11 5 12 3z"/></symbol>
+    <symbol id="ic-plane" viewBox="0 0 24 24"><path d="M21 3 3 10.5l6.5 2.5L12 19l2.5-6.5z M9.5 13l2.5-2.5"/></symbol>
+    <symbol id="ic-leaf" viewBox="0 0 24 24"><path d="M5 19c10 0 14-5 14-14C9 5 5 9 5 19z M5 19c0-5 3-8 9-9"/></symbol>
+    <symbol id="ic-tree" viewBox="0 0 24 24"><path d="M12 3 6 12h12z M8 12l-2 5h12l-2-5 M12 17v4"/></symbol>
+    <symbol id="ic-mountain" viewBox="0 0 24 24"><path d="M3 19 9 8l4 6 2-3 6 8z M9 8l1.5 2.5"/></symbol>
+    <symbol id="ic-tent" viewBox="0 0 24 24"><path d="M12 4 3 20h18z M12 4v16 M8 20l4-6 4 6"/></symbol>
+    <symbol id="ic-people" viewBox="0 0 24 24"><path d="M9 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6z M15.5 12a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z M3 20c0-3.3 2.7-5 6-5s6 1.7 6 5 M16 15c2.5 0 5 1.3 5 4"/></symbol>
+    <symbol id="ic-scale" viewBox="0 0 24 24"><path d="M12 4v16 M6 20h12 M5 7l7-2 7 2 M5 7 2.5 13a3 3 0 0 0 5 0L5 7 M19 7l-2.5 6a3 3 0 0 0 5 0L19 7"/></symbol>
+    <symbol id="ic-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.3-9.2-8.5C1.3 8.5 3 5.5 6 5.5c2 0 3.2 1.2 6 4 2.8-2.8 4-4 6-4 3 0 4.7 3 3.2 6C19 15.7 12 20 12 20z"/></symbol>
+    <symbol id="ic-compass" viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z M16 8l-2.5 5.5L8 16l2.5-5.5z"/></symbol>
+    <symbol id="ic-mail" viewBox="0 0 24 24"><path d="M3 6h18v12H3z M3 7l9 6 9-6"/></symbol>
+  </defs>
+</svg>
+
 <!-- NAV -->
 <nav id="mainNav">
   <div class="nav-logo">
-    👑 KINGDOM CHURCH 911
+    <svg class="ic"><use href="#ic-crown"/></svg> KINGDOM CHURCH 911
     <span>HEBRON FAITH ECOSYSTEM</span>
   </div>
   <div class="nav-links">
@@ -792,14 +841,14 @@ footer{
       보아라, 하나님의 나라는 너희 가운데에 있다" — 누가복음 17:21 (새번역)
     </p>
     <div class="hero-btns">
-      <button type="button" class="btn-gold" onclick="openDiag()">🩺 1분 교회 자가진단</button>
+      <button type="button" class="btn-gold" onclick="openDiag()"><svg class="ic"><use href="#ic-pulse"/></svg>1분 교회 자가진단</button>
       <a href="#coaching" class="btn-ghost">사역 둘러보기</a>
     </div>
     <div class="hero-products">
-      <div class="hp-tag hp-guide">🌱 개척</div>
-      <div class="hp-tag hp-altar">🎓 훈련</div>
-      <div class="hp-tag hp-app">📈 성장</div>
-      <div class="hp-tag hp-lingua">🔄 확산</div>
+      <div class="hp-tag hp-guide"><svg class="ic"><use href="#ic-sprout"/></svg> 개척</div>
+      <div class="hp-tag hp-altar"><svg class="ic"><use href="#ic-cap"/></svg> 훈련</div>
+      <div class="hp-tag hp-app"><svg class="ic"><use href="#ic-chart"/></svg> 성장</div>
+      <div class="hp-tag hp-lingua"><svg class="ic"><use href="#ic-cycle"/></svg> 확산</div>
     </div>
   </div>
   <div class="scroll-hint">↓ &nbsp; SCROLL</div>
@@ -843,7 +892,7 @@ footer{
     </div>
     <div class="vision-grid">
       <div class="vision-card fade-up">
-        <div class="vc-icon">🏘️</div>
+        <div class="vc-icon"><svg class="ic"><use href="#ic-church"/></svg></div>
         <div class="vc-title">선교적 교회 (Missional Church)</div>
         <div class="vc-desc">
           교회가 세상 속으로 파고듭니다. 모든 성도가 선교사입니다.
@@ -852,7 +901,7 @@ footer{
         </div>
       </div>
       <div class="vision-card fade-up">
-        <div class="vc-icon">🏠</div>
+        <div class="vc-icon"><svg class="ic"><use href="#ic-home"/></svg></div>
         <div class="vc-title">가정교회 (House Church)</div>
         <div class="vc-desc">
           각 목장(가정)이 독립적 교회 단위입니다. 소그룹이 핵심입니다.
@@ -860,7 +909,7 @@ footer{
         </div>
       </div>
       <div class="vision-card fade-up">
-        <div class="vc-icon">💼</div>
+        <div class="vc-icon"><svg class="ic"><use href="#ic-briefcase"/></svg></div>
         <div class="vc-title">BAM (Business as Mission)</div>
         <div class="vc-desc">
           비즈니스 자체가 선교입니다. 수익이 사역을 지속시킵니다.
@@ -868,20 +917,13 @@ footer{
         </div>
       </div>
       <div class="vision-card fade-up">
-        <div class="vc-icon">🌏</div>
+        <div class="vc-icon"><svg class="ic"><use href="#ic-globe"/></svg></div>
         <div class="vc-title">열방 선교 (World Mission)</div>
         <div class="vc-desc">
           시애틀에 이미 열방이 와 있습니다. 언어 훈련으로 이웃을 섬기고,
           제자가 되어 본국으로 돌아가는 역선교(Reverse Mission)의 실현.
         </div>
       </div>
-    </div>
-    <div class="vision-verse fade-up">
-      <p>
-        "아브람은 장막을 거두어 가지고, 헤브론에 있는 마므레의 상수리나무들이<br>
-        있는 곳으로 가서, 거기에 자리를 잡고 살면서, 주님께 <strong>제단을 쌓았다</strong>"
-      </p>
-      <cite>창세기 13:18 (새번역) — HebronApp, HebronAltar, HebronGuide, HebronLingua의 DNA</cite>
     </div>
   </div>
 </section>
@@ -897,31 +939,31 @@ footer{
     </p>
     <div class="journey-flow" style="margin-top:48px;gap:8px;flex-wrap:wrap;justify-content:center">
       <div class="jf-step jf-1 fade-up">
-        <div class="jf-ball">🗺️</div>
+        <div class="jf-ball"><svg class="ic"><use href="#ic-map"/></svg></div>
         <div class="jf-product">HebronGuide</div>
         <div class="jf-action">도시 유입<br>첫 만남</div>
         <div class="jf-who">이주자·비신자</div>
       </div>
       <div class="jf-step jf-2 fade-up">
-        <div class="jf-ball">⚙️</div>
+        <div class="jf-ball"><svg class="ic"><use href="#ic-gear"/></svg></div>
         <div class="jf-product">HebronApp</div>
         <div class="jf-action">교회 발견<br>공동체 연결</div>
         <div class="jf-who">새가족</div>
       </div>
       <div class="jf-step jf-3 fade-up">
-        <div class="jf-ball">🙏</div>
+        <div class="jf-ball"><svg class="ic"><use href="#ic-flame"/></svg></div>
         <div class="jf-product">HebronAltar</div>
         <div class="jf-action">경청·기도<br>제자화</div>
         <div class="jf-who">성도·목원</div>
       </div>
       <div class="jf-step jf-4 fade-up">
-        <div class="jf-ball">🌐</div>
+        <div class="jf-ball"><svg class="ic"><use href="#ic-globe"/></svg></div>
         <div class="jf-product">HebronLingua</div>
         <div class="jf-action">언어 훈련<br>선교 준비</div>
         <div class="jf-who">예비 선교사</div>
       </div>
       <div class="jf-step jf-5 fade-up">
-        <div class="jf-ball">✈️</div>
+        <div class="jf-ball"><svg class="ic"><use href="#ic-plane"/></svg></div>
         <div class="jf-product">KChurch911</div>
         <div class="jf-action">열방으로<br>파송</div>
         <div class="jf-who">선교사·개척자</div>
@@ -944,7 +986,7 @@ footer{
     <!-- 1분 자가진단 진입 -->
     <div class="diag-card fade-up">
       <div class="diag-left">
-        <span class="diag-emoji">🩺</span>
+        <span class="diag-emoji"><svg class="ic"><use href="#ic-pulse"/></svg></span>
         <div>
           <div class="diag-title">우리 교회 1분 자가진단</div>
           <div class="diag-sub">필요에서 출발합니다 — 어디가 막혀 있나요?</div>
@@ -956,22 +998,22 @@ footer{
     <!-- 4동력 코칭 트랙 -->
     <div class="coach-grid">
       <div class="coach-card fade-up">
-        <div class="coach-icon">🌱</div>
+        <div class="coach-icon"><svg class="ic"><use href="#ic-sprout"/></svg></div>
         <div class="coach-title">개척 (Plant)</div>
         <div class="coach-desc">소명 검증 · 선교적 지역진단 · 핵심팀과 재정 런웨이 · 처음부터 배가하는 DNA. "죽음의 계곡" 1~3년 집중 동행.</div>
       </div>
       <div class="coach-card fade-up">
-        <div class="coach-icon">🎓</div>
+        <div class="coach-icon"><svg class="ic"><use href="#ic-cap"/></svg></div>
         <div class="coach-title">훈련 (Train)</div>
         <div class="coach-desc">제자 → 사역자 → 재생산자 경로. 청중이 아닌 낳는 자를 세움. 목회자의 영혼·가정·안식까지 함께 돌봅니다.</div>
       </div>
       <div class="coach-card fade-up">
-        <div class="coach-icon">📈</div>
+        <div class="coach-icon"><svg class="ic"><use href="#ic-chart"/></svg></div>
         <div class="coach-title">성장 (Grow)</div>
         <div class="coach-desc">영적 깊이(예배·말씀·공동체)와 선교적 넓이(지역 섬김)의 균형. 숫자가 아닌 변화된 삶과 파송된 사람으로 측정.</div>
       </div>
       <div class="coach-card fade-up">
-        <div class="coach-icon">🔄</div>
+        <div class="coach-icon"><svg class="ic"><use href="#ic-cycle"/></svg></div>
         <div class="coach-title">확산 (Multiply)</div>
         <div class="coach-desc">더하기가 아닌 곱하기. 소그룹 → 교회 → 운동(movement). 도움받은 교회가 다음 교회를 세우는 자생적 사이클.</div>
       </div>
@@ -999,10 +1041,10 @@ footer{
       <div class="prod-card pc-guide fade-up">
         <div class="prod-bar"></div>
         <div class="prod-head">
-          <span class="prod-emoji">🗺️</span>
+          <span class="prod-emoji"><svg class="ic"><use href="#ic-map"/></svg></span>
           <div>
             <div class="prod-domain">HebronGuide.com</div>
-            <div class="prod-badge">만남의 문 · 운영 중 ✅</div>
+            <div class="prod-badge">만남의 문 · 운영 중</div>
           </div>
         </div>
         <div class="prod-title">도시 정착 가이드</div>
@@ -1023,10 +1065,10 @@ footer{
       <div class="prod-card pc-altar fade-up">
         <div class="prod-bar"></div>
         <div class="prod-head">
-          <span class="prod-emoji">🙏</span>
+          <span class="prod-emoji"><svg class="ic"><use href="#ic-flame"/></svg></span>
           <div>
             <div class="prod-domain">HebronAltar.com</div>
-            <div class="prod-badge">동행의 문 · 운영 중 ✅</div>
+            <div class="prod-badge">동행의 문 · 운영 중</div>
           </div>
         </div>
         <div class="prod-title">개인 영성 · 제자훈련 플랫폼</div>
@@ -1046,10 +1088,10 @@ footer{
       <div class="prod-card pc-app fade-up">
         <div class="prod-bar"></div>
         <div class="prod-head">
-          <span class="prod-emoji">⚙️</span>
+          <span class="prod-emoji"><svg class="ic"><use href="#ic-gear"/></svg></span>
           <div>
             <div class="prod-domain">HebronApp.com</div>
-            <div class="prod-badge">목장의 문 · 개발 중 🔧</div>
+            <div class="prod-badge">목장의 문 · 개발 중</div>
           </div>
         </div>
         <div class="prod-title">교회 운영 플랫폼</div>
@@ -1070,10 +1112,10 @@ footer{
       <div class="prod-card pc-lingua fade-up">
         <div class="prod-bar"></div>
         <div class="prod-head">
-          <span class="prod-emoji">🌐</span>
+          <span class="prod-emoji"><svg class="ic"><use href="#ic-globe"/></svg></span>
           <div>
             <div class="prod-domain">HebronLingua.com</div>
-            <div class="prod-badge">열방의 문 · 운영 중 ✅</div>
+            <div class="prod-badge">열방의 문 · 운영 중</div>
           </div>
         </div>
         <div class="prod-title">언어 훈련 플랫폼 (Echo)</div>
@@ -1107,7 +1149,7 @@ footer{
     <div class="pricing-grid">
 
       <div class="price-card fade-up">
-        <div class="price-icon">🌱</div>
+        <div class="price-icon"><svg class="ic"><use href="#ic-sprout"/></svg></div>
         <div class="price-name">Free</div>
         <div class="price-target">개인 성도 · 소그룹</div>
         <div class="price-amount">$0</div>
@@ -1125,7 +1167,7 @@ footer{
       </div>
 
       <div class="price-card fade-up">
-        <div class="price-icon">🌿</div>
+        <div class="price-icon"><svg class="ic"><use href="#ic-leaf"/></svg></div>
         <div class="price-name">스타터</div>
         <div class="price-target">소형교회 · 50명 이하</div>
         <div class="price-amount">$19<span>/월</span></div>
@@ -1143,7 +1185,7 @@ footer{
       </div>
 
       <div class="price-card featured fade-up">
-        <div class="price-icon">🌳</div>
+        <div class="price-icon"><svg class="ic"><use href="#ic-tree"/></svg></div>
         <div class="price-name">교회</div>
         <div class="price-target">중형교회 · 200명 이하</div>
         <div class="price-amount">$49<span>/월</span></div>
@@ -1161,7 +1203,7 @@ footer{
       </div>
 
       <div class="price-card fade-up">
-        <div class="price-icon">🏔️</div>
+        <div class="price-icon"><svg class="ic"><use href="#ic-mountain"/></svg></div>
         <div class="price-name">프리미엄</div>
         <div class="price-target">대형교회 · 멀티캠퍼스</div>
         <div class="price-amount">$99<span>/월</span></div>
@@ -1193,17 +1235,17 @@ footer{
     </p>
     <div class="bam-grid">
       <div class="bam-card fade-up">
-        <div class="bam-icon">⛺</div>
+        <div class="bam-icon"><svg class="ic"><use href="#ic-tent"/></svg></div>
         <div class="bam-title">장막을 친다 (Business)</div>
         <div class="bam-desc">각 플랫폼은 실제 가치를 창출하는 비즈니스입니다. 구독 수익으로 개발과 사역이 지속됩니다. 헌금에 의존하지 않습니다.</div>
       </div>
       <div class="bam-card fade-up">
-        <div class="bam-icon">🔥</div>
+        <div class="bam-icon"><svg class="ic"><use href="#ic-flame"/></svg></div>
         <div class="bam-title">제단을 쌓는다 (Mission)</div>
         <div class="bam-desc">모든 제품의 목적은 하나님 나라입니다. 사용자가 많아질수록 더 많은 제자가 세워지고 더 많은 선교사가 파송됩니다.</div>
       </div>
       <div class="bam-card fade-up">
-        <div class="bam-icon">🔄</div>
+        <div class="bam-icon"><svg class="ic"><use href="#ic-cycle"/></svg></div>
         <div class="bam-title">선순환 (따로 또 같이)</div>
         <div class="bam-desc">비즈니스 성공 = 선교 확장. 선교 열매 = 비즈니스 성장. 수익이 사역을 키우고, 사역이 수익을 만듭니다.</div>
       </div>
@@ -1271,32 +1313,29 @@ footer{
     </p>
     <div class="partner-grid">
       <div class="partner-card fade-up">
-        <div class="partner-icon">🤝</div>
+        <div class="partner-icon"><svg class="ic"><use href="#ic-people"/></svg></div>
         <div class="partner-title">멘토 목회자</div>
         <div class="partner-desc">개척·전환·승계를 먼저 걸어간 목회자로서, 코칭 동역자로 섬깁니다.</div>
         <a href="#contact" class="partner-link">멘토 지원 →</a>
       </div>
       <div class="partner-card fade-up">
-        <div class="partner-icon">⚖️</div>
+        <div class="partner-icon"><svg class="ic"><use href="#ic-scale"/></svg></div>
         <div class="partner-title">전문가 자원봉사</div>
         <div class="partner-desc">비영리 재정·세무·법률·상담 — 전문성으로 교회의 운영을 돕습니다.</div>
         <a href="#contact" class="partner-link">재능 기부 →</a>
       </div>
       <div class="partner-card fade-up">
-        <div class="partner-icon">⛪</div>
+        <div class="partner-icon"><svg class="ic"><use href="#ic-church"/></svg></div>
         <div class="partner-title">협력 교회</div>
         <div class="partner-desc">개척·위기 교회를 함께 떠받치는 후원 교회 네트워크에 참여합니다.</div>
         <a href="#contact" class="partner-link">교회 협력 →</a>
       </div>
       <div class="partner-card featured fade-up">
-        <div class="partner-icon">💝</div>
+        <div class="partner-icon"><svg class="ic"><use href="#ic-heart"/></svg></div>
         <div class="partner-title">후원자</div>
         <div class="partner-desc">정기·일시 후원으로 코칭과 개척 지원 사역이 멈추지 않게 합니다.</div>
         <a href="#contact" class="partner-link">후원하기 →</a>
       </div>
-    </div>
-    <div class="partner-verse fade-up">
-      "인자는 섬김을 받으러 온 것이 아니라 섬기러 왔다" — 마가복음 10:45 (새번역)
     </div>
   </div>
 </section>
@@ -1315,17 +1354,17 @@ footer{
       <input type="email" placeholder="이메일 (Email)" required>
       <select>
         <option value="">문의 유형 선택</option>
-        <option>🩺 교회 자가진단 · 코칭 신청</option>
-        <option>🌱 개척 / 훈련 / 성장 / 확산 컨설팅</option>
-        <option>🤝 멘토 목회자 지원</option>
-        <option>⚖️ 전문가 재능 기부</option>
-        <option>⛪ 협력 교회 참여</option>
-        <option>💝 후원 (정기 · 일시)</option>
+        <option>교회 자가진단 · 코칭 신청</option>
+        <option>개척 / 훈련 / 성장 / 확산 컨설팅</option>
+        <option>멘토 목회자 지원</option>
+        <option>전문가 재능 기부</option>
+        <option>협력 교회 참여</option>
+        <option>후원 (정기 · 일시)</option>
         <option>Hebron Platform 도구 도입 문의</option>
         <option>기타</option>
       </select>
       <textarea placeholder="메시지 (Message)&#10;어떻게 도와드릴까요?"></textarea>
-      <button type="submit" class="btn-submit">✉️ 메시지 보내기</button>
+      <button type="submit" class="btn-submit"><svg class="ic"><use href="#ic-mail"/></svg>메시지 보내기</button>
     </form>
     <p class="form-note">* 24시간 이내 답변 드립니다 · No spam · Unsubscribe anytime</p>
   </div>
@@ -1336,13 +1375,13 @@ footer{
   <div class="footer-inner">
     <div class="footer-grid">
       <div class="footer-brand">
-        <div class="fb-logo">👑 KINGDOM CHURCH 911</div>
+        <div class="fb-logo"><svg class="ic"><use href="#ic-crown"/></svg> KINGDOM CHURCH 911</div>
         <div class="fb-desc">
           시애틀에서 땅 끝까지.<br>
           선교적 가정교회 + BAM으로 하나님 나라를 확장하는<br>
           Hebron Faith Ecosystem의 본부.
         </div>
-        <div class="fb-verse">창 13:14–18 · 마 28:18–20 · 행 1:8</div>
+
       </div>
       <div class="footer-col">
         <h4>제품</h4>
@@ -1380,7 +1419,7 @@ footer{
 
     <!-- 인트로 -->
     <div class="diag-step" id="diagIntro">
-      <div class="diag-badge">🩺 교회 건강 자가진단</div>
+      <div class="diag-badge"><svg class="ic"><use href="#ic-pulse"/></svg> 교회 건강 자가진단</div>
       <h3 id="diagHead">우리 교회는 지금 어디에 있나요?</h3>
       <p class="diag-lead">
         10개의 질문에 답하면, 건강한 성경적 교회의 다섯 표지를 기준으로
@@ -1456,7 +1495,7 @@ function toggleMenu(){
 function submitForm(e){
   e.preventDefault();
   const btn=e.target.querySelector('.btn-submit');
-  btn.textContent='✅ 전송되었습니다! 24시간 내 연락드립니다.';
+  btn.textContent='전송되었습니다 — 24시간 내 연락드립니다.';
   btn.style.background='rgba(18,184,134,0.3)';
   btn.style.color='#4ecdc4';
   btn.disabled=true;
@@ -1476,10 +1515,10 @@ const DIAG_Q = [
   {t:"분명한 선교적 비전과 개척·배가 계획을 가지고 있습니다.", c:"plant"},
 ];
 const RX = {
-  plant:   {icon:"🌱", name:"개척 코칭", desc:"소명·DNA·핵심팀·재정 런웨이를 처음부터 다시 설계합니다. 작아도 배가하는 교회의 유전자를 심습니다.", tool:"심층 목회 컨설팅"},
-  train:   {icon:"🎓", name:"훈련 코칭", desc:"청중이 아닌 재생산자를 세우는 제자 경로를 만들고, 목회자의 영혼·가정·안식을 함께 돌봅니다.", tool:"HebronAltar — 21일 경청·제자훈련"},
-  grow:    {icon:"📈", name:"성장 코칭", desc:"영적 깊이(예배·말씀·공동체)와 선교적 넓이(지역 섬김)의 균형을 회복합니다.", tool:"HebronGuide — 지역사회 접점"},
-  multiply:{icon:"🔄", name:"확산 코칭", desc:"더하기에서 곱하기로. 소그룹→교회→운동으로 이어지는 배가 구조를 설계합니다.", tool:"HebronApp — 목장 관리·배가"},
+  plant:   {icon:'<svg class="ic"><use href="#ic-sprout"/></svg>', name:"개척 코칭", desc:"소명·DNA·핵심팀·재정 런웨이를 처음부터 다시 설계합니다. 작아도 배가하는 교회의 유전자를 심습니다.", tool:"심층 목회 컨설팅"},
+  train:   {icon:'<svg class="ic"><use href="#ic-cap"/></svg>', name:"훈련 코칭", desc:"청중이 아닌 재생산자를 세우는 제자 경로를 만들고, 목회자의 영혼·가정·안식을 함께 돌봅니다.", tool:"HebronAltar — 21일 경청·제자훈련"},
+  grow:    {icon:'<svg class="ic"><use href="#ic-chart"/></svg>', name:"성장 코칭", desc:"영적 깊이(예배·말씀·공동체)와 선교적 넓이(지역 섬김)의 균형을 회복합니다.", tool:"HebronGuide — 지역사회 접점"},
+  multiply:{icon:'<svg class="ic"><use href="#ic-cycle"/></svg>', name:"확산 코칭", desc:"더하기에서 곱하기로. 소그룹→교회→운동으로 이어지는 배가 구조를 설계합니다.", tool:"HebronApp — 목장 관리·배가"},
 };
 let dIdx=0, dAns=[];
 function openDiag(){document.getElementById('diagOverlay').classList.add('open');document.body.style.overflow='hidden';showStep('diagIntro');}
@@ -1503,15 +1542,15 @@ function showResult(){
   let weakest='grow',low=99;
   for(const k in cat){const avg=cat[k][0]/cat[k][1];if(avg<low){low=avg;weakest=k;}}
   let grade,gcls,gmsg;
-  if(total>=15){grade="🟢 안정";gcls="g-green";gmsg="건강한 흐름입니다. 이 동력을 다음 교회로 확산할 때입니다.";}
-  else if(total>=8){grade="🟡 주의";gcls="g-yellow";gmsg="지금 손쓰면 충분히 회복됩니다. 막힌 지점을 함께 풀어봅시다.";}
-  else{grade="🔴 위급";gcls="g-red";gmsg="혼자 지지 마세요. 긴급히 함께 걸을 동역자가 필요합니다.";}
+  if(total>=15){grade='<span class="dot">●</span>안정';gcls="g-green";gmsg="건강한 흐름입니다. 이 동력을 다음 교회로 확산할 때입니다.";}
+  else if(total>=8){grade='<span class="dot">●</span>주의';gcls="g-yellow";gmsg="지금 손쓰면 충분히 회복됩니다. 막힌 지점을 함께 풀어봅시다.";}
+  else{grade='<span class="dot">●</span>위급';gcls="g-red";gmsg="혼자 지지 마세요. 긴급히 함께 걸을 동역자가 필요합니다.";}
   const r=RX[weakest];
   document.getElementById('diagGrade').className='diag-grade '+gcls;
-  document.getElementById('diagGrade').textContent=grade;
+  document.getElementById('diagGrade').innerHTML=grade;
   document.getElementById('diagScore').innerHTML=`건강 점수 <strong>${total} / 20</strong> · ${gmsg}`;
   document.getElementById('diagRx').innerHTML=`<div class="rx-head">${r.icon} 가장 막힌 지점 — <strong>${r.name}</strong> 추천</div><div class="rx-body">${r.desc}</div>`;
-  document.getElementById('diagTool').innerHTML=`🧭 함께 쓰면 좋은 도구: <strong>${r.tool}</strong>`;
+  document.getElementById('diagTool').innerHTML=`<svg class="ic"><use href="#ic-compass"/></svg> 함께 쓰면 좋은 도구: <strong>${r.tool}</strong>`;
   document.getElementById('diagBar').style.width='100%';
   showStep('diagResult');
 }
