@@ -10,7 +10,7 @@
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg:#070d1a;
+  --bg:#0c1829;
   --navy:#0f1e3d;
   --navy2:#1a3060;
   --gold:#C9A227;
@@ -142,9 +142,13 @@ nav{
   margin-bottom:12px;font-weight:300;
 }
 .hero-verse{
-  font-size:.82rem;color:var(--gold);
+  font-size:.9rem;color:var(--gold-l);
   margin-bottom:40px;letter-spacing:.5px;
-  opacity:.8;
+  opacity:1;
+  background:rgba(201,162,39,0.08);
+  border-left:3px solid var(--gold);
+  padding:12px 18px;border-radius:0 12px 12px 0;
+  line-height:1.75;
 }
 .hero-btns{display:flex;gap:14px;justify-content:flex-start;flex-wrap:wrap;margin-bottom:60px}
 .btn-gold{
@@ -200,7 +204,7 @@ nav{
   border-radius:20px;overflow:hidden;
   box-shadow:0 24px 80px rgba(0,0,0,0.75),0 0 0 1px rgba(201,162,39,0.22);
 }
-.hero-image img{width:100%;display:block;filter:brightness(0.88) contrast(1.05)}
+.hero-image img{width:100%;display:block;filter:brightness(1.35) saturate(0.75) contrast(0.9)}
 
 /* ── SECTION BASE ── */
 section{padding:96px 24px}
@@ -643,10 +647,10 @@ footer{
 
 /* ── STATS BAR ── */
 .stats-bar{
-  background:rgba(201,162,39,0.06);
-  border-top:1px solid rgba(201,162,39,0.12);
-  border-bottom:1px solid rgba(201,162,39,0.12);
-  padding:32px 24px;
+  background:#f0ead8;
+  border-top:2px solid rgba(201,162,39,0.3);
+  border-bottom:2px solid rgba(201,162,39,0.3);
+  padding:40px 24px;
 }
 .stats-inner{
   max-width:900px;margin:0 auto;
@@ -654,10 +658,11 @@ footer{
   gap:20px;text-align:center;
 }
 .stat-n{
-  font-family:'Cinzel',serif;font-size:2rem;font-weight:700;
-  color:var(--gold);line-height:1;margin-bottom:6px;
+  font-family:'Cinzel',serif;font-size:2.6rem;font-weight:900;
+  color:var(--gold-d);line-height:1;margin-bottom:8px;
+  text-shadow:0 2px 12px rgba(201,162,39,0.2);
 }
-.stat-l{font-size:.72rem;color:var(--muted);letter-spacing:.5px}
+.stat-l{font-size:.76rem;color:#5a6a80;letter-spacing:.5px;font-weight:500}
 
 /* ── DIAGNOSIS MODAL ── */
 .diag-overlay{
@@ -781,6 +786,44 @@ footer{
   .stats-inner{grid-template-columns:1fr 1fr}
 }
 
+/* ── BRIGHT SECTIONS ── */
+.sec-light{background:#f4efe8}
+.sec-light .sec-title,.sec-light h2{color:#0d1c38}
+.sec-light .sec-label{color:#7a5e15}
+.sec-light .sec-label::after{background:rgba(122,94,21,0.2)}
+.sec-light .sec-desc,.sec-light p.sec-desc{color:#4a5a75}
+.sec-light .vc-title,.sec-light .coach-title,.sec-light .bam-title{color:#0d1c38}
+.sec-light .vc-desc,.sec-light .coach-desc,.sec-light .coach-foot{color:#5a6a80}
+.sec-light .coach-foot em{color:#9a7220}
+.sec-light .diag-title{color:#0d1c38}
+.sec-light .diag-sub{color:#5a6a80}
+.sec-light .vision-card,.sec-light .coach-card{
+  background:#fff;border-color:rgba(13,28,56,0.1);
+}
+.sec-light .id911{
+  background:linear-gradient(135deg,rgba(201,162,39,0.12),rgba(31,71,136,0.06));
+  border-color:rgba(201,162,39,0.4);
+  box-shadow:0 0 48px rgba(201,162,39,0.12);
+}
+.sec-light .id911-sub{color:#3a4a65}
+.sec-light .id911-foot{color:#5a6a80;border-top-color:rgba(201,162,39,0.2)}
+.sec-light .id911-foot strong{color:#0d1c38}
+.sec-light .diag-card{
+  background:linear-gradient(135deg,rgba(201,162,39,0.1),rgba(18,184,134,0.06));
+  border-color:rgba(201,162,39,0.3);
+}
+/* 코칭 카드 — 왼쪽 골드 포인트 라인 */
+.sec-light .coach-card{border-left:3px solid var(--gold);border-radius:0 20px 20px 0}
+.sec-light .coach-card:hover{border-color:var(--gold);border-left-color:var(--gold)}
+/* 파트너 카드 */
+.sec-light .partner-card{background:#fff;border-color:rgba(13,28,56,0.1)}
+.sec-light .partner-title{color:#0d1c38}
+.sec-light .partner-desc{color:#5a6a80}
+.sec-light .partner-card.featured{
+  background:linear-gradient(145deg,rgba(201,162,39,0.1),#fff);
+  border-color:rgba(201,162,39,0.4);
+}
+
 /* ── ANIMATIONS ── */
 .fade-up{opacity:0;transform:translateY(30px);transition:opacity .7s,transform .7s}
 .fade-up.visible{opacity:1;transform:translateY(0)}
@@ -890,7 +933,7 @@ footer{
 </div>
 
 <!-- VISION -->
-<section class="vision-bg" id="vision">
+<section class="vision-bg sec-light" id="vision">
   <div class="section-inner">
     <p class="sec-label">왜 Kingdom Church 911인가</p>
     <h2 class="sec-title fade-up">BAM으로 지속되는<br>선교적 가정교회 운동</h2>
@@ -998,7 +1041,7 @@ footer{
 </section>
 
 <!-- COACHING (비영리 사역의 핵심) -->
-<section class="coaching-bg" id="coaching">
+<section class="coaching-bg sec-light" id="coaching">
   <div class="section-inner">
     <p class="sec-label">비영리 사역 · 목회 코칭 & 컨설팅</p>
     <h2 class="sec-title fade-up">도구를 넘어,<br>교회와 함께 걷습니다</h2>
@@ -1328,7 +1371,7 @@ footer{
 </section>
 
 <!-- PARTNERSHIP (비영리 함께 섬기기) -->
-<section class="partner-bg" id="partner">
+<section class="partner-bg sec-light" id="partner">
   <div class="section-inner">
     <p class="sec-label">함께 섬기기 · 비영리 사역 동역</p>
     <h2 class="sec-title fade-up">한 교회를 살리는 것은<br>하나님 나라를 위함입니다</h2>
