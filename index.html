@@ -786,6 +786,55 @@ footer{
   .stats-inner{grid-template-columns:1fr 1fr}
 }
 
+/* ── PHOTO BREAK (섹션 사이 전면 사진) ── */
+.photo-break{
+  position:relative;width:100%;height:440px;overflow:hidden;
+}
+.photo-break img{
+  width:100%;height:100%;object-fit:cover;
+  filter:brightness(0.62) saturate(0.8);
+  object-position:center 30%;
+}
+.photo-break-overlay{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:linear-gradient(180deg,rgba(12,24,41,0.25) 0%,rgba(12,24,41,0.72) 100%);
+  padding:24px;text-align:center;
+}
+.photo-break-tag{
+  font-size:.62rem;letter-spacing:4px;color:var(--gold);
+  margin-bottom:14px;text-transform:uppercase;
+  border:1px solid rgba(201,162,39,0.3);padding:4px 16px;border-radius:20px;
+}
+.photo-break-title{
+  font-family:'Cinzel',serif;font-weight:700;
+  font-size:clamp(1.7rem,4.5vw,2.8rem);
+  color:#fff;line-height:1.25;
+  text-shadow:0 4px 40px rgba(0,0,0,0.6);
+  margin-bottom:10px;
+}
+.photo-break-sub{
+  font-size:.88rem;color:rgba(255,255,255,0.7);
+  letter-spacing:.5px;
+}
+
+/* ── SECTION PHOTO (섹션 내부 사진 블록) ── */
+.sec-photo{
+  margin-bottom:48px;border-radius:20px;overflow:hidden;
+  height:280px;position:relative;
+}
+.sec-photo img{
+  width:100%;height:100%;object-fit:cover;
+  filter:brightness(1.05) saturate(0.9);
+  object-position:center 40%;
+}
+.sec-photo-cap{
+  position:absolute;bottom:0;left:0;right:0;
+  background:linear-gradient(transparent,rgba(12,24,41,0.78));
+  padding:28px 24px 16px;
+  font-size:.75rem;color:rgba(255,255,255,0.85);letter-spacing:1px;
+}
+
 /* ── BRIGHT SECTIONS ── */
 .sec-light{background:#f4efe8}
 .sec-light .sec-title,.sec-light h2{color:#0d1c38}
@@ -1040,6 +1089,16 @@ footer{
   </div>
 </section>
 
+<!-- PHOTO BREAK: 예배 현장 -->
+<div class="photo-break">
+  <img src="https://images.unsplash.com/photo-uw7ta004zIk?w=1400&auto=format&q=80" alt="Kingdom Church 911 — 하나님 나라를 향한 예배">
+  <div class="photo-break-overlay">
+    <div class="photo-break-tag">For the Kingdom</div>
+    <div class="photo-break-title">교회의 긴급한 필요에서<br>하나님 나라의 부르심으로</div>
+    <div class="photo-break-sub">Sonship → Kingship</div>
+  </div>
+</div>
+
 <!-- COACHING (비영리 사역의 핵심) -->
 <section class="coaching-bg sec-light" id="coaching">
   <div class="section-inner">
@@ -1050,6 +1109,12 @@ footer{
       그 교회의 <strong>진짜 필요</strong>에서 출발합니다.
       건강한 성경적 교회로 — 개척하고, 훈련하고, 성장하고, 확산되도록 동행합니다.
     </p>
+
+    <!-- 코칭 현장 사진 -->
+    <div class="sec-photo fade-up">
+      <img src="https://images.unsplash.com/photo-bh8QqUKIcPQ?w=1100&auto=format&q=80" alt="목회자 코칭 소그룹 현장">
+      <div class="sec-photo-cap">진짜 필요에서 출발 — 개척 · 훈련 · 성장 · 확산</div>
+    </div>
 
     <!-- 1분 자가진단 진입 -->
     <div class="diag-card fade-up">
