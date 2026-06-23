@@ -560,6 +560,78 @@ footer{
 }
 .stat-l{font-size:.72rem;color:var(--muted);letter-spacing:.5px}
 
+/* ── DIAGNOSIS MODAL ── */
+.diag-overlay{
+  position:fixed;inset:0;z-index:1000;
+  background:rgba(7,13,26,0.82);backdrop-filter:blur(8px);
+  display:none;align-items:center;justify-content:center;padding:24px;
+}
+.diag-overlay.open{display:flex}
+.diag-modal{
+  position:relative;width:100%;max-width:540px;
+  max-height:88vh;overflow-y:auto;
+  background:linear-gradient(160deg,#0f1e3d,#070d1a);
+  border:1px solid rgba(201,162,39,0.25);
+  border-radius:24px;padding:40px 34px;
+  box-shadow:0 30px 80px rgba(0,0,0,0.6);
+}
+.diag-close{
+  position:absolute;top:18px;right:20px;
+  background:none;border:none;color:var(--muted);
+  font-size:1.1rem;cursor:pointer;transition:color .2s;
+}
+.diag-close:hover{color:var(--gold)}
+.diag-badge{
+  display:inline-block;font-size:.68rem;letter-spacing:2px;
+  color:var(--gold);background:rgba(201,162,39,0.1);
+  border:1px solid rgba(201,162,39,0.25);
+  padding:6px 16px;border-radius:20px;margin-bottom:18px;
+}
+.diag-modal h3{font-family:'Cinzel',serif;font-size:1.4rem;font-weight:700;margin-bottom:14px;line-height:1.3}
+.diag-lead{font-size:.86rem;color:var(--muted);line-height:1.8;margin-bottom:28px}
+.diag-start{
+  display:inline-block;background:linear-gradient(135deg,var(--gold),var(--gold-l));
+  color:#07080d;font-weight:700;font-size:.88rem;
+  padding:14px 30px;border-radius:30px;border:none;cursor:pointer;text-decoration:none;
+  font-family:inherit;transition:transform .15s,box-shadow .2s;
+  box-shadow:0 4px 22px rgba(201,162,39,0.3);
+}
+.diag-start:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(201,162,39,0.4)}
+.diag-progress{height:5px;background:rgba(255,255,255,0.08);border-radius:4px;margin-bottom:26px;overflow:hidden}
+.diag-progress-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--gold));border-radius:4px;transition:width .35s;width:0}
+.diag-qnum{font-size:.72rem;letter-spacing:1px;color:var(--gold);margin-bottom:12px}
+.diag-qtext{font-size:1.12rem;font-weight:600;line-height:1.55;margin-bottom:26px;min-height:3.4em}
+.diag-opts{display:flex;flex-direction:column;gap:10px}
+.diag-opt{
+  text-align:left;background:rgba(255,255,255,0.05);
+  border:1px solid var(--border);border-radius:14px;
+  padding:15px 20px;color:var(--text);font-size:.9rem;
+  cursor:pointer;font-family:inherit;transition:border-color .2s,background .2s,transform .1s;
+}
+.diag-opt:hover{border-color:rgba(201,162,39,0.5);background:rgba(201,162,39,0.08);transform:translateX(3px)}
+.diag-back{
+  margin-top:20px;background:none;border:none;color:var(--muted);
+  font-size:.8rem;cursor:pointer;font-family:inherit;transition:color .2s;
+}
+.diag-back:hover{color:var(--text)}
+.diag-grade{font-size:1.6rem;font-weight:900;margin-bottom:10px}
+.diag-grade.g-green{color:var(--teal-l)}
+.diag-grade.g-yellow{color:var(--gold-l)}
+.diag-grade.g-red{color:#ff6b6b}
+.diag-score{font-size:.9rem;color:var(--muted);line-height:1.7;margin-bottom:24px}
+.diag-score strong{color:var(--text)}
+.diag-rx{
+  background:rgba(201,162,39,0.07);border:1px solid rgba(201,162,39,0.2);
+  border-radius:16px;padding:20px 22px;margin-bottom:14px;
+}
+.rx-head{font-size:1rem;margin-bottom:8px}
+.rx-head strong{color:var(--gold)}
+.rx-body{font-size:.82rem;color:var(--muted);line-height:1.75}
+.diag-rx-tool{font-size:.82rem;color:var(--muted);margin-bottom:24px}
+.diag-rx-tool strong{color:var(--teal-l)}
+.diag-result-btns{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.diag-disclaimer{font-size:.7rem;color:var(--muted);margin-top:18px;line-height:1.6}
+
 /* ── RESPONSIVE ── */
 @media(max-width:900px){
   nav{padding:14px 20px}
@@ -767,7 +839,7 @@ footer{
           <div class="diag-sub">필요에서 출발합니다 — 어디가 막혀 있나요?</div>
         </div>
       </div>
-      <a href="#contact" class="diag-btn">무료 진단 시작 →</a>
+      <button type="button" class="diag-btn" onclick="openDiag()">무료 진단 시작 →</button>
     </div>
 
     <!-- 4동력 코칭 트랙 -->
@@ -1141,6 +1213,51 @@ footer{
   </div>
 </footer>
 
+<!-- DIAGNOSIS MODAL -->
+<div class="diag-overlay" id="diagOverlay" onclick="if(event.target===this)closeDiag()">
+  <div class="diag-modal" role="dialog" aria-modal="true" aria-labelledby="diagHead">
+    <button class="diag-close" onclick="closeDiag()" aria-label="닫기">✕</button>
+
+    <!-- 인트로 -->
+    <div class="diag-step" id="diagIntro">
+      <div class="diag-badge">🩺 교회 건강 자가진단</div>
+      <h3 id="diagHead">우리 교회는 지금 어디에 있나요?</h3>
+      <p class="diag-lead">
+        10개의 질문에 답하면, 건강한 성경적 교회의 다섯 표지를 기준으로
+        <strong>위기 등급</strong>과 <strong>개척·훈련·성장·확산 4동력 중 가장 막힌 지점</strong>을 짚어드립니다.
+        익명입니다. 1분이면 됩니다.
+      </p>
+      <button class="diag-start" onclick="startDiag()">진단 시작하기 →</button>
+    </div>
+
+    <!-- 문항 -->
+    <div class="diag-step" id="diagQuiz" style="display:none">
+      <div class="diag-progress"><div class="diag-progress-fill" id="diagBar"></div></div>
+      <div class="diag-qnum" id="diagQnum"></div>
+      <div class="diag-qtext" id="diagQtext"></div>
+      <div class="diag-opts">
+        <button class="diag-opt" onclick="answer(2)">그렇다 · 건강하다</button>
+        <button class="diag-opt" onclick="answer(1)">보통이다 · 애매하다</button>
+        <button class="diag-opt" onclick="answer(0)">아니다 · 어렵다</button>
+      </div>
+      <button class="diag-back" id="diagBack" onclick="prevQ()" style="display:none">← 이전</button>
+    </div>
+
+    <!-- 결과 -->
+    <div class="diag-step" id="diagResult" style="display:none">
+      <div class="diag-grade" id="diagGrade"></div>
+      <div class="diag-score" id="diagScore"></div>
+      <div class="diag-rx" id="diagRx"></div>
+      <div class="diag-rx-tool" id="diagTool"></div>
+      <div class="diag-result-btns">
+        <a href="#contact" class="diag-start" onclick="closeDiag()">이 진단으로 코칭 신청 →</a>
+        <button class="diag-back" onclick="startDiag()">다시 진단</button>
+      </div>
+      <p class="diag-disclaimer">※ 자가진단은 출발점입니다. 깊은 처방은 목회 컨설팅으로 함께 설계합니다.</p>
+    </div>
+  </div>
+</div>
+
 <script>
 // Scroll animations
 const obs = new IntersectionObserver(entries=>{
@@ -1184,6 +1301,61 @@ function submitForm(e){
   btn.style.color='#4ecdc4';
   btn.disabled=true;
 }
+
+// ── 교회 자가진단 ──
+const DIAG_Q = [
+  {t:"예배·말씀·기도가 살아있고, 성도들이 하나님을 갈망합니다.", c:"grow"},
+  {t:"십자가 복음이 설교와 교회 문화의 분명한 중심입니다.", c:"grow"},
+  {t:"새가족이 정착하고 제자로 자라는 명확한 양육 경로가 있습니다.", c:"train"},
+  {t:"평신도가 사역자로 세워지고, 리더가 또 다른 리더를 길러냅니다.", c:"train"},
+  {t:"목회자가 번아웃 없이 영적·정서적·가정적으로 건강합니다.", c:"train"},
+  {t:"교회가 지역사회로 흩어져 이웃을 섬기고 있습니다.", c:"grow"},
+  {t:"출석과 재정이 안정적이며 최근 성장의 흐름이 있습니다.", c:"grow"},
+  {t:"다음세대(청년·2세)가 끊기지 않고 이어지고 있습니다.", c:"multiply"},
+  {t:"소그룹이 배가되거나 새 사역·교회를 낳은 경험이 있습니다.", c:"multiply"},
+  {t:"분명한 선교적 비전과 개척·배가 계획을 가지고 있습니다.", c:"plant"},
+];
+const RX = {
+  plant:   {icon:"🌱", name:"개척 코칭", desc:"소명·DNA·핵심팀·재정 런웨이를 처음부터 다시 설계합니다. 작아도 배가하는 교회의 유전자를 심습니다.", tool:"심층 목회 컨설팅"},
+  train:   {icon:"🎓", name:"훈련 코칭", desc:"청중이 아닌 재생산자를 세우는 제자 경로를 만들고, 목회자의 영혼·가정·안식을 함께 돌봅니다.", tool:"HebronAltar — 21일 경청·제자훈련"},
+  grow:    {icon:"📈", name:"성장 코칭", desc:"영적 깊이(예배·말씀·공동체)와 선교적 넓이(지역 섬김)의 균형을 회복합니다.", tool:"HebronGuide — 지역사회 접점"},
+  multiply:{icon:"🔄", name:"확산 코칭", desc:"더하기에서 곱하기로. 소그룹→교회→운동으로 이어지는 배가 구조를 설계합니다.", tool:"HebronApp — 목장 관리·배가"},
+};
+let dIdx=0, dAns=[];
+function openDiag(){document.getElementById('diagOverlay').classList.add('open');document.body.style.overflow='hidden';showStep('diagIntro');}
+function closeDiag(){document.getElementById('diagOverlay').classList.remove('open');document.body.style.overflow='';}
+function showStep(id){['diagIntro','diagQuiz','diagResult'].forEach(s=>document.getElementById(s).style.display=(s===id?'block':'none'));}
+function startDiag(){dIdx=0;dAns=[];showStep('diagQuiz');renderQ();}
+function renderQ(){
+  const q=DIAG_Q[dIdx];
+  document.getElementById('diagBar').style.width=((dIdx)/DIAG_Q.length*100)+'%';
+  document.getElementById('diagQnum').textContent=`질문 ${dIdx+1} / ${DIAG_Q.length}`;
+  document.getElementById('diagQtext').textContent=q.t;
+  document.getElementById('diagBack').style.display=dIdx>0?'inline-block':'none';
+}
+function answer(v){dAns[dIdx]=v;dIdx++;if(dIdx>=DIAG_Q.length){showResult();}else{renderQ();}}
+function prevQ(){if(dIdx>0){dIdx--;renderQ();}}
+function showResult(){
+  const total=dAns.reduce((a,b)=>a+b,0); // 0~20
+  const cat={plant:[0,0],train:[0,0],grow:[0,0],multiply:[0,0]};
+  DIAG_Q.forEach((q,i)=>{cat[q.c][0]+=dAns[i];cat[q.c][1]+=2;});
+  // 가장 약한 동력 (평균 최저)
+  let weakest='grow',low=99;
+  for(const k in cat){const avg=cat[k][0]/cat[k][1];if(avg<low){low=avg;weakest=k;}}
+  let grade,gcls,gmsg;
+  if(total>=15){grade="🟢 안정";gcls="g-green";gmsg="건강한 흐름입니다. 이 동력을 다음 교회로 확산할 때입니다.";}
+  else if(total>=8){grade="🟡 주의";gcls="g-yellow";gmsg="지금 손쓰면 충분히 회복됩니다. 막힌 지점을 함께 풀어봅시다.";}
+  else{grade="🔴 위급";gcls="g-red";gmsg="혼자 지지 마세요. 긴급히 함께 걸을 동역자가 필요합니다.";}
+  const r=RX[weakest];
+  document.getElementById('diagGrade').className='diag-grade '+gcls;
+  document.getElementById('diagGrade').textContent=grade;
+  document.getElementById('diagScore').innerHTML=`건강 점수 <strong>${total} / 20</strong> · ${gmsg}`;
+  document.getElementById('diagRx').innerHTML=`<div class="rx-head">${r.icon} 가장 막힌 지점 — <strong>${r.name}</strong> 추천</div><div class="rx-body">${r.desc}</div>`;
+  document.getElementById('diagTool').innerHTML=`🧭 함께 쓰면 좋은 도구: <strong>${r.tool}</strong>`;
+  document.getElementById('diagBar').style.width='100%';
+  showStep('diagResult');
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDiag();});
 
 // Smooth nav background
 window.addEventListener('scroll',()=>{
