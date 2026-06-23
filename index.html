@@ -100,7 +100,7 @@ nav{
     radial-gradient(1px 1px at 50% 85%, rgba(255,255,255,0.3) 0%, transparent 100%),
     radial-gradient(1px 1px at 90% 55%, rgba(255,255,255,0.4) 0%, transparent 100%);
 }
-.hero-content{position:relative;z-index:1;max-width:800px}
+.hero-content{position:relative;z-index:1;flex:1;text-align:left}
 .hero-eyebrow{
   display:inline-flex;align-items:center;gap:8px;
   font-size:.7rem;letter-spacing:4px;text-transform:uppercase;
@@ -146,7 +146,7 @@ nav{
   margin-bottom:40px;letter-spacing:.5px;
   opacity:.8;
 }
-.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:60px}
+.hero-btns{display:flex;gap:14px;justify-content:flex-start;flex-wrap:wrap;margin-bottom:60px}
 .btn-gold{
   background:linear-gradient(135deg,var(--gold),var(--gold-l));
   color:#07080d;font-weight:700;font-size:.88rem;
@@ -174,7 +174,7 @@ nav{
 
 /* Hero products strip */
 .hero-products{
-  display:flex;gap:12px;justify-content:center;flex-wrap:wrap;
+  display:flex;gap:12px;justify-content:flex-start;flex-wrap:wrap;
 }
 .hp-tag{
   display:flex;align-items:center;gap:6px;
@@ -187,6 +187,20 @@ nav{
 .hp-altar{background:rgba(201,162,39,0.1);border-color:rgba(201,162,39,0.3);color:var(--gold)}
 .hp-app  {background:rgba(39,174,96,0.1);border-color:rgba(39,174,96,0.3);color:#82e0aa}
 .hp-lingua{background:rgba(230,126,34,0.1);border-color:rgba(230,126,34,0.3);color:#f0a56a}
+
+/* Hero split layout */
+.hero-inner{
+  position:relative;z-index:1;
+  display:flex;align-items:center;gap:64px;
+  width:100%;max-width:1160px;
+}
+.hero-flow{justify-content:flex-start}
+.hero-image{
+  flex-shrink:0;width:360px;
+  border-radius:20px;overflow:hidden;
+  box-shadow:0 24px 80px rgba(0,0,0,0.75),0 0 0 1px rgba(201,162,39,0.22);
+}
+.hero-image img{width:100%;display:block;filter:brightness(0.88) contrast(1.05)}
 
 /* ── SECTION BASE ── */
 section{padding:96px 24px}
@@ -742,6 +756,12 @@ footer{
   nav{padding:14px 20px}
   .nav-links{display:none}
   .ham{display:block}
+  .hero-inner{flex-direction:column-reverse;gap:36px}
+  .hero-content{text-align:center}
+  .hero-flow{justify-content:center}
+  .hero-btns{justify-content:center}
+  .hero-products{justify-content:center}
+  .hero-image{width:100%;max-width:340px}
   .vision-grid{grid-template-columns:1fr}
   .coach-grid{grid-template-columns:1fr 1fr}
   .partner-grid{grid-template-columns:1fr 1fr}
@@ -820,6 +840,7 @@ footer{
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-stars"></div>
+  <div class="hero-inner">
   <div class="hero-content">
     <div class="hero-eyebrow">
       ✦ LUKE 17:21 · 하나님의 나라는 너희 가운데에 있다
@@ -851,6 +872,10 @@ footer{
       <div class="hp-tag hp-lingua"><svg class="ic"><use href="#ic-cycle"/></svg> 확산</div>
     </div>
   </div>
+  <div class="hero-image">
+    <img src="images/hero-911.png" alt="Kingdom Church 911 — 위기의 교회를 품는 긴급 사역">
+  </div>
+  </div><!-- /hero-inner -->
   <div class="scroll-hint">↓ &nbsp; SCROLL</div>
 </section>
 
