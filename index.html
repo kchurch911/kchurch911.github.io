@@ -110,12 +110,26 @@ nav{
 }
 .hero h1{
   font-family:'Cinzel',serif;font-weight:900;
-  font-size:clamp(2rem,6vw,4rem);
-  line-height:1.15;letter-spacing:1px;
-  margin-bottom:16px;
-  background:linear-gradient(135deg,#fff 30%,var(--gold-l) 70%,var(--gold) 100%);
+  font-size:clamp(2.6rem,7.5vw,5.2rem);
+  line-height:1.08;letter-spacing:1px;
+  margin-bottom:20px;
+  background:linear-gradient(135deg,#fff 25%,var(--gold-l) 65%,var(--gold) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 4px 40px rgba(201,162,39,0.25));
+}
+.hero-flow{
+  display:inline-flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center;
+  margin-bottom:24px;padding:8px 20px;
+  border:1px solid rgba(201,162,39,0.22);border-radius:30px;
+  background:rgba(201,162,39,0.05);
+}
+.hf-w{
+  font-family:'Cinzel',serif;font-weight:700;font-size:.92rem;letter-spacing:1px;
+  background:linear-gradient(135deg,var(--gold-l),var(--gold));
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;
 }
+.hf-arrow{color:var(--gold);font-size:.85rem;opacity:.7}
+.hero-flow em{font-style:normal;font-size:.72rem;color:var(--muted);letter-spacing:1px;padding-left:6px;border-left:1px solid var(--border)}
 .hero-kingdom{
   font-size:clamp(1.1rem,2.8vw,1.5rem);
   font-weight:500;line-height:1.5;margin-bottom:18px;
@@ -762,7 +776,13 @@ footer{
       ✦ LUKE 17:21 · 하나님의 나라는 너희 가운데에 있다
     </div>
     <h1>For the Church<br>For the Kingdom</h1>
-    <p class="hero-kingdom">한 가정이 변하면 열방이 변합니다</p>
+    <div class="hero-flow">
+      <span class="hf-w">Sonship</span>
+      <span class="hf-arrow">→</span>
+      <span class="hf-w">Kingship</span>
+      <em>받음에서 보냄으로</em>
+    </div>
+    <p class="hero-kingdom">한 가정이 변하면, 열방이 변합니다</p>
     <p class="hero-sub">
       교회를 세우고 목회자를 일으키는 비영리 사역<br>
       개척 · 훈련 · 성장 · 확산을 함께 걷습니다
@@ -772,14 +792,14 @@ footer{
       보아라, 하나님의 나라는 너희 가운데에 있다" — 누가복음 17:21 (새번역)
     </p>
     <div class="hero-btns">
-      <a href="#products" class="btn-gold">제품 둘러보기</a>
-      <a href="#contact" class="btn-ghost">무료 상담 신청</a>
+      <button type="button" class="btn-gold" onclick="openDiag()">🩺 1분 교회 자가진단</button>
+      <a href="#coaching" class="btn-ghost">사역 둘러보기</a>
     </div>
     <div class="hero-products">
-      <div class="hp-tag hp-guide">🗺️ HebronGuide</div>
-      <div class="hp-tag hp-altar">🙏 HebronAltar</div>
-      <div class="hp-tag hp-app">⚙️ HebronApp</div>
-      <div class="hp-tag hp-lingua">🌐 HebronLingua</div>
+      <div class="hp-tag hp-guide">🌱 개척</div>
+      <div class="hp-tag hp-altar">🎓 훈련</div>
+      <div class="hp-tag hp-app">📈 성장</div>
+      <div class="hp-tag hp-lingua">🔄 확산</div>
     </div>
   </div>
   <div class="scroll-hint">↓ &nbsp; SCROLL</div>
