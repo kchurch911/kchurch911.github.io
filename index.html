@@ -188,6 +188,28 @@ section{padding:96px 24px}
   background:linear-gradient(160deg,rgba(31,71,136,0.15),rgba(7,13,26,0) 60%);
   border-top:1px solid var(--border);border-bottom:1px solid var(--border);
 }
+.id911{
+  margin-top:36px;text-align:center;
+  background:linear-gradient(135deg,rgba(201,162,39,0.08),rgba(31,71,136,0.12));
+  border:1px solid rgba(201,162,39,0.25);
+  border-radius:22px;padding:34px 28px;
+}
+.id911-tag{
+  display:inline-block;font-size:.68rem;letter-spacing:3px;text-transform:uppercase;
+  color:var(--gold);margin-bottom:18px;
+}
+.id911-tag strong{font-family:'Cinzel',serif;font-size:.95rem}
+.id911-line{
+  font-family:'Cinzel',serif;font-weight:600;
+  font-size:clamp(1.1rem,2.6vw,1.5rem);line-height:1.6;
+  color:var(--text);margin-bottom:14px;
+}
+.id911-line strong{
+  background:linear-gradient(135deg,var(--gold-l),var(--gold));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700;
+}
+.id911-sub{font-size:.82rem;color:var(--muted);line-height:1.7}
+.id911-sub em{color:var(--gold);font-style:normal;letter-spacing:.5px}
 .vision-grid{
   display:grid;grid-template-columns:1fr 1fr;gap:60px;
   align-items:center;margin-top:56px;
@@ -428,6 +450,36 @@ section{padding:96px 24px}
 .bam-icon{font-size:2rem;margin-bottom:12px}
 .bam-title{font-size:.95rem;font-weight:700;margin-bottom:8px}
 .bam-desc{font-size:.78rem;color:var(--muted);line-height:1.7}
+
+/* ── ROADMAP (Kingdom OS 5단계) ── */
+.roadmap-bg{
+  background:linear-gradient(180deg,var(--bg),rgba(31,71,136,0.1),var(--bg));
+}
+.road-line{margin-top:56px;position:relative;padding-left:8px}
+.road-step{
+  display:flex;gap:22px;align-items:flex-start;
+  position:relative;padding-bottom:34px;
+}
+.road-step:not(:last-child)::before{
+  content:'';position:absolute;left:22px;top:46px;bottom:-4px;
+  width:2px;background:linear-gradient(180deg,rgba(201,162,39,0.5),rgba(201,162,39,0.08));
+}
+.road-num{
+  flex-shrink:0;width:46px;height:46px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cinzel',serif;font-weight:700;font-size:1.1rem;
+  color:var(--gold);background:rgba(201,162,39,0.1);
+  border:2px solid rgba(201,162,39,0.4);z-index:1;
+}
+.road-body{
+  flex:1;background:var(--dim);border:1px solid var(--border);
+  border-radius:18px;padding:20px 24px;
+  transition:border-color .25s,transform .25s;
+}
+.road-body:hover{border-color:rgba(201,162,39,0.3);transform:translateX(4px)}
+.road-title{font-size:1.05rem;font-weight:700;margin-bottom:6px}
+.road-title span{font-size:.74rem;color:var(--gold);font-weight:400;margin-left:8px;letter-spacing:.5px}
+.road-desc{font-size:.82rem;color:var(--muted);line-height:1.75}
 
 /* ── PARTNERSHIP (비영리 동역) ── */
 .partner-bg{
@@ -674,6 +726,7 @@ footer{
     <a href="#journey">여정</a>
     <a href="#coaching">코칭</a>
     <a href="#products">플랫폼</a>
+    <a href="#roadmap">로드맵</a>
     <a href="#partner">동역</a>
     <a href="#contact">문의</a>
   </div>
@@ -730,6 +783,14 @@ footer{
       비즈니스(BAM)와 사역이 하나가 될 때, 선교는 멈추지 않습니다.<br>
       헤브론(חֶבְרוֹן)처럼 — 장막을 치고(비즈니스), 제단을 쌓는(사역) 삶.
     </p>
+    <div class="id911 fade-up">
+      <div class="id911-tag">왜 <strong>911</strong>인가</div>
+      <p class="id911-line">
+        교회의 <strong>긴급한 필요</strong>에서 출발해,<br>
+        하나님 나라의 <strong>긴급한 부르심</strong>으로 나아갑니다.
+      </p>
+      <p class="id911-sub">아픔에서 출발하고(Needs-First), 부르심으로 나아가는(Missional) 비영리 사역 — <em>For the Church, for the Kingdom.</em></p>
+    </div>
     <div class="vision-grid">
       <div class="vision-card fade-up">
         <div class="vc-icon">🏘️</div>
@@ -1095,6 +1156,55 @@ footer{
         <div class="bam-icon">🔄</div>
         <div class="bam-title">선순환 (따로 또 같이)</div>
         <div class="bam-desc">비즈니스 성공 = 선교 확장. 선교 열매 = 비즈니스 성장. 수익이 사역을 키우고, 사역이 수익을 만듭니다.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP (Kingdom OS 5단계) -->
+<section class="roadmap-bg" id="roadmap">
+  <div class="section-inner">
+    <p class="sec-label">Kingdom OS · 미래 로드맵</p>
+    <h2 class="sec-title fade-up">시애틀에서 시작해<br>전 세계 교회로</h2>
+    <p class="sec-desc fade-up">
+      교회·도시·영성·교육·선교·기술을 하나의 시스템으로 — 점진적으로,
+      그러나 서로 연결되며 확장되는 다섯 단계입니다.
+    </p>
+    <div class="road-line">
+      <div class="road-step fade-up">
+        <div class="road-num">1</div>
+        <div class="road-body">
+          <div class="road-title">디지털 성전 <span>Digital Sanctuary</span></div>
+          <div class="road-desc">교회 홈페이지 · 도시 가이드 · 언어 학습 — 공식 관문을 세웁니다. 설교→묵상→적용, VIP 온보딩이 흐릅니다.</div>
+        </div>
+      </div>
+      <div class="road-step fade-up">
+        <div class="road-num">2</div>
+        <div class="road-body">
+          <div class="road-title">Hebron OS <span>영성 운영체제</span></div>
+          <div class="road-desc">개인 영성 코치 · 목장 영성 분석 · 교회 영성 레이더. 목회자가 영적 데이터 기반 리더십을 갖습니다.</div>
+        </div>
+      </div>
+      <div class="road-step fade-up">
+        <div class="road-num">3</div>
+        <div class="road-body">
+          <div class="road-title">Kingdom City Platform <span>도시 플랫폼</span></div>
+          <div class="road-desc">도시 안내 · 비즈니스 네트워크 · 가정 회복 센터 · 선교 허브. 교회가 도시의 영적·사회적 허브가 됩니다.</div>
+        </div>
+      </div>
+      <div class="road-step fade-up">
+        <div class="road-num">4</div>
+        <div class="road-body">
+          <div class="road-title">Kingdom Academy <span>교육 생태계</span></div>
+          <div class="road-desc">영어·성경 통합 교육 · 리더십 스쿨 · AI 개인화 학습. 교육이 교회의 핵심 사역이 됩니다.</div>
+        </div>
+      </div>
+      <div class="road-step fade-up">
+        <div class="road-num">5</div>
+        <div class="road-body">
+          <div class="road-title">Kingdom OS <span>전 세계 교회용 운영체제</span></div>
+          <div class="road-desc">설교–묵상–목장–양육 자동 연결 · 다국어 · 선교 네트워크 통합. 시애틀 모델이 미래 교회의 표준이 됩니다.</div>
+        </div>
       </div>
     </div>
   </div>
