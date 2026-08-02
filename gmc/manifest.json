@@ -1,0 +1,56 @@
+{
+  "name": "시애틀지구촌교회 · GMC of Greater Seattle",
+  "short_name": "지구촌",
+  "description": "한 가정씩, 하나님 나라를 확장하라 — 시애틀지구촌교회 가정교회 공동체",
+  "id": "/",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "portrait",
+  "background_color": "#f6f8fc",
+  "theme_color": "#1a3560",
+  "lang": "ko",
+  "dir": "ltr",
+  "categories": ["lifestyle", "education"],
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "기도 요청",
+      "short_name": "기도",
+      "url": "./?open=prayer",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "목장 찾기",
+      "short_name": "목장",
+      "url": "./?open=mokjang",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "새가족 만남",
+      "short_name": "새가족",
+      "url": "./?open=newcomer",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}
