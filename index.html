@@ -919,7 +919,7 @@ footer{
 .sec-light .coach-foot em{color:#a07820}
 .sec-light .diag-title{color:#1d1d1f}
 .sec-light .diag-sub{color:#48484a}
-.sec-light .vision-card,.sec-light .coach-card,.sec-light .partner-card{background:#ffffff}
+.sec-light .vision-card,.sec-light .coach-card,.sec-light .partner-card{
   background:#fff;border-color:rgba(13,28,56,0.1);
 }
 .sec-light .id911{
@@ -927,9 +927,20 @@ footer{
   border-color:rgba(201,162,39,0.4);
   box-shadow:0 0 48px rgba(201,162,39,0.12);
 }
-.sec-light .id911-sub{color:#3a4a65}
-.sec-light .id911-foot{color:#5a6a80;border-top-color:rgba(201,162,39,0.2)}
+/* 밝은 배경용 대비 보정 — 기본값(흰 글씨·금색 그라디언트)은 여기서 읽히지 않음 */
+.sec-light .id911-tag{color:#8a6410}
+.sec-light .id911-line{color:#1d1d1f}
+.sec-light .id911-line strong{
+  background:none;-webkit-text-fill-color:#8a6410;color:#8a6410;
+}
+.sec-light .id911-sub{color:#33415c}
+.sec-light .id911-sub strong{color:#8a6410}
+.sec-light .id911-sub em{
+  background:none;-webkit-text-fill-color:#8a6410;color:#8a6410;
+}
+.sec-light .id911-foot{color:#4a5670;border-top-color:rgba(201,162,39,0.2)}
 .sec-light .id911-foot strong{color:#0d1c38}
+.sec-light .id911-foot span{color:#8a6410}
 .sec-light .diag-card{
   background:linear-gradient(135deg,rgba(201,162,39,0.1),rgba(18,184,134,0.06));
   border-color:rgba(201,162,39,0.3);
