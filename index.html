@@ -633,6 +633,64 @@ section{padding:96px 24px}
 .corps-card p{font-size:.8rem;color:var(--muted);line-height:1.75;margin:0}
 
 /* 현재 상태 — 과장 없이 */
+/* 참여 방식 — 시간 부담을 먼저 해소 */
+.corps-sub{
+  margin-top:56px;text-align:center;
+}
+.corps-sub h3{
+  font-family:'Cinzel',serif;font-size:1.25rem;font-weight:700;
+  color:var(--text);margin-bottom:8px;
+}
+.corps-sub p.lead{font-size:.87rem;color:var(--muted);line-height:1.8;max-width:560px;margin:0 auto}
+.tier-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:26px;text-align:left}
+@media(max-width:760px){.tier-grid{grid-template-columns:1fr}}
+.tier{
+  background:rgba(255,255,255,0.035);
+  border:1px solid rgba(255,255,255,0.09);
+  border-left:3px solid var(--blue);
+  border-radius:0 16px 16px 0;padding:22px 22px;
+}
+.tier:nth-child(2){border-left-color:var(--amber)}
+.tier:nth-child(3){border-left-color:var(--green)}
+.tier-time{
+  font-size:.66rem;letter-spacing:2px;text-transform:uppercase;
+  color:var(--blue);margin-bottom:8px;font-weight:700;
+}
+.tier:nth-child(2) .tier-time{color:var(--amber)}
+.tier:nth-child(3) .tier-time{color:var(--green)}
+.tier h4{font-size:.98rem;font-weight:700;color:var(--text);margin-bottom:8px}
+.tier p{font-size:.79rem;color:var(--muted);line-height:1.75;margin:0}
+
+/* 동역자가 받는 것 — 호혜 */
+.give-back{
+  margin-top:36px;
+  background:linear-gradient(135deg,rgba(201,162,39,0.07),rgba(41,151,255,0.05));
+  border:1px solid rgba(201,162,39,0.22);
+  border-radius:22px;padding:32px 30px;
+}
+.give-back h3{
+  font-family:'Cinzel',serif;font-size:1.15rem;font-weight:700;
+  color:var(--gold-l);margin-bottom:6px;text-align:center;
+}
+.give-back .lead{
+  font-size:.85rem;color:var(--muted);line-height:1.8;
+  text-align:center;max-width:520px;margin:0 auto 22px;
+}
+.gb-list{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:12px 26px;
+  list-style:none;padding:0;margin:0;
+}
+@media(max-width:640px){.gb-list{grid-template-columns:1fr}}
+.gb-list li{
+  font-size:.82rem;color:var(--muted);line-height:1.7;
+  padding-left:18px;position:relative;
+}
+.gb-list li::before{
+  content:'';position:absolute;left:0;top:.6em;
+  width:6px;height:6px;border-radius:50%;background:var(--gold);
+}
+.gb-list li strong{color:var(--text);font-weight:600}
+
 .corps-note{
   margin:38px auto 0;max-width:620px;text-align:center;
   border-top:1px solid var(--border);padding-top:26px;
@@ -1708,7 +1766,7 @@ footer{
       <div class="crit fade-up">
         <div class="crit-icon"><svg class="ic"><use href="#ic-home"/></svg></div>
         <div class="crit-label">기준 02</div>
-        <h3>성경적 가정교회 정신</h3>
+        <h3>성경적 건강한 교회</h3>
         <p>프로그램이 아니라 성경이 말하는 교회입니다. 섬김으로 이끌고,
            제자가 제자를 낳고, 일상이 선교지가 되는 정신을 함께 나눌 수 있는 분을 모십니다.</p>
       </div>
@@ -1752,10 +1810,48 @@ footer{
       </div>
     </div>
 
+    <div class="corps-sub fade-up">
+      <h3>이만큼만 하시면 됩니다</h3>
+      <p class="lead">
+        이미 각자의 사역이 있으신 분들입니다.<br>
+        준비와 일정은 저희가 맡고, 가장 잘하시는 그 시간만 써 주시면 됩니다.
+      </p>
+      <div class="tier-grid">
+        <div class="tier">
+          <div class="tier-time">연 1~2회 · 30분</div>
+          <h4>한 번의 지혜</h4>
+          <p>막힌 사안 하나에 대한 자문 통화, 또는 자료 감수 한 건. 대부분 여기서 시작합니다.</p>
+        </div>
+        <div class="tier">
+          <div class="tier-time">월 1~2시간</div>
+          <h4>한 사람 동행</h4>
+          <p>목회자 딱 한 분을 맡아 함께 걷습니다. 6개월처럼 기간을 정해두셔도 됩니다.</p>
+        </div>
+        <div class="tier">
+          <div class="tier-time">프로젝트 단위</div>
+          <h4>함께 설계</h4>
+          <p>특강·세미나, 커리큘럼 공동 설계, 지역 코칭 그룹. 원하실 때 여기까지 오시면 됩니다.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="give-back fade-up">
+      <h3>동역자도 함께 받습니다</h3>
+      <p class="lead">동역은 한쪽이 주기만 하면 오래가지 못합니다. 먼저 섬기는 것이 순서입니다.</p>
+      <ul class="gb-list">
+        <li><strong>현장과의 접점</strong> — 익명화된 진단 데이터와 실제 사례. 연구와 저술의 재료가 됩니다.</li>
+        <li><strong>쌓아온 것이 흘러갈 통로</strong> — 수십 년의 경험이 사라지지 않고 다음 사람에게 이어집니다.</li>
+        <li><strong>목회자 동료</strong> — 현직에서 속을 털어놓을 안전한 자리. 주면서 동시에 받습니다.</li>
+        <li><strong>선교 · 교회 연결</strong> — 안식년 사역 자리, 후원 교회 연결, 정착 정보와 파송 통로.</li>
+        <li><strong>열매 회신</strong> — 그 30분 이후 그 교회가 어떻게 되었는지 반드시 알려 드립니다.</li>
+        <li><strong>부담 없는 거절</strong> — 모든 요청은 초대입니다. 어려우실 때 편히 말씀하셔도 관계는 그대로입니다.</li>
+      </ul>
+    </div>
+
     <p class="corps-note fade-up">
       이 네트워크는 지금 <strong>첫 자리를 만들어가는 중</strong>입니다.<br>
       화려한 명단보다, 진짜로 함께 걸을 <strong>한 사람</strong>을 먼저 찾습니다.<br>
-      연락 주시면 48시간 이내에 답변 드립니다.
+      연락 주시면 48시간 이내에 접수 확인을 드리고, 일정은 함께 조율합니다.
     </p>
   </div>
 </section>
