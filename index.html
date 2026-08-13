@@ -1104,6 +1104,57 @@ footer{
 .sec-light .id911-foot{color:#4a5670;border-top-color:rgba(201,162,39,0.2)}
 .sec-light .id911-foot strong{color:#0d1c38}
 .sec-light .id911-foot span{color:#8a6410}
+
+/* ══ 밝은 섹션 가독성 일괄 보정 ══
+   배경 #f5f5f7 위에서 금색(#f0c040)은 대비 1.9:1 로 사실상 안 보임.
+   아이콘·라벨·본문·카드 경계를 전부 어두운 금색/진회색으로 재지정한다. */
+
+/* 1) 아이콘 — 밝은 배경에서 금색은 보이지 않음 */
+.sec-light .vc-icon,
+.sec-light .coach-icon,
+.sec-light .bam-icon,
+.sec-light .partner-icon,
+.sec-light .price-icon,
+.sec-light .diag-emoji,
+.sec-light .diag-badge .ic{color:#8a6410}
+.sec-light .vc-icon .ic,
+.sec-light .coach-icon .ic,
+.sec-light .bam-icon .ic,
+.sec-light .partner-icon .ic,
+.sec-light .price-icon .ic,
+.sec-light .diag-emoji .ic,
+.sec-light .diag-badge .ic{stroke:#8a6410}
+
+/* 2) 섹션 라벨 — 작은 대문자라 더 진해야 함 */
+.sec-light .sec-label{color:#7d5f16;font-weight:700}
+.sec-light .sec-label::after{background:rgba(125,95,22,0.35)}
+
+/* 3) 본문 — 한 단계 더 진하게, 살짝 크게 */
+.sec-light .sec-desc,.sec-light p.sec-desc{color:#33333a;font-size:1rem}
+.sec-light .vc-desc,.sec-light .coach-desc,.sec-light .coach-foot{color:#3d3d44;font-size:.88rem}
+.sec-light .coach-foot em,.sec-light .coach-foot strong{color:#7d5f16}
+.sec-light .diag-sub{color:#3d3d44}
+.sec-light .partner-desc{color:#3d3d44}
+
+/* 4) 카드 — 흰 카드가 밝은 배경에 묻히지 않도록 경계와 그림자 부여 */
+.sec-light .vision-card,
+.sec-light .coach-card,
+.sec-light .partner-card{
+  background:#fff;
+  border:1px solid rgba(13,28,56,0.14);
+  box-shadow:0 2px 10px rgba(13,28,56,0.06);
+}
+.sec-light .vision-card:hover,
+.sec-light .partner-card:hover{
+  border-color:rgba(125,95,22,0.45);
+  box-shadow:0 10px 30px rgba(13,28,56,0.12);
+}
+.sec-light .coach-card{border-left:3px solid #a07820}
+
+/* 5) 강조 문구 */
+.sec-light .vc-desc strong,
+.sec-light .coach-desc strong{color:#1d1d1f}
+
 .sec-light .diag-card{
   background:linear-gradient(135deg,rgba(201,162,39,0.1),rgba(18,184,134,0.06));
   border-color:rgba(201,162,39,0.3);
