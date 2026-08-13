@@ -1,0 +1,23 @@
+# ── 비공개 보관 자료 ──
+# 이 저장소는 public GitHub Pages입니다.
+# 커밋되는 모든 파일은 인터넷에 공개되므로,
+# 내부 자료·전략 문서·개인 관련 파일은 아래에서 제외합니다.
+
+Archive/
+
+# 개발 중인 신규 사이트 (배포 준비 완료 시 해제)
+Kchurch911/
+
+# 내부 문서
+CLAUDE.md
+kchurch911_claude_code_prompt.md
+
+# 이미지 폴더 내 문서 파일 (이미지가 아닌 것)
+images/*.txt
+images/*.docx
+
+# OS / 편집기
+Thumbs.db
+desktop.ini
+.DS_Store
+*.swp
