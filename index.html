@@ -10,19 +10,24 @@
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg:#0c1829;
-  --navy:#0f1e3d;
-  --navy2:#1a3060;
-  --gold:#C9A227;
-  --gold-l:#f0d060;
-  --gold-d:#8a6e1a;
-  --teal:#12b886;
-  --teal-l:#3de0a0;
-  --purple:#9b59b6;
-  --text:rgba(255,255,255,0.90);
-  --muted:rgba(255,255,255,0.42);
-  --dim:rgba(255,255,255,0.06);
-  --border:rgba(255,255,255,0.08);
+  --bg:#09090f;
+  --navy:#0f1020;
+  --navy2:#1a1a2e;
+  --gold:#f0c040;
+  --gold-l:#ffe066;
+  --gold-d:#a07820;
+  --blue:#2997ff;
+  --blue-l:#5ab4ff;
+  --amber:#ff9f0a;
+  --amber-l:#ffbe4f;
+  --green:#34c759;
+  --green-l:#6dda8a;
+  --teal:#30d0c0;
+  --pink:#ff6b8a;
+  --text:rgba(255,255,255,0.96);
+  --muted:rgba(255,255,255,0.62);
+  --dim:rgba(255,255,255,0.05);
+  --border:rgba(255,255,255,0.10);
 }
 html{scroll-behavior:smooth}
 body{
@@ -92,9 +97,10 @@ nav{
 .hero-bg{
   position:absolute;inset:0;z-index:0;
   background:
-    radial-gradient(ellipse 80% 60% at 50% 30%, rgba(31,71,136,0.35) 0%, transparent 70%),
-    radial-gradient(ellipse 50% 40% at 20% 70%, rgba(155,89,182,0.12) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 40% at 80% 80%, rgba(18,184,134,0.10) 0%, transparent 60%);
+    radial-gradient(ellipse 70% 55% at 50% 20%, rgba(41,151,255,0.22) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 40% at 15% 75%, rgba(255,159,10,0.12) 0%, transparent 55%),
+    radial-gradient(ellipse 45% 40% at 85% 70%, rgba(52,199,89,0.10) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 50% at 50% 100%, rgba(240,192,64,0.08) 0%, transparent 60%);
 }
 .hero-stars{
   position:absolute;inset:0;z-index:0;
@@ -236,28 +242,54 @@ section{padding:96px 24px}
   text-align:center;margin-bottom:56px;
 }
 .core-key .sec-label{color:var(--gold);opacity:.9}
-.core-key h2{font-family:'Cinzel',serif;font-size:clamp(1.6rem,4vw,2.6rem);font-weight:700;line-height:1.3;margin-bottom:20px}
-.core-key h2 strong{color:var(--gold)}
-.core-key p{color:rgba(255,255,255,0.68);font-size:1rem;line-height:1.9;max-width:540px;margin:0 auto}
+.core-key h2{font-family:'Cinzel',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;line-height:1.25;margin-bottom:20px;color:#fff}
+.core-key h2 strong{
+  background:linear-gradient(135deg,var(--amber),var(--gold));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.core-key p{color:rgba(255,255,255,0.78);font-size:1.05rem;line-height:1.9;max-width:540px;margin:0 auto}
 .three-pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 @media(max-width:640px){.three-pillars{grid-template-columns:1fr}}
 .pillar{
   background:rgba(255,255,255,0.04);
-  border:1px solid rgba(201,162,39,0.18);
-  border-radius:16px;padding:36px 28px;text-align:center;
-  transition:background .25s,border-color .25s;
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:20px;padding:40px 28px;text-align:center;
+  transition:transform .25s,box-shadow .25s;
 }
-.pillar:hover{background:rgba(201,162,39,0.06);border-color:rgba(201,162,39,0.38)}
+.pillar:hover{transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,0.4)}
 .pillar-icon{
-  width:52px;height:52px;border-radius:50%;
-  background:rgba(201,162,39,0.12);
+  width:56px;height:56px;border-radius:16px;
   display:flex;align-items:center;justify-content:center;
-  margin:0 auto 20px;
+  margin:0 auto 22px;
 }
-.pillar-icon .ic{width:24px;height:24px;stroke:var(--gold)}
-.pillar h3{font-family:'Cinzel',serif;font-size:1.05rem;color:var(--gold);margin-bottom:10px;letter-spacing:1px}
-.pillar p{font-size:.88rem;color:rgba(255,255,255,0.6);line-height:1.8}
-.pillar .pillar-num{font-size:.7rem;color:var(--gold-d);letter-spacing:2px;margin-bottom:8px}
+.pillar-icon .ic{width:26px;height:26px}
+.pillar h3{font-family:'Cinzel',serif;font-size:1.1rem;margin-bottom:12px;letter-spacing:1px}
+.pillar p{font-size:.9rem;color:rgba(255,255,255,0.65);line-height:1.85}
+.pillar .pillar-num{font-size:.65rem;letter-spacing:3px;margin-bottom:10px;opacity:.6}
+
+/* 상담 — amber */
+.pillar:nth-child(1){border-color:rgba(255,159,10,0.25);background:rgba(255,159,10,0.05)}
+.pillar:nth-child(1):hover{box-shadow:0 20px 60px rgba(255,159,10,0.15)}
+.pillar:nth-child(1) .pillar-icon{background:rgba(255,159,10,0.15)}
+.pillar:nth-child(1) .pillar-icon .ic{stroke:var(--amber)}
+.pillar:nth-child(1) h3{color:var(--amber)}
+.pillar:nth-child(1) .pillar-num{color:var(--amber)}
+
+/* 코칭 — blue */
+.pillar:nth-child(2){border-color:rgba(41,151,255,0.25);background:rgba(41,151,255,0.05)}
+.pillar:nth-child(2):hover{box-shadow:0 20px 60px rgba(41,151,255,0.15)}
+.pillar:nth-child(2) .pillar-icon{background:rgba(41,151,255,0.15)}
+.pillar:nth-child(2) .pillar-icon .ic{stroke:var(--blue)}
+.pillar:nth-child(2) h3{color:var(--blue-l)}
+.pillar:nth-child(2) .pillar-num{color:var(--blue)}
+
+/* 동역 — green */
+.pillar:nth-child(3){border-color:rgba(52,199,89,0.25);background:rgba(52,199,89,0.05)}
+.pillar:nth-child(3):hover{box-shadow:0 20px 60px rgba(52,199,89,0.15)}
+.pillar:nth-child(3) .pillar-icon{background:rgba(52,199,89,0.15)}
+.pillar:nth-child(3) .pillar-icon .ic{stroke:var(--green)}
+.pillar:nth-child(3) h3{color:var(--green-l)}
+.pillar:nth-child(3) .pillar-num{color:var(--green)}
 
 /* ── VISION SECTION ── */
 .vision-bg{
@@ -304,11 +336,11 @@ section{padding:96px 24px}
   align-items:center;margin-top:56px;
 }
 .vision-card{
-  background:var(--dim);border:1px solid var(--border);
+  background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.10);
   border-radius:24px;padding:32px;
-  transition:border-color .3s,transform .3s;
+  transition:border-color .3s,transform .3s,box-shadow .3s;
 }
-.vision-card:hover{border-color:rgba(201,162,39,0.3);transform:translateY(-4px)}
+.vision-card:hover{border-color:rgba(255,255,255,0.22);transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,0.4)}
 .vc-icon{font-size:2.2rem;margin-bottom:16px}
 .vc-title{font-size:1.15rem;font-weight:700;margin-bottom:8px}
 .vc-desc{font-size:.83rem;color:var(--muted);line-height:1.75}
@@ -685,10 +717,10 @@ footer{
 
 /* ── STATS BAR ── */
 .stats-bar{
-  background:#f0ead8;
-  border-top:2px solid rgba(201,162,39,0.3);
-  border-bottom:2px solid rgba(201,162,39,0.3);
-  padding:40px 24px;
+  background:#111118;
+  border-top:1px solid rgba(255,255,255,0.06);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  padding:48px 24px;
 }
 .stats-inner{
   max-width:900px;margin:0 auto;
@@ -696,11 +728,14 @@ footer{
   gap:20px;text-align:center;
 }
 .stat-n{
-  font-family:'Cinzel',serif;font-size:2.6rem;font-weight:900;
-  color:var(--gold-d);line-height:1;margin-bottom:8px;
-  text-shadow:0 2px 12px rgba(201,162,39,0.2);
+  font-family:'Cinzel',serif;font-size:2.8rem;font-weight:900;
+  line-height:1;margin-bottom:10px;
 }
-.stat-l{font-size:.76rem;color:#5a6a80;letter-spacing:.5px;font-weight:500}
+.stat-n.c-amber{color:var(--amber)}
+.stat-n.c-blue{color:var(--blue)}
+.stat-n.c-green{color:var(--green)}
+.stat-n.c-gold{color:var(--gold)}
+.stat-l{font-size:.76rem;color:rgba(255,255,255,0.50);letter-spacing:.5px;font-weight:400}
 
 /* ── DIAGNOSIS MODAL ── */
 .diag-overlay{
@@ -874,17 +909,17 @@ footer{
 }
 
 /* ── BRIGHT SECTIONS ── */
-.sec-light{background:#f4efe8}
-.sec-light .sec-title,.sec-light h2{color:#0d1c38}
-.sec-light .sec-label{color:#7a5e15}
-.sec-light .sec-label::after{background:rgba(122,94,21,0.2)}
-.sec-light .sec-desc,.sec-light p.sec-desc{color:#4a5a75}
-.sec-light .vc-title,.sec-light .coach-title,.sec-light .bam-title{color:#0d1c38}
-.sec-light .vc-desc,.sec-light .coach-desc,.sec-light .coach-foot{color:#5a6a80}
-.sec-light .coach-foot em{color:#9a7220}
-.sec-light .diag-title{color:#0d1c38}
-.sec-light .diag-sub{color:#5a6a80}
-.sec-light .vision-card,.sec-light .coach-card{
+.sec-light{background:#f5f5f7}
+.sec-light .sec-title,.sec-light h2{color:#1d1d1f}
+.sec-light .sec-label{color:#a07820}
+.sec-light .sec-label::after{background:rgba(160,120,32,0.2)}
+.sec-light .sec-desc,.sec-light p.sec-desc{color:#3a3a3c}
+.sec-light .vc-title,.sec-light .coach-title,.sec-light .bam-title{color:#1d1d1f}
+.sec-light .vc-desc,.sec-light .coach-desc,.sec-light .coach-foot{color:#48484a}
+.sec-light .coach-foot em{color:#a07820}
+.sec-light .diag-title{color:#1d1d1f}
+.sec-light .diag-sub{color:#48484a}
+.sec-light .vision-card,.sec-light .coach-card,.sec-light .partner-card{background:#ffffff}
   background:#fff;border-color:rgba(13,28,56,0.1);
 }
 .sec-light .id911{
@@ -1026,10 +1061,10 @@ footer{
 <!-- STATS BAR -->
 <div class="stats-bar fade-up">
   <div class="stats-inner">
-    <div><div class="stat-n">10곳 중 4곳</div><div class="stat-l">성장이 멈춘 교회</div></div>
-    <div><div class="stat-n">25+</div><div class="stat-l">년 현장 검증 코칭</div></div>
-    <div><div class="stat-n">4</div><div class="stat-l">동력 맞춤 처방</div></div>
-    <div><div class="stat-n">0</div><div class="stat-l">원 — 첫 상담 비용</div></div>
+    <div><div class="stat-n c-amber">10곳 중 4곳</div><div class="stat-l">성장이 멈춘 교회</div></div>
+    <div><div class="stat-n c-blue">25+</div><div class="stat-l">년 현장 검증 코칭</div></div>
+    <div><div class="stat-n c-green">4</div><div class="stat-l">동력 맞춤 처방</div></div>
+    <div><div class="stat-n c-gold">0원</div><div class="stat-l">첫 상담 비용</div></div>
   </div>
 </div>
 
