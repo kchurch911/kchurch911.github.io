@@ -179,6 +179,40 @@ a{color:inherit;text-decoration:none}
 .fstep .ko{font-size:.86rem;font-weight:700;color:var(--text);display:block}
 .fstep .en{font-size:.6rem;letter-spacing:1px;color:var(--gold-d);display:block;margin-top:3px;text-transform:uppercase}
 
+/* 두 축 — 규모 / 형태 */
+.axes{
+  margin:36px 0;padding:28px 24px;
+  background:rgba(255,255,255,0.03);
+  border:1px solid var(--border);border-radius:20px;
+}
+.axis{margin-bottom:22px}
+.axis:last-child{margin-bottom:0}
+.axis-label{
+  font-size:.66rem;letter-spacing:2.5px;text-transform:uppercase;
+  font-weight:700;margin-bottom:12px;
+}
+.axis:nth-child(1) .axis-label{color:var(--blue)}
+.axis:nth-child(2) .axis-label{color:var(--green)}
+.axis-steps{display:flex;flex-wrap:wrap;gap:7px;align-items:stretch}
+.astep{
+  flex:1 1 auto;min-width:78px;text-align:center;
+  border-radius:11px;padding:12px 8px;
+  font-size:.82rem;font-weight:600;color:rgba(255,255,255,0.82);
+  border:1px solid;
+}
+.axis:nth-child(1) .astep{background:rgba(41,151,255,0.07);border-color:rgba(41,151,255,0.2)}
+.axis:nth-child(2) .astep{background:rgba(52,199,89,0.07);border-color:rgba(52,199,89,0.2)}
+.astep.now{
+  background:rgba(240,192,64,0.12);border-color:rgba(240,192,64,0.42);
+  color:var(--gold-l);font-weight:700;
+}
+.axis:nth-child(2) .astep.now{background:rgba(240,192,64,0.12);border-color:rgba(240,192,64,0.42)}
+.axes-note{
+  margin-top:20px;padding-top:18px;border-top:1px solid var(--border);
+  font-size:.85rem;color:var(--muted);line-height:1.85;text-align:center;
+}
+.axes-note strong{color:var(--text)}
+
 /* 마무리 질문 → CTA */
 .ask{
   margin:64px 0 0;padding:38px 32px;
@@ -271,6 +305,8 @@ a{color:inherit;text-decoration:none}
     <p class="lead">
       나는 <strong>개척교회, 소형교회, 중형교회, 대형교회를 모두 섬겨 보았다.</strong>
       그중 개척교회를 통해 일어나는 것도, 무너지는 것도 경험했다.
+      또 <strong>전통교회, 셀교회, 가정교회의 전환</strong>을 거쳐 지금은
+      다시 성경적 건강한 교회를 실험하고 있다.
     </p>
     <p class="lead">
       사람 없는 교회를 경험했고, 사람이 갑자기 많아져 흔들리는 교회도 경험했다.
@@ -671,6 +707,35 @@ a{color:inherit;text-decoration:none}
         살아 있는 것은 자기 형태를 보존하는 데만 에너지를 쓰지 않는다. 새로운 생명을 낳는다.
         교회 역시 건물이나 조직을 보존하는 것만으로 생명력을 증명할 수 없다.
       </p>
+
+      <p>
+        내가 이렇게 말할 수 있는 것은, 두 축을 다 지나왔기 때문이다.
+      </p>
+
+      <div class="axes">
+        <div class="axis">
+          <div class="axis-label">규모 — 네 가지를 다 섬겼다</div>
+          <div class="axis-steps">
+            <div class="astep">개척교회</div>
+            <div class="astep">소형교회</div>
+            <div class="astep">중형교회</div>
+            <div class="astep">대형교회</div>
+          </div>
+        </div>
+        <div class="axis">
+          <div class="axis-label">형태 — 전환을 다 거쳤다</div>
+          <div class="axis-steps">
+            <div class="astep">전통교회</div>
+            <div class="astep">셀교회</div>
+            <div class="astep">가정교회</div>
+            <div class="astep now">지금 · 다시 실험 중</div>
+          </div>
+        </div>
+        <p class="axes-note">
+          네 가지 규모도, 세 가지 형태도 다 지나왔다.<br>
+          그런데 <strong>어느 규모도, 어느 형태도 그 자체로 답이 아니었다.</strong>
+        </p>
+      </div>
       <p>
         요즘 트렌드는 목장교회다. 큰 예배와 작은 목장·가정모임을 결합하는 공간의 분산에 강점이 있다.
         그러나 오늘 교회 현실의 문제는 규모나 모임 형태가 아니다.
@@ -716,7 +781,8 @@ a{color:inherit;text-decoration:none}
       </p>
 
       <div class="pull">
-        그리고 나는 지금도<br>성경적 건강한 교회를 실험하고 있다.
+        그래서 나는 가정교회에 정착하지 않았다.<br>
+        지금도 다시, 성경적 건강한 교회를 실험하고 있다.
       </div>
     </section>
 
@@ -775,8 +841,9 @@ a{color:inherit;text-decoration:none}
           목회 코치 · 신학교 교수 · Hebron Faith Ecosystem 창립자<br>
           스무 살 전도사로 시작해 한국과 미국에서 40년.
           SBTS 졸업 후 NAMB 개척 선교사로 파송받아 시애틀 지구촌교회를 단독 개척, 25년을 섬겼습니다.
-          개척교회부터 대형교회까지 네 가지 규모를 모두 섬겨 보았고,
-          지금도 성경적 건강한 교회를 실험하고 있습니다.
+          개척교회부터 대형교회까지 네 가지 규모를 모두 섬겼고,
+          전통교회 · 셀교회 · 가정교회의 전환을 거쳐
+          지금도 다시 성경적 건강한 교회를 실험하고 있습니다.
         </div>
       </div>
     </div>
