@@ -229,6 +229,36 @@ section{padding:96px 24px}
 }
 .sec-desc{color:var(--muted);font-size:.95rem;line-height:1.8;max-width:640px}
 
+/* ── CORE IDENTITY (상담·코칭·동역) ── */
+.core-id{background:var(--bg);padding:80px 24px}
+.core-id .section-inner{max-width:1000px;margin:0 auto}
+.core-key{
+  text-align:center;margin-bottom:56px;
+}
+.core-key .sec-label{color:var(--gold);opacity:.9}
+.core-key h2{font-family:'Cinzel',serif;font-size:clamp(1.6rem,4vw,2.6rem);font-weight:700;line-height:1.3;margin-bottom:20px}
+.core-key h2 strong{color:var(--gold)}
+.core-key p{color:rgba(255,255,255,0.68);font-size:1rem;line-height:1.9;max-width:540px;margin:0 auto}
+.three-pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+@media(max-width:640px){.three-pillars{grid-template-columns:1fr}}
+.pillar{
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(201,162,39,0.18);
+  border-radius:16px;padding:36px 28px;text-align:center;
+  transition:background .25s,border-color .25s;
+}
+.pillar:hover{background:rgba(201,162,39,0.06);border-color:rgba(201,162,39,0.38)}
+.pillar-icon{
+  width:52px;height:52px;border-radius:50%;
+  background:rgba(201,162,39,0.12);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 20px;
+}
+.pillar-icon .ic{width:24px;height:24px;stroke:var(--gold)}
+.pillar h3{font-family:'Cinzel',serif;font-size:1.05rem;color:var(--gold);margin-bottom:10px;letter-spacing:1px}
+.pillar p{font-size:.88rem;color:rgba(255,255,255,0.6);line-height:1.8}
+.pillar .pillar-num{font-size:.7rem;color:var(--gold-d);letter-spacing:2px;margin-bottom:8px}
+
 /* ── VISION SECTION ── */
 .vision-bg{
   background:linear-gradient(160deg,rgba(31,71,136,0.15),rgba(7,13,26,0) 60%);
@@ -1002,6 +1032,47 @@ footer{
     <div><div class="stat-n">0</div><div class="stat-l">원 — 첫 상담 비용</div></div>
   </div>
 </div>
+
+<!-- CORE IDENTITY -->
+<section class="core-id" id="core">
+  <div class="section-inner">
+    <div class="core-key fade-up">
+      <p class="sec-label">K-Church 911 사역의 핵심</p>
+      <h2>하나님 나라의 열쇠는<br><strong>사람</strong>입니다</h2>
+      <p>
+        하나님의 마음에 합한 좋은 사람을 찾고,<br>
+        함께 프론트에 서서 동행하는 것.<br>
+        이것이 Kingdom Church 911이 하는 사역의 심장입니다.
+      </p>
+    </div>
+    <div class="three-pillars fade-up">
+      <div class="pillar">
+        <div class="pillar-icon">
+          <svg class="ic"><use href="#ic-heart"/></svg>
+        </div>
+        <div class="pillar-num">01</div>
+        <h3>상담</h3>
+        <p>목회자의 아픔과 필요를 먼저 경청합니다. 판단 없이, 곁에서 듣는 것이 시작입니다.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">
+          <svg class="ic"><use href="#ic-compass"/></svg>
+        </div>
+        <div class="pillar-num">02</div>
+        <h3>코칭</h3>
+        <p>현장에 맞는 길을 함께 찾습니다. 정답을 주는 것이 아니라, 스스로 발견하도록 돕습니다.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">
+          <svg class="ic"><use href="#ic-people"/></svg>
+        </div>
+        <div class="pillar-num">03</div>
+        <h3>동역</h3>
+        <p>프론트에 함께 섭니다. 혼자가 아닌 동행으로, 하나님 나라의 사역을 펼쳐갑니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- VISION -->
 <section class="vision-bg sec-light" id="vision">
