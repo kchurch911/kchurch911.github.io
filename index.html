@@ -572,6 +572,43 @@ section{padding:96px 24px}
 .bam-title{font-size:.95rem;font-weight:700;margin-bottom:8px}
 .bam-desc{font-size:.78rem;color:var(--muted);line-height:1.7}
 
+/* ── 글 티저 ── */
+.read-card{
+  display:flex;align-items:center;gap:22px;flex-wrap:wrap;
+  margin-top:32px;padding:26px 30px;
+  background:linear-gradient(135deg,rgba(240,192,64,0.09),rgba(41,151,255,0.05));
+  border:1px solid rgba(240,192,64,0.28);
+  border-radius:20px;
+  transition:transform .25s,box-shadow .25s,border-color .25s;
+}
+.read-card:hover{transform:translateY(-3px);border-color:var(--gold);box-shadow:0 16px 44px rgba(240,192,64,0.14)}
+.read-body{flex:1;min-width:240px}
+.read-tag{
+  font-size:.63rem;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--gold);font-weight:700;margin-bottom:8px;
+}
+.read-title{
+  font-family:'Cinzel',serif;font-size:1.12rem;font-weight:700;
+  color:var(--text);margin-bottom:8px;line-height:1.45;
+}
+.read-desc{font-size:.83rem;color:var(--muted);line-height:1.75}
+.read-go{
+  flex-shrink:0;font-size:.8rem;font-weight:700;white-space:nowrap;
+  padding:12px 24px;border-radius:30px;
+  background:rgba(240,192,64,0.14);color:var(--gold-l);
+  border:1px solid rgba(240,192,64,0.35);
+  transition:opacity .2s;
+}
+.read-card:hover .read-go{opacity:.85}
+.sec-light .read-card{
+  background:linear-gradient(135deg,rgba(240,192,64,0.13),rgba(41,151,255,0.06));
+  border-color:rgba(160,120,32,0.35);
+}
+.sec-light .read-tag{color:#8a6410}
+.sec-light .read-title{color:#1d1d1f}
+.sec-light .read-desc{color:#48484a}
+.sec-light .read-go{background:rgba(160,120,32,0.14);color:#7d5f16;border-color:rgba(160,120,32,0.4)}
+
 /* ── COACHING CORPS (코칭 동역자) ── */
 .corps-bg{
   background:linear-gradient(180deg,var(--bg),rgba(41,151,255,0.045),var(--bg));
@@ -1421,6 +1458,19 @@ footer{
     <p class="coach-foot fade-up">
       진단 후 깊은 처방은 <strong>1:1 목회 컨설팅</strong>으로 이어집니다. 첫 상담은 무료입니다.
     </p>
+
+    <a href="insight-planting.html" class="read-card fade-up">
+      <div class="read-body">
+        <div class="read-tag">개척의 실제 · 김성수 목사</div>
+        <div class="read-title">사람이 모이자 교회가 흔들리다</div>
+        <div class="read-desc">
+          85명을 넘어 100명을 눈앞에 두고 한순간에 무너졌습니다.
+          돌보고는 있었지만 세우고 있지는 못했던 그때의 이야기 —
+          그리고 Caregiver에서 Multiplier로 넘어가야 하는 지점에 대하여.
+        </div>
+      </div>
+      <span class="read-go">글 읽기 →</span>
+    </a>
   </div>
 </section>
 
@@ -1933,6 +1983,7 @@ footer{
         <h4>사역</h4>
         <a href="#vision">비전</a>
         <a href="#coaching">목회 코칭</a>
+        <a href="insight-planting.html">글 · 개척의 실제</a>
         <a href="#corps">코칭 동역자</a>
         <a href="#partner">함께 섬기기</a>
         <a href="#contact">후원 · 동역</a>

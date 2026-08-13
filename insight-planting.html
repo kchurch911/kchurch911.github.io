@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>사람이 모이자 교회가 흔들리다 — K-Church 911</title>
+<meta name="description" content="85명을 넘어 100명을 눈앞에 두고 무너졌다. 개척 목회자가 Caregiver에서 Multiplier로 전환해야 하는 지점에 대하여 — 김성수(Paul Kim) 목사.">
+<meta property="og:title" content="사람이 모이자 교회가 흔들리다">
+<meta property="og:description" content="개척은 사람을 모으는 능력보다, 사람이 모인 뒤 무엇을 내려놓을 수 있느냐가 더 중요하지 않을까.">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Cinzel:wght@600;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#09090f;
+  --navy:#0f1020;
+  --gold:#f0c040;
+  --gold-l:#ffe066;
+  --gold-d:#a07820;
+  --blue:#2997ff;
+  --blue-l:#5ab4ff;
+  --amber:#ff9f0a;
+  --amber-l:#ffbe4f;
+  --green:#34c759;
+  --green-l:#6dda8a;
+  --text:rgba(255,255,255,0.96);
+  --muted:rgba(255,255,255,0.62);
+  --border:rgba(255,255,255,0.10);
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Noto Sans KR','Inter',-apple-system,sans-serif;
+  background:var(--bg);color:var(--text);
+  line-height:1.6;-webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+
+/* ── NAV ── */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 clamp(20px,5vw,60px);height:60px;
+  background:rgba(9,9,15,0.88);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{display:flex;align-items:center;gap:9px}
+.nav-logo-text{font-family:'Cinzel',serif;font-size:1.02rem;font-weight:700}
+.nav-logo-text strong{font-weight:900;color:var(--gold-l)}
+.nav-back{
+  font-size:.8rem;color:var(--muted);
+  display:inline-flex;align-items:center;gap:6px;transition:color .2s;
+}
+.nav-back:hover{color:var(--gold)}
+
+/* ── ARTICLE ── */
+.wrap{max-width:720px;margin:0 auto;padding:0 clamp(20px,5vw,32px)}
+.art-head{padding:120px 0 48px;border-bottom:1px solid var(--border)}
+.art-kicker{
+  font-size:.68rem;letter-spacing:3px;text-transform:uppercase;
+  color:var(--gold);margin-bottom:18px;font-weight:700;
+}
+.art-title{
+  font-family:'Cinzel',serif;
+  font-size:clamp(1.9rem,5vw,3rem);font-weight:700;
+  line-height:1.25;margin-bottom:18px;
+  background:linear-gradient(135deg,#fff 30%,var(--gold-l) 80%,var(--gold) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.art-sub{
+  font-size:1rem;color:var(--muted);line-height:1.8;margin-bottom:28px;
+}
+.art-meta{
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  font-size:.8rem;color:var(--muted);
+}
+.art-meta .who{color:var(--text);font-weight:600}
+.art-meta .dot{opacity:.35}
+
+/* 본문 */
+.art-body{padding:48px 0 24px;font-size:1.02rem;line-height:2}
+.art-body p{color:rgba(255,255,255,0.82);margin-bottom:22px}
+.art-body p.lead{
+  font-size:1.12rem;color:var(--text);line-height:1.95;
+  margin-bottom:32px;
+}
+
+/* 섹션 */
+.sec{margin-top:64px;scroll-margin-top:80px}
+.sec-num{
+  font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:3px;
+  color:var(--gold-d);margin-bottom:10px;font-weight:700;
+}
+.sec h2{
+  font-size:clamp(1.25rem,3vw,1.6rem);font-weight:700;
+  line-height:1.4;margin-bottom:24px;color:var(--text);
+}
+
+/* 개인 경험 블록 */
+.testimony{
+  background:linear-gradient(135deg,rgba(255,159,10,0.07),rgba(240,192,64,0.04));
+  border-left:3px solid var(--amber);
+  border-radius:0 16px 16px 0;
+  padding:26px 28px;margin:32px 0;
+}
+.testimony .tag{
+  font-size:.64rem;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--amber);font-weight:700;margin-bottom:12px;
+}
+.testimony p{color:rgba(255,255,255,0.9);margin-bottom:14px;font-size:1rem}
+.testimony p:last-child{margin-bottom:0}
+
+/* 결론 화살표 (저자 요약) */
+.takeaway{
+  display:flex;gap:14px;align-items:flex-start;
+  background:rgba(41,151,255,0.06);
+  border:1px solid rgba(41,151,255,0.2);
+  border-radius:14px;padding:18px 22px;margin:28px 0 0;
+}
+.takeaway .arrow{color:var(--blue);font-weight:700;flex-shrink:0;font-size:1.05rem;line-height:1.7}
+.takeaway p{color:var(--blue-l);font-weight:600;margin:0;font-size:.95rem;line-height:1.75}
+
+/* 강조 인용 */
+.pull{
+  font-family:'Cinzel',serif;
+  font-size:clamp(1.15rem,2.6vw,1.45rem);font-weight:600;
+  line-height:1.65;text-align:center;
+  color:var(--gold-l);
+  padding:34px 24px;margin:40px 0;
+  border-top:1px solid rgba(240,192,64,0.22);
+  border-bottom:1px solid rgba(240,192,64,0.22);
+}
+
+/* 목록 */
+.art-body ul{list-style:none;margin:0 0 22px;padding:0}
+.art-body ul li{
+  position:relative;padding-left:20px;margin-bottom:11px;
+  color:rgba(255,255,255,0.82);line-height:1.85;
+}
+.art-body ul li::before{
+  content:'';position:absolute;left:0;top:.72em;
+  width:5px;height:5px;border-radius:50%;background:var(--gold);
+}
+.art-body strong{color:var(--text);font-weight:700}
+.art-body em{color:var(--gold-l);font-style:normal;font-weight:600}
+
+/* 대조 표 */
+.contrast{
+  display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:30px 0;
+}
+@media(max-width:600px){.contrast{grid-template-columns:1fr}}
+.contrast > div{
+  border-radius:16px;padding:22px 20px;border:1px solid;
+}
+.contrast .c-a{border-color:rgba(255,159,10,0.25);background:rgba(255,159,10,0.05)}
+.contrast .c-b{border-color:rgba(52,199,89,0.25);background:rgba(52,199,89,0.05)}
+.contrast h4{font-size:.95rem;margin-bottom:10px;font-weight:700}
+.contrast .c-a h4{color:var(--amber-l)}
+.contrast .c-b h4{color:var(--green-l)}
+.contrast p{font-size:.86rem;line-height:1.8;margin:0;color:var(--muted)}
+
+/* 6단계 흐름 */
+.flow{
+  margin:36px 0;padding:28px 24px;
+  background:rgba(255,255,255,0.03);
+  border:1px solid var(--border);border-radius:20px;
+}
+.flow h4{
+  font-family:'Cinzel',serif;font-size:.95rem;color:var(--gold);
+  margin-bottom:20px;text-align:center;letter-spacing:1px;
+}
+.flow-steps{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.fstep{
+  flex:1 1 auto;min-width:96px;text-align:center;
+  background:rgba(240,192,64,0.07);
+  border:1px solid rgba(240,192,64,0.2);
+  border-radius:12px;padding:14px 10px;
+}
+.fstep .ko{font-size:.86rem;font-weight:700;color:var(--text);display:block}
+.fstep .en{font-size:.6rem;letter-spacing:1px;color:var(--gold-d);display:block;margin-top:3px;text-transform:uppercase}
+
+/* 마무리 질문 → CTA */
+.ask{
+  margin:64px 0 0;padding:38px 32px;
+  background:linear-gradient(135deg,rgba(240,192,64,0.09),rgba(41,151,255,0.06));
+  border:1px solid rgba(240,192,64,0.25);
+  border-radius:22px;text-align:center;
+}
+.ask h3{
+  font-family:'Cinzel',serif;font-size:1.3rem;font-weight:700;
+  color:var(--gold-l);margin-bottom:16px;line-height:1.5;
+}
+.ask p{color:rgba(255,255,255,0.8);font-size:.95rem;line-height:1.9;margin-bottom:26px}
+.ask-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:.85rem;font-weight:700;padding:13px 28px;border-radius:40px;
+  transition:transform .15s,box-shadow .2s;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn-gold{
+  background:linear-gradient(135deg,var(--gold),var(--gold-l));color:#09090f;
+  box-shadow:0 4px 22px rgba(240,192,64,0.3);
+}
+.btn-ghost{border:1px solid rgba(255,255,255,0.22);color:var(--text)}
+.btn-ghost:hover{border-color:rgba(255,255,255,0.45);background:rgba(255,255,255,0.05)}
+
+/* 저자 */
+.author{
+  margin:56px 0 0;padding:28px 0 0;border-top:1px solid var(--border);
+  display:flex;gap:18px;align-items:flex-start;
+}
+.author-badge{
+  width:52px;height:52px;border-radius:50%;flex-shrink:0;
+  background:rgba(240,192,64,0.12);
+  border:1px solid rgba(240,192,64,0.28);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cinzel',serif;font-weight:700;color:var(--gold);font-size:1.1rem;
+}
+.author-name{font-size:.98rem;font-weight:700;margin-bottom:4px}
+.author-role{font-size:.78rem;color:var(--muted);line-height:1.75}
+
+/* 푸터 */
+.foot{
+  margin-top:72px;border-top:1px solid var(--border);
+  padding:32px 0 40px;text-align:center;
+  font-size:.75rem;color:rgba(255,255,255,0.4);line-height:1.9;
+}
+.foot a{color:var(--gold-d)}
+.foot a:hover{color:var(--gold)}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <svg width="30" height="30" viewBox="0 0 80 80" fill="none">
+      <circle cx="40" cy="46" r="30" stroke="#f0c040" stroke-width="1.4" opacity=".4"/>
+      <line x1="10" y1="46" x2="70" y2="46" stroke="#f0c040" stroke-width="1" opacity=".3"/>
+      <path d="M14 33 Q40 26 66 33" stroke="#f0c040" stroke-width="1" fill="none" opacity=".3"/>
+      <path d="M13 59 Q40 66 67 59" stroke="#f0c040" stroke-width="1" fill="none" opacity=".3"/>
+      <rect x="38.5" y="7" width="3" height="14" rx="1.2" fill="#f0c040"/>
+      <rect x="33.5" y="10" width="13" height="3" rx="1" fill="#f0c040"/>
+      <polygon points="22,40 40,22 58,40" fill="#f0c040"/>
+      <rect x="24" y="40" width="32" height="24" rx="1.5" fill="#f0c040"/>
+      <rect x="34.5" y="50" width="11" height="14" rx="2" fill="#09090f"/>
+    </svg>
+    <span class="nav-logo-text">K-Church <strong>911</strong></span>
+  </a>
+  <a href="index.html" class="nav-back">← 홈으로</a>
+</nav>
+
+<article class="wrap">
+
+  <header class="art-head">
+    <div class="art-kicker">개척의 실제</div>
+    <h1 class="art-title">사람이 모이자<br>교회가 흔들리다</h1>
+    <p class="art-sub">
+      성도가 개척교회를 선택한다는 것과,<br>
+      개척 목사가 현실 속에 선택해야 하는 것
+    </p>
+    <div class="art-meta">
+      <span class="who">김성수 (Paul Kim) 목사</span>
+      <span class="dot">·</span>
+      <span>시애틀 지구촌교회 개척 25년</span>
+    </div>
+  </header>
+
+  <div class="art-body">
+
+    <p class="lead">
+      나는 사람 없는 교회를 경험했고, 사람이 갑자기 많아져 흔들리는 교회도 경험했다.
+      돌아보면 사람이 없을 때보다 <strong>사람이 많아졌을 때 더 많은 것을 선택해야 했다.</strong>
+    </p>
+
+    <!-- 1 -->
+    <section class="sec">
+      <div class="sec-num">01</div>
+      <h2>작은 교회를 선택하는 일은, 거의 재혼에 가깝다</h2>
+
+      <p>
+        작은 개척교회를 처음부터 선택하는 사람은 많지 않다. 특히 교회에서 상처를 경험했거나
+        오랫동안 교회를 떠나 있던 사람에게 작은 교회를 선택하는 일은 단순한 이동이 아니다.
+        이건 거의 <em>재혼</em>에 가깝다.
+      </p>
+      <p>
+        한 번 관계가 깨진 사람이 다시 누군가를 믿는 일은 "좋아 보여서, 느낌이 좋아서" 되는 선택이 아니다.
+        말 한마디, 표정 하나, 분위기 하나까지 계속 본다.
+        괜찮은 척하지 않는지, 또 상처 주지 않을 사람인지, 오래 버틸 사람인지.
+      </p>
+      <p>
+        그래서 작은 교회를 향한 선택은 늘 느리다. 상처받기도, 주기도 싫어서 조심스럽다.
+      </p>
+      <p>
+        대형교회에는 이미 검증된 시스템과 브랜드가 있다. 예배, 교육, 다음세대에 대한 기본적인 기대가
+        형성되어 있다. 그러나 작은 교회에는 그런 보증이 없다. 심지어 숨을 공간도 없다.
+      </p>
+      <p>
+        결국 개척교회를 선택한다는 것은, 마지막에 하나의 질문으로 수렴된다.
+        <strong>"이 목회자를 믿어도 되는가."</strong>
+      </p>
+
+      <div class="pull">
+        큰 교회는 시스템이 신뢰를 대신하지만,<br>
+        작은 교회는 목회자의 삶이 시스템을 대신한다.
+      </div>
+
+      <p>
+        그래서 작은 교회의 첫 자본은 건물도 프로그램도 아니라 <strong>신뢰</strong>다.
+        대형교회의 시스템과 프로그램과 건물, 그 모든 것을 넘어서는 무엇이 목회자 자신에게 있을 때
+        사람들은 그 교회를 선택한다. 개척교회 자체가 곧 목사다.
+      </p>
+      <p>
+        스스로에게 물어보라. <em>당신이 성도라면, 수많은 교회를 두고 굳이 당신의 교회를 왜 다니겠는가.</em>
+      </p>
+      <p>
+        개척 초기의 성장은 홍보의 결과라기보다, 오랜 시간 축적된 신뢰가 선택으로 드러나는 현상이다.
+        그러나 이 신뢰는 교회를 성장시키는 동시에, 반드시 다음 단계의 구조적 긴장을 만들어낸다.
+      </p>
+
+      <div class="takeaway">
+        <span class="arrow">→</span>
+        <p>신뢰는 시작이지만, 동시에 성장 이후의 구조 문제를 예고한다.</p>
+      </div>
+    </section>
+
+    <!-- 2 -->
+    <section class="sec">
+      <div class="sec-num">02</div>
+      <h2>30명과 100명은 같은 교회가 아니다</h2>
+
+      <div class="testimony">
+        <div class="tag">직접 겪은 자리</div>
+        <p>
+          나는 <strong>85명을 넘어 100명을 눈앞에 두고, 성장의 기로에서 한순간에 무너짐을 경험했다.</strong>
+        </p>
+        <p>
+          신천지 같은 사람, 자기 의가 강한 사람, 온갖 쓴 뿌리를 가지고 와서 쏟아붓는 사람.
+          30명, 50명, 70명 때마다 무너져 내렸다.
+        </p>
+        <p>
+          지금 생각해보면 나는 <strong>설계도 없이 건물을 지으려는, 아무것도 모르는 사람</strong>이었다.
+          목회 철학과 교회론이 무엇인지, 심지어 설교가 무엇인지도 머리로만 알았지 정작 몰랐다.
+          무엇보다 <em>생명을 살린다는 것이 무엇인지</em> 몰랐다.
+        </p>
+      </div>
+
+      <p>
+        숫자가 절대적 기준은 아니다. 그러나 경험적으로 30명과 100명은 전혀 다른 구조를 요구한다.
+      </p>
+      <p>
+        30명 규모에서는 굳이 조직이 없어도 서로의 형편을 자연스럽게 알 수 있다.
+        누가 아픈지, 누가 어려운지, 누가 도움이 필요한지 관계 안에서 공유된다.
+        이 시기 목회자는 설교자이면서 심방자이고, 양육자이면서 중재자이며, 공동체 문화를 직접 형성하는 사람이다.
+      </p>
+      <p>
+        이 단계의 직접 목회는 비효율이라기보다 <strong>공동체의 기초를 형성하는 중요한 과정</strong>이다.
+        그러나 이 방식은 구조적으로 확장 가능하지 않고, 목회자는 결국 번아웃에 이른다.
+      </p>
+      <p>
+        사람이 늘어나면 관계의 밀도가 급격히 증가하고, 한 사람의 시간과 정서로 감당할 수 있는 범위를 넘어선다.
+        그럼에도 모든 기대가 여전히 목회자에게 집중되면 그때부터 구조적 문제가 시작된다.
+      </p>
+
+      <div class="pull">
+        사람이 적을 때는 목회자의 장점이 교회의 장점이 되지만,<br>
+        사람이 많아지면 목회자의 한계가 교회의 한계가 된다.
+      </div>
+
+      <div class="takeaway">
+        <span class="arrow">→</span>
+        <p>성장의 핵심은 "더 많은 목회"가 아니라 "구조의 전환"이다.</p>
+      </div>
+    </section>
+
+    <!-- 3 -->
+    <section class="sec">
+      <div class="sec-num">03</div>
+      <h2>돌보고는 있었지만, 세우고 있지는 못했다</h2>
+
+      <p>
+        개척 초기에는 사람이 오지 않는 것이 가장 큰 문제처럼 보인다.
+        그래서 사람의 증가가 곧 해결이라고 생각하기 쉽다. 그러나 실제로는 그때부터 다른 문제가 시작된다.
+      </p>
+      <p>
+        말씀을 전하고, 사람을 만나고, 심방하고, 문제를 함께 해결하는 과정이 반복된다.
+        겉으로는 충실한 목회처럼 보인다. 그러나 어느 순간 깨닫게 된다.
+      </p>
+
+      <div class="pull">
+        돌보고는 있지만, 세우고 있지는 못했다.
+      </div>
+
+      <p>
+        돌봄은 사람을 품는 것이고, 세움은 <strong>그 사람이 다시 다른 사람을 품을 수 있도록 만드는 것</strong>이다.
+      </p>
+      <p>
+        물론 모든 사람이 동일한 속도로 성장하지 않는다. 지속적인 돌봄이 필요한 사람도 있다.
+        교회는 그들을 배제해서는 안 된다.
+      </p>
+      <p>
+        문제는 돌봄 자체가 아니라 <strong>돌봄이 한 사람에게 집중되는 구조</strong>다.
+        모든 문제와 결정이 목회자에게 모이면, 교회는 따뜻해 보이지만 동시에 의존 구조가 된다.
+        결국 모든 사람이 "목사님"을 찾게 되고, 공동체는 스스로 움직이지 못한다.
+        그렇게 교회는 <em>영적 고아원</em>이 되어버릴 수 있다.
+      </p>
+      <p>
+        이 말은 돌봄을 줄이라는 뜻이 아니라 돌봄이 확장되어야 한다는 뜻이다.
+        목회자가 모든 사람을 돌보는 구조에서, 성도들이 서로를 돌보는 구조로 이동해야 한다.
+      </p>
+
+      <div class="takeaway">
+        <span class="arrow">→</span>
+        <p>돌봄의 문제는 양이 아니라 "분산되지 않은 구조"의 문제다.</p>
+      </div>
+    </section>
+
+    <!-- 4 -->
+    <section class="sec">
+      <div class="sec-num">04</div>
+      <h2>가족 같은 교회의 두 얼굴</h2>
+
+      <p>
+        작은 교회의 가장 큰 장점은 친밀함이다. 30명 규모에서는 자연스럽게 가족 같은 분위기가 형성된다.
+        그러나 이 친밀함은 쉽게 다른 형태로 변질될 수 있다.
+      </p>
+
+      <div class="contrast">
+        <div class="c-a">
+          <h4>가족 같은 교회</h4>
+          <p>사랑이 있다. 친밀하지만 경계가 살아 있고, 복음이 관계보다 앞선다.</p>
+        </div>
+        <div class="c-b">
+          <h4>가족주의적 교회</h4>
+          <p>경계가 흐려진다. 돌봄이 특정 사람에게 집중되고, 친밀함이 점차 의존성으로 변한다.</p>
+        </div>
+      </div>
+
+      <p>
+        교회는 가족처럼 따뜻해야 하지만, <strong>가족 감정으로 운영되어서는 안 된다.</strong>
+        교회는 단순한 관계 공동체가 아니라 그리스도 안에서 부름받은 언약 공동체이기 때문이다.
+      </p>
+      <p>
+        복음이 관계보다 앞서고, 말씀에 대한 순종이 감정보다 앞서야 한다.
+        결국 필요한 것은 사랑의 축소가 아니라 <strong>사랑의 확장</strong>이다.
+        개인 간 친밀함이 아니라 공동체 전체의 책임으로 확장되는 것이다.
+      </p>
+
+      <div class="takeaway">
+        <span class="arrow">→</span>
+        <p>친밀함은 유지하되, 구조는 의존이 아니라 책임으로 전환되어야 한다.</p>
+      </div>
+    </section>
+
+    <!-- 5 -->
+    <section class="sec">
+      <div class="sec-num">05</div>
+      <h2>목회자의 과로는 항상 헌신의 증거인가</h2>
+
+      <p>
+        목회자는 바빠지는 것을 자연스럽게 받아들인다. 그러나 어느 순간 질문이 생긴다.
+        <strong>내가 모든 일을 하는 것이 사랑 때문인가, 아니면 다른 사람이 자랄 기회를 막고 있는 것인가.</strong>
+      </p>
+      <p>
+        모든 결정과 갈등과 돌봄이 목회자에게 집중되면, 목회자는 가장 중요한 자원이면서
+        동시에 <em>가장 큰 병목</em>이 된다. 한 사람의 헌신으로 성장한 구조는 그 한 사람의 한계에서 멈추기 쉽다.
+      </p>
+      <p>
+        목회자가 모든 것을 직접 처리하면 성도는 편해지지만, 성숙은 일어나지 않는다.
+      </p>
+
+      <div class="pull">
+        때로 과로는 헌신의 증거가 아니라<br>
+        성장을 막는 구조의 신호일 수 있다.
+      </div>
+
+      <p>그래서 목회자의 역할은 줄어드는 것이 아니라 <strong>바뀌어야</strong> 한다.</p>
+      <ul>
+        <li>모든 일을 하는 사람에서 → 사람들이 사역하도록 세우는 사람으로</li>
+        <li>모든 문제를 해결하는 사람에서 → 사람들이 말씀으로 판단하도록 돕는 사람으로</li>
+      </ul>
+      <p>
+        에베소서 4장의 원리는 분명하다. 목회자의 목적은 성도를 온전하게 하여 봉사의 일을 하게 하는 것이다.
+        즉 목회자는 <strong>Caregiver에서 Multiplier로</strong> 이동하는 사람이다.
+      </p>
+
+      <div class="takeaway">
+        <span class="arrow">→</span>
+        <p>목회의 성숙은 "더 많이 하는 것"이 아니라 "더 많이 하게 만드는 것"이다.</p>
+      </div>
+    </section>
+
+    <!-- 6 -->
+    <section class="sec">
+      <div class="sec-num">06</div>
+      <h2>구조는 생명을 대신할 수 없다</h2>
+
+      <p>
+        리더를 세우고 시스템을 만들면 교회가 건강해질 것처럼 보이지만, 그것만으로는 충분하지 않다.
+        기업도 동일한 구조를 가질 수 있다.
+      </p>
+      <p>
+        교회에는 구조 이전에 <strong>생명</strong>이 있어야 한다.
+        사람을 변화시키는 것은 시스템이 아니라 복음과 성령의 역사다.
+        구조는 생명을 만들지 못하고, 생명이 자라도록 돕는 역할만 한다.
+      </p>
+      <p>그래서 교회의 첫 질문은 시스템이 아니라 이것이다.</p>
+      <ul>
+        <li>복음은 무엇인가</li>
+        <li>회심은 무엇인가</li>
+        <li>우리는 누구인가</li>
+        <li>하나님은 왜 이 공동체를 두셨는가</li>
+      </ul>
+      <p>
+        이 질문이 교회의 기초다. 결국 조직의 문제보다 더 깊은 곳에는 <strong>교회론의 문제</strong>가 있다.
+      </p>
+
+      <div class="takeaway">
+        <span class="arrow">→</span>
+        <p>구조는 답이 아니라, 생명을 담는 그릇이다.</p>
+      </div>
+    </section>
+
+    <!-- 7 -->
+    <section class="sec">
+      <div class="sec-num">07</div>
+      <h2>교회론은 개인의 생각이 아니라 공동체의 언어다</h2>
+
+      <p>
+        교회가 무엇인지, 제자가 무엇인지, 공동체가 서로에게 어떤 책임을 지는지에 대한 이해는
+        목회자 개인의 비전으로 머물러서는 안 된다. 그것이 공동체 전체의 언어가 되어야 한다.
+      </p>
+
+      <div class="pull">
+        교회론이 개인의 머릿속에 있으면 카리스마가 되지만,<br>
+        공동체의 언어가 되면 문화가 된다.
+      </div>
+
+      <p>
+        문화는 보이지 않지만 공동체의 행동을 결정한다.
+        그래서 건강한 교회는 목회자의 비전이 강한 교회가 아니라 <strong>복음과 교회론이 공유된 교회</strong>다.
+      </p>
+      <p>
+        이때 중요한 것은 통제가 아니라 기준이다. 사람보다 기준이 앞서고, 의견보다 복음이 앞선다.
+      </p>
+
+      <div class="takeaway">
+        <span class="arrow">→</span>
+        <p>교회의 안정성은 리더십이 아니라 공유된 신학에서 나온다.</p>
+      </div>
+    </section>
+
+    <!-- 8 -->
+    <section class="sec">
+      <div class="sec-num">08</div>
+      <h2>직분보다 먼저 검증되어야 할 것</h2>
+
+      <p>
+        교회는 직분을 세운다고 건강해지지 않는다. 직분은 역할을 줄 수 있지만 성숙을 보장하지 않는다.
+        중요한 것은 <strong>그 사람이 공동체 안에서 검증되었는가</strong>이다.
+      </p>
+      <ul>
+        <li>복음을 이해하는가</li>
+        <li>교회론을 공유하는가</li>
+        <li>실제로 사람을 돌보는가</li>
+        <li>책임을 감당하는가</li>
+        <li>공동체를 세우는 방향으로 은사를 사용하는가</li>
+      </ul>
+      <p>
+        특히 경험이 많은 사람일수록 <strong>능력과 성숙은 구분되어야</strong> 한다.
+        능력이 강하지만 방향에 순종하지 못하는 사람은 리더가 아니라 또 다른 중심이 될 수 있다.
+      </p>
+
+      <div class="takeaway">
+        <span class="arrow">→</span>
+        <p>직분은 임명이 아니라 "검증된 성숙의 결과"다.</p>
+      </div>
+    </section>
+
+    <!-- 9 -->
+    <section class="sec">
+      <div class="sec-num">09</div>
+      <h2>돌봄에서 양육으로, 양육에서 재생산으로</h2>
+
+      <p>교회의 방향은 단순하다.</p>
+
+      <div class="flow">
+        <h4>돌봄 → 양육 → 재생산</h4>
+        <div class="flow-steps">
+          <div class="fstep"><span class="ko">돌봄</span><span class="en">Care</span></div>
+          <div class="fstep"><span class="ko">양육</span><span class="en">Nurture</span></div>
+          <div class="fstep"><span class="ko">재생산</span><span class="en">Reproduce</span></div>
+        </div>
+      </div>
+
+      <p>
+        돌봄은 시작이다. 그러나 끝이 아니다. 양육은 회복된 사람이 말씀 안에서 성장하도록 돕는 과정이다.
+        재생산은 그 사람이 다시 다른 사람을 세우는 단계다.
+      </p>
+      <p>
+        모든 교회가 동일한 방식으로 분립할 필요는 없다. 그러나 생명에는 공통된 방향이 있다.
+        <strong>생명은 자신에게서 끝나지 않는다.</strong>
+      </p>
+      <p>그래서 교회의 성숙은 숫자가 아니라 질문으로 드러난다.</p>
+      <ul>
+        <li>누가 회심했는가</li>
+        <li>누가 성장하고 있는가</li>
+        <li>누가 다른 사람을 돌보기 시작했는가</li>
+        <li>누가 보내질 수 있는가</li>
+      </ul>
+
+      <div class="pull">
+        교회의 성숙은 흡수 능력이 아니라 재생산 능력이다.
+      </div>
+
+      <div class="takeaway">
+        <span class="arrow">→</span>
+        <p>건강한 교회는 "모으는 교회"가 아니라 "흘려보내는 교회"다.</p>
+      </div>
+    </section>
+
+    <!-- 10 -->
+    <section class="sec">
+      <div class="sec-num">10</div>
+      <h2>교회의 본질은 숫자가 아니라 정체성이다</h2>
+
+      <p>
+        개척 초기에는 숫자가 중요해 보인다. 그러나 시간이 지나면 더 중요한 질문이 남는다.
+        <em>"우리는 누구인가."</em> 그리고 <em>"우리는 어떤 사람을 만들어내고 있는가."</em>
+      </p>
+      <p>
+        교회는 규모로 지속되지 않는다. 정체성으로 지속된다.
+        사람은 프로그램 때문에 올 수 있지만, 공동체에 남는 이유는 그 공동체의 정체성이 분명하기 때문이다.
+      </p>
+      <p>결국 지속 가능한 교회는 다음과 같은 흐름을 가진다.</p>
+
+      <div class="flow">
+        <div class="flow-steps">
+          <div class="fstep"><span class="ko">신뢰로 시작</span></div>
+          <div class="fstep"><span class="ko">복음으로 세움</span></div>
+          <div class="fstep"><span class="ko">교회론이 문화로</span></div>
+          <div class="fstep"><span class="ko">세워진 사람이<br>다시 세움</span></div>
+        </div>
+      </div>
+
+      <p>
+        그러나 이 모든 것은 공식이 아니라 은혜의 결과다.
+        교회를 세우는 주체는 사람이 아니라 하나님이시다. 목회자는 그 일에 참여하도록 부름받은 사람이다.
+      </p>
+      <p>
+        그래서 목회의 성공은 사람들이 목회자에게 의존하는 것이 아니라,
+        사람들이 그리스도를 배우고 다시 다른 사람을 세우는 사람이 되는 것이다.
+      </p>
+
+      <div class="takeaway">
+        <span class="arrow">→</span>
+        <p>교회의 최종 목표는 "성장"이 아니라 "재생산되는 제자 공동체"다.</p>
+      </div>
+    </section>
+
+    <!-- 결론 -->
+    <section class="sec">
+      <div class="sec-num">결론</div>
+      <h2>형태(Form)가 아니라 생성력(Generativity)의 문제다</h2>
+
+      <p>
+        살아 있는 것은 자기 형태를 보존하는 데만 에너지를 쓰지 않는다. 새로운 생명을 낳는다.
+        교회 역시 건물이나 조직을 보존하는 것만으로 생명력을 증명할 수 없다.
+      </p>
+      <p>
+        요즘 트렌드는 목장교회다. 큰 예배와 작은 목장·가정모임을 결합하는 공간의 분산에 강점이 있다.
+        그러나 오늘 교회 현실의 문제는 규모나 모임 형태가 아니다.
+        <strong>"대형교회냐 가정교회냐"의 문제가 아니라, 교회가 어떤 생명 구조를 갖느냐의 문제다.</strong>
+      </p>
+
+      <div class="contrast">
+        <div class="c-b">
+          <h4>3,000명이어도 건강할 수 있다</h4>
+          <p>성도가 성도를 돌보고, 복음과 교회론이 공유되고, 평신도 리더가 세워지고,
+             목회자와 개척자를 계속 배출하며, 사람을 계속 보내는 구조라면.</p>
+        </div>
+        <div class="c-a">
+          <h4>10명이어도 같은 문제가 반복된다</h4>
+          <p>가정에서 모여도 모든 사람이 한 리더에게 의존하고, 회심과 양육이 없고,
+             새로운 제자와 리더가 생기지 않는다면 규모만 작을 뿐이다.</p>
+        </div>
+      </div>
+
+      <div class="pull">
+        교회의 문제는 크기에 있지 않다.<br>
+        생명이 한 사람에게 집중되어 있는가,<br>
+        아니면 공동체 전체로 순환하며 재생산되고 있는가의 문제다.
+      </div>
+
+      <p>
+        소비자를 계속 만들어내는 교회인가, 제자를 다시 제자로 재생산하는 교회인가의 문제다.
+      </p>
+      <p>
+        나는 대형교회를 해체하고 모든 교회를 작은 모임으로 바꾸자는 이야기를 하는 것이 아니다.
+        규모는 본질이 아니다. 천 명이 모여도 천 명이 사역자가 될 수 있고, 열 명이 모여도 한 사람에게 의존할 수 있다.
+      </p>
+      <p>
+        중요한 것은 <strong>어디서 모이는가가 아니라 누가 사역하는가</strong>이며,
+        얼마나 작은가가 아니라 <strong>생명이 어디까지 흘러가는가</strong>이다.
+        건강한 교회의 질문은 "몇 명이 모였는가"를 넘어
+        "모인 사람들이 다시 누구를 세우고 파송하고 있는가"로 이동해야 한다.
+      </p>
+      <p>
+        청빙 목사건 개척 목사건, 결국 <strong>어떤 DNA를 장착했느냐</strong>이다.
+      </p>
+    </section>
+
+    <!-- 개척의 실제 프레임 -->
+    <section class="sec">
+      <div class="sec-num">프레임</div>
+      <h2>개척자의 형성에서 재생산까지</h2>
+      <p>
+        개척을 하나의 흐름으로 놓고 보면 이렇게 정리된다.
+        어느 한 단계를 건너뛰면 반드시 뒤에서 대가를 치른다.
+      </p>
+
+      <div class="flow">
+        <h4>개척의 실제 — 여섯 단계</h4>
+        <div class="flow-steps">
+          <div class="fstep"><span class="ko">형성</span><span class="en">Formation</span></div>
+          <div class="fstep"><span class="ko">축적</span><span class="en">Accumulation</span></div>
+          <div class="fstep"><span class="ko">발산</span><span class="en">Articulation</span></div>
+          <div class="fstep"><span class="ko">관계·전도</span><span class="en">Relationship</span></div>
+          <div class="fstep"><span class="ko">제자화</span><span class="en">Discipleship</span></div>
+          <div class="fstep"><span class="ko">재생산</span><span class="en">Reproduction</span></div>
+        </div>
+      </div>
+
+      <p>
+        내가 무너진 지점은 <strong>형성과 축적이 부족한 채로 사람이 먼저 모였을 때</strong>였다.
+        설계도 없이 건물이 올라가면, 올라간 만큼 무너진다.
+      </p>
+    </section>
+
+    <!-- 마무리 질문 -->
+    <div class="ask">
+      <h3>개척은 사람을 모으는 능력보다,<br>사람이 모인 뒤 무엇을 내려놓을 수 있느냐가<br>더 중요하지 않을까</h3>
+      <p>
+        설교를 내려놓으라는 것도, 목양을 포기하라는 것도 아니다.<br>
+        <strong>"내가 아니면 안 된다"는 구조를 내려놓고 사람을 세우는 쪽을 선택하는 것.</strong><br>
+        이것은 불가능한 일일까.
+      </p>
+      <p style="margin-bottom:8px">
+        목회하시는 분들은 어느 지점에서 이 전환을 경험하셨는지 궁금하다.<br>
+        30명, 50명, 100명… 언제부터 이전 방식으로는 안 된다고 느끼셨는가?
+      </p>
+      <div class="ask-btns">
+        <a href="index.html#contact" class="btn btn-gold">내 이야기 나누기</a>
+        <a href="index.html#coaching" class="btn btn-ghost">4동력 코칭 보기</a>
+      </div>
+    </div>
+
+    <!-- 저자 -->
+    <div class="author">
+      <div class="author-badge">金</div>
+      <div>
+        <div class="author-name">김성수 (Paul Kim) 목사</div>
+        <div class="author-role">
+          목회 코치 · 신학교 교수 · Hebron Faith Ecosystem 창립자<br>
+          스무 살 전도사로 시작해 한국과 미국에서 40년.
+          SBTS 졸업 후 NAMB 개척 선교사로 파송받아 시애틀 지구촌교회를 단독 개척, 25년을 섬겼습니다.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="foot">
+    © 2026 Hebron Platform LLC · <a href="index.html">K-Church 911</a><br>
+    For the Church, for the Kingdom.
+  </div>
+
+</article>
+
+</body>
+</html>
