@@ -556,6 +556,10 @@ section{padding:96px 24px}
   background:var(--gold);color:#07080d;border-color:transparent;
 }
 
+.pricing-grid.pilot-grid{grid-template-columns:1fr!important;max-width:560px;margin-left:auto;margin-right:auto}
+.price-card.featured.pilot-card::before{content:'Pilot 2026'}
+.pilot-card .price-features{font-size:.8rem}
+
 /* ── BAM SECTION ── */
 .bam-bg{border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .bam-grid{
@@ -1623,7 +1627,40 @@ footer{
   </div>
 </section>
 
-<!-- PRICING -->
+<!-- PRICING (파일럿 단계 — 유료 플랜 표는 2027년 공개 예정, 원문은 아래 주석에 보관) -->
+<section class="pricing-bg" id="pricing">
+  <div class="section-inner">
+    <p class="sec-label">Hebron Platform 제공 · HebronAltar</p>
+    <h2 class="sec-title fade-up">Hebron 앱 — 파일럿 교회를 모십니다</h2>
+    <p class="sec-desc fade-up">
+      시애틀지구촌교회에서 실제로 쓰고 있는 Hebron(21일 경청 훈련 · 목장 · VIP · 기도 언약 · 설교 통역)을
+      2026년 하반기, 가정교회 네트워크 안의 <strong>소수 교회에 무료로</strong> 열어 함께 다듬습니다.
+    </p>
+    <div class="pricing-grid pilot-grid">
+      <div class="price-card featured fade-up pilot-card">
+        <div class="price-icon"><svg class="ic"><use href="#ic-sprout"/></svg></div>
+        <div class="price-name">파일럿 교회</div>
+        <div class="price-target">2026 하반기 · 소수 교회 · 함께 만드는 단계</div>
+        <div class="price-amount">$0</div>
+        <div class="price-period">파일럿 기간 무료 · 이후에도 소형교회(50명 이하)는 무료 유지 예정</div>
+        <ul class="price-features">
+          <li>21일 경청 훈련 · 일지 · VIP 전도 관리</li>
+          <li>목장 대시보드 · 목자↔목원 기도 언약</li>
+          <li>주일 설교 동시통역 (한·영·스페인어)</li>
+          <li>교회 설정 · 성도 초대 · 운영 안내 지원</li>
+          <li>피드백이 다음 버전에 바로 반영됩니다</li>
+        </ul>
+        <a href="#contact" class="price-btn">파일럿 관심 등록</a>
+      </div>
+    </div>
+    <p class="coach-foot fade-up" style="margin-top:26px">
+      유료 플랜(스타터 · 교회 · 프리미엄)은 <em>2027년 공개 예정</em>입니다.<br>
+      연계 파트너 <em>Hebron Platform(BAM)</em>이 운영하며, 구독 수익이 사역을 지속시킵니다.
+    </p>
+  </div>
+</section>
+
+<!-- ===== 보관: 유료 플랜 표 원문 (2027년 공개 시 복원) =====
 <section class="pricing-bg" id="pricing">
   <div class="section-inner">
     <p class="sec-label">Hebron Platform 제공 · HebronAltar 플랜</p>
@@ -1709,6 +1746,7 @@ footer{
     </div>
   </div>
 </section>
+===== 보관 끝 ===== -->
 
 <!-- BAM -->
 <section class="bam-bg">
