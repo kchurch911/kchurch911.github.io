@@ -45,6 +45,7 @@ function doPost(e) {
       ]);
       styleRow_(sheet, sheet.getLastRow(), !!data.urgent);
       if (NOTIFY_EMAIL) notify_(data, now);
+      confirm_(data, now);   // 연락처에 이메일을 적은 경우에만 접수 확인 메일
       return json_({ ok: true, id: seq });
     }
 
@@ -126,6 +127,22 @@ function notify_(d, now) {
     MailApp.sendEmail({ to: NOTIFY_EMAIL, subject: '[123 기도] 새 기도 제목 — ' + (d.name || ''),
       body: ['접수: ' + now, '이름: ' + (d.name || ''), '소속: ' + (d.group || ''), '', '기도 제목 1: ' + (d.req1 || ''), d.req2 ? '기도 제목 2: ' + d.req2 : '', d.urgent ? '※ 긴급' : ''].filter(Boolean).join('\n') });
   } catch (err) { Logger.log('mail failed: ' + err); }
+}
+// 접수 확인 메일 — 연락처가 이메일 형식일 때만 발송
+function confirm_(d, now) {
+  try {
+    const to = String(d.contact || '').trim();
+    if (!/^[^s@]+@[^s@]+.[^s@]+$/.test(to)) return;
+    const name = String(d.name || '').trim();
+    const en = d.lang === 'en';
+    const subject = en ? '[123 Prayer] Your prayer request has arrived' : '[123 Prayer] ' + name + '님, 기도 제목이 잘 도착했습니다';
+    const body = en
+      ? [name + ', your prayer request has arrived.', 'Starting this week I will call your name in prayer — twice a week, at least three seconds each.', '', 'Your request:', '- ' + (d.req1 || ''), d.req2 ? '- ' + d.req2 : '', '', '“Pray without ceasing; give thanks in all circumstances.” (1 Thess 5:17-18)', '', 'Paul Kim · K-Church 911 · 123 Prayer', 'https://kchurch911.com/123prayer/'].filter(x => x !== '').join('
+')
+      : [name + '님, 기도 제목이 잘 도착했습니다.', '이번 주부터 ' + name + '님의 이름을 부르며 일주일에 두 번, 삼 초 이상 기도하겠습니다.', '', '보내주신 기도 제목:', '- ' + (d.req1 || ''), d.req2 ? '- ' + d.req2 : '', '', '“쉬지 말고 기도하라. 범사에 감사하라.” (살전 5:17-18)', '', '김성수 · K-Church 911 · 123 Prayer', 'https://kchurch911.com/123prayer/'].filter(x => x !== '').join('
+');
+    MailApp.sendEmail({ to: to, subject: subject, body: body, name: en ? 'Paul Kim · 123 Prayer' : '김성수 · 123 Prayer' });
+  } catch (err) { Logger.log('confirm mail failed: ' + err); }
 }
 function json_(o) { return ContentService.createTextOutput(JSON.stringify(o)).setMimeType(ContentService.MimeType.JSON); }
 
