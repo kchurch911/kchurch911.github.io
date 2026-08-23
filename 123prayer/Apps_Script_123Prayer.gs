@@ -228,7 +228,7 @@ function allRequests_() {
 function requestsOf_(token) { return allRequests_().filter(r => String(r.token) === String(token)); }
 function pastorReqs_() {
   try { const v = PropertiesService.getScriptProperties().getProperty('PASTOR_REQS'); if (v) return JSON.parse(v); } catch (err) {}
-  return ['말씀과 기도, 종의 리더십으로 사역하게 하소서', '가정과 사역마다 아름다운 복음의 열매 맺게 하소서'];
+  return ['말씀과 기도, 종의 리더십으로 사역하게 하소서', '가정과 사역마다 복음의 열매 맺게 하소서'];
 }
 
 // ── 연 1회 갱신 안내 (기도방 열 때 ?cron=1 로 호출) ─────────────────
