@@ -71,7 +71,7 @@ function doPost(e) {
       const st = data.status || '기도중';
       sheet.getRange(row, COL['상태']).setValue(st);
       if (st === '응답됨' || st === '부분응답') {
-        if (!sheet.getRange(row, COL['응답일']).getValue()) sheet.getRange(row, COL['응답일']).setValue(today_());
+        if (!sheet.getRange(row, COL['응답일']).getValue()) sheet.getRange(row, COL['응답일']).setValue(txt_(today_()));
         if (data.note) sheet.getRange(row, COL['응답 메모']).setValue(String(data.note));
         if (st === '응답됨') { bumpPerson_(sheet.getRange(row, COL['토큰']).getValue(), '응답 건수', 1); answeredMail_(rowObj_(sheet, row), 'pastor'); }
       }
@@ -88,6 +88,7 @@ function doGet(e) {
   try {
     if (p.me)     { const person = findPerson_(p.me); if (!person) return json_({ ok:false, error:'unauthorized' }); return json_({ ok:true, me: personObj_(person), requests: requestsOf_(person.token), pastor: pastorReqs_() }); }
     if (p.pastor) return json_({ ok: true, items: pastorReqs_() });
+    if (p.tz) return json_({ ok: true, sheetTz: sheetTz_(), scriptTz: Session.getScriptTimeZone(), today: today_() });
     if (!p.list && !p.people && !p.cron) return ContentService.createTextOutput('123 Prayer API v5 is live');
     if (p.key !== PRAY_KEY) return json_({ ok: false, error: 'unauthorized' });
     if (p.people) return json_({ ok: true, items: allPeople_() });
@@ -104,7 +105,7 @@ function submit_(data) {
   const seq = nextSeq_(sheet);
   const now = Utilities.formatDate(new Date(), 'America/Los_Angeles', 'yyyy-MM-dd HH:mm');
   sheet.appendRow([
-    seq, now, data.name || '', data.group || '', data.contact || '',
+    seq, txt_(now), data.name || '', data.group || '', data.contact || '',
     data.req1 || '', data.req2 || '',
     data.urgent ? 'Y' : '', data.covenant ? 'Y' : '', data.notify ? 'Y' : '',
     data.share === 'class' ? '동역자 공유' : '김목사',
@@ -129,7 +130,7 @@ function answered_(p, data) {
   const sheet = getSheet_(); const row = findRow_(sheet, data.id);
   if (!row || String(sheet.getRange(row, COL['토큰']).getValue()) !== p.token) return { ok: false, error: 'not found' };
   sheet.getRange(row, COL['상태']).setValue('응답됨');
-  sheet.getRange(row, COL['응답일']).setValue(today_());
+  sheet.getRange(row, COL['응답일']).setValue(txt_(today_()));
   if (data.note) sheet.getRange(row, COL['응답 메모']).setValue(String(data.note).slice(0, 300));
   bumpPerson_(p.token, '응답 건수', 1);
   answeredMail_(rowObj_(sheet, row), 'self');
@@ -141,7 +142,7 @@ function addRequest_(p, data) {
   const group = ps.getRange(p.row, PCOL['섬기는 자리']).getValue(), lang = ps.getRange(p.row, PCOL['언어']).getValue();
   const sheet = getSheet_(); const seq = nextSeq_(sheet);
   const now = Utilities.formatDate(new Date(), 'America/Los_Angeles', 'yyyy-MM-dd HH:mm');
-  sheet.appendRow([seq, now, name, group, contact, data.req1 || '', data.req2 || '', data.urgent ? 'Y' : '', 'Y', '', '김목사', lang || 'KO', '기도중', '[]', p.token, '', '', '나', '']);
+  sheet.appendRow([seq, txt_(now), name, group, contact, data.req1 || '', data.req2 || '', data.urgent ? 'Y' : '', 'Y', '', '김목사', lang || 'KO', '기도중', '[]', p.token, '', '', '나', '']);
   styleRow_(sheet, sheet.getLastRow(), !!data.urgent);
   ps.getRange(p.row, PCOL['최근 제목']).setValue(String(data.req1 || '').slice(0, 80));
   touchRenew_(p.row);
@@ -155,8 +156,8 @@ function updateContact_(p, data) {
 }
 function touchRenew_(row) {
   const ps = getPeople_(); const t = today_();
-  ps.getRange(row, PCOL['최근 갱신일']).setValue(t);
-  ps.getRange(row, PCOL['다음 갱신일']).setValue(addDays_(t, 365));
+  ps.getRange(row, PCOL['최근 갱신일']).setValue(txt_(t));
+  ps.getRange(row, PCOL['다음 갱신일']).setValue(txt_(addDays_(t, 365)));
   ps.getRange(row, PCOL['상태']).setValue('활동');
   ps.getRange(row, PCOL['갱신 알림']).setValue('[]');
 }
@@ -188,7 +189,7 @@ function upsertPerson_(data) {
   }
   const token = Utilities.getUuid().replace(/-/g, '').slice(0, 20);
   const t = today_();
-  ps.appendRow([token, data.name || '', data.contact || '', data.group || '', data.org || '', data.covenant ? 'Y' : '', data.lang === 'en' ? 'EN' : 'KO', t, t, addDays_(t, 365), '활동', 0, 0, '[]', '', '']);
+  ps.appendRow([token, data.name || '', data.contact || '', data.group || '', data.org || '', data.covenant ? 'Y' : '', data.lang === 'en' ? 'EN' : 'KO', txt_(t), txt_(t), txt_(addDays_(t, 365)), '활동', 0, 0, '[]', '', '']);
   return { row: ps.getLastRow(), token };
 }
 function findPerson_(token) {
@@ -338,6 +339,7 @@ function styleRow_(sheet, row, urgent) {
 }
 // ── 유틸 ─────────────────────────────────────────────────────────
 function today_() { return Utilities.formatDate(new Date(), 'America/Los_Angeles', 'yyyy-MM-dd'); }
+function txt_(s) { return "'" + String(s); }   // 시트에 텍스트로 저장 (날짜 자동 변환 방지)
 function fmt_(v) { if (!v) return ''; if (v instanceof Date) return Utilities.formatDate(v, sheetTz_(), 'yyyy-MM-dd'); const s = String(v); return /^\d{4}-\d{2}-\d{2}/.test(s) ? s.slice(0,10) : s; }
 let _tz = null; function sheetTz_() { if (_tz) return _tz; try { _tz = ss_().getSpreadsheetTimeZone(); } catch (err) { _tz = 'America/Los_Angeles'; } return _tz; }
 function addDays_(ymd, n) { const d = new Date(ymd + 'T12:00:00'); d.setDate(d.getDate() + n); return Utilities.formatDate(d, 'America/Los_Angeles', 'yyyy-MM-dd'); }
