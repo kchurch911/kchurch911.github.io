@@ -85,6 +85,11 @@ textarea{min-height:96px;resize:vertical;line-height:1.6}
 .cov-box h4{font-size:.9rem;font-weight:700;color:#6dda8a;display:flex;align-items:center;gap:8px}
 .cov-box p{font-size:.8rem;color:var(--muted);line-height:1.7;margin-top:6px;font-weight:300}
 .cov-box .chk{border-color:rgba(52,199,89,0.3);background:transparent}
+.pk-box{margin:12px 0 4px;padding:12px 14px;border-radius:12px;background:rgba(240,192,64,0.06);border:1px solid rgba(240,192,64,0.25)}
+.pk-title{font-size:.68rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);font-family:'Inter',sans-serif;font-weight:600;margin-bottom:8px}
+.pk-list{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px}
+.pk-list li{font-size:.88rem;color:var(--text);line-height:1.55;font-weight:500}
+.pk-list li::marker{color:var(--gold);font-weight:700}
 
 /* submit */
 .btn{width:100%;margin-top:22px;background:var(--gold);color:#07080d;border:none;border-radius:14px;padding:15px;font-size:1rem;font-weight:800;font-family:inherit;cursor:pointer;letter-spacing:.5px;transition:background .2s,transform .15s;display:flex;align-items:center;justify-content:center;gap:8px}
@@ -161,6 +166,13 @@ footer a{color:var(--gold-d);text-decoration:none}
       <div class="cov-box">
         <h4><svg class="ico" viewBox="0 0 24 24"><path d="M12 3c-2.4 3-4 6-4 10v6h8v-6c0-4-1.6-7-4-10z"/><path d="M12 3v16"/></svg><span data-ko="123 언약 — 나도 함께 기도합니다" data-en="123 Covenant — I will pray too">123 언약 — 나도 함께 기도합니다</span></h4>
         <p data-ko="일주일에 두 번, 삼 초 이상 — 김목사님의 기도제목을 위해 기도하겠습니다." data-en="Twice a week, at least three seconds — I will pray for Pastor Kim's prayer requests.">일주일에 두 번, 삼 초 이상 — 김목사님의 기도제목을 위해 기도하겠습니다.</p>
+        <div class="pk-box">
+          <div class="pk-title" data-ko="김목사님의 기도제목" data-en="Pastor Kim's prayer requests">김목사님의 기도제목</div>
+          <ol class="pk-list">
+            <li data-ko="말씀과 기도, 종의 리더십으로 사역하게 하소서" data-en="May I minister with the Word and prayer, in servant leadership">말씀과 기도, 종의 리더십으로 사역하게 하소서</li>
+            <li data-ko="가정과 사역마다 아름다운 열매 맺게 하소서" data-en="May every home and ministry bear beautiful fruit">가정과 사역마다 아름다운 열매 맺게 하소서</li>
+          </ol>
+        </div>
         <label class="chk cov"><input type="checkbox" id="covenant" checked><span class="box"><svg class="ico" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span><span class="t" data-ko="네, 1주 2회 3초 이상 기도 언약에 함께합니다" data-en="Yes, I join the 1-2-3 prayer covenant">네, 1주 2회 3초 이상 기도 언약에 함께합니다</span></label>
         <label class="chk"><input type="checkbox" id="notify"><span class="box"><svg class="ico" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span><span class="t" data-ko="응답 소식이나 격려를 받고 싶습니다" data-en="I'd like follow-up or encouragement"><span>응답 소식이나 격려를 받고 싶습니다</span><small data-ko="연락처를 적어 주셔야 합니다" data-en="requires a contact above">연락처를 적어 주셔야 합니다</small></span></label>
       </div>
