@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>김성수 교수 기도방 — 123 Prayer · K-Church 911</title>
+<title>김성수 기도방 — 123 Prayer · K-Church 911</title>
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Cinzel:wght@600;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -88,7 +88,7 @@ body{font-family:'Noto Sans KR','Inter',sans-serif;background:var(--bg);color:va
 </head>
 <body>
 <div class="bar">
-  <a class="brand" href="index.html">K-CHURCH <b>911</b> <span>김성수 교수 기도방</span></a>
+  <a class="brand" href="index.html">K-CHURCH <b>911</b> <span>김성수 기도방</span></a>
   <div class="r">
     <button class="ghost" onclick="load(true)"><svg class="ico" viewBox="0 0 24 24"><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"/><path d="M3 21v-5h5"/><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"/><path d="M21 3v5h-5"/></svg><span id="t-refresh">새로고침</span></button>
     <button class="ghost" onclick="window.print()"><svg class="ico" viewBox="0 0 24 24"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg></button>
@@ -99,7 +99,7 @@ body{font-family:'Noto Sans KR','Inter',sans-serif;background:var(--bg);color:va
 <div class="wrap">
   <div class="lock" id="lock">
     <h2>PRAYER ROOM</h2>
-    <p>김성수 교수의 기도방 · 비밀번호를 입력하세요</p>
+    <p>김성수 기도방 · 비밀번호를 입력하세요</p>
     <input type="password" id="key" placeholder="••••••" onkeydown="if(event.key==='Enter')unlock()">
     <button onclick="unlock()">들어가기</button>
     <small>비밀번호는 Apps Script 의 PRAY_KEY 값입니다.<br>이 기기에 기억되어 다음부터 바로 열립니다.</small>
@@ -111,12 +111,12 @@ body{font-family:'Noto Sans KR','Inter',sans-serif;background:var(--bg);color:va
       <div class="days" id="days"></div>
     </div>
     <div class="stats">
-      <div class="st"><b id="sTotal">0</b><span>학우</span></div>
+      <div class="st"><b id="sTotal">0</b><span>사역자</span></div>
       <div class="st ok"><b id="sDone">0</b><span>이번 주 2회 완료</span></div>
       <div class="st need"><b id="sNeed">0</b><span>기도 필요</span></div>
     </div>
     <div class="tools">
-      <input type="text" id="q" placeholder="이름 · 소속 검색" oninput="render()">
+      <input type="text" id="q" placeholder="이름 · 섬기는 자리 검색" oninput="render()">
       <button class="tab on" data-f="need" onclick="setF(this)">기도 필요</button>
       <button class="tab" data-f="all" onclick="setF(this)">전체</button>
       <button class="tab" data-f="urgent" onclick="setF(this)">긴급</button>
@@ -153,7 +153,7 @@ async function load(manual){
   if(!API_URL){
     // API 미설정: index.html 에서 로컬 저장된 초안(k123_drafts)을 보여줌 (테스트용)
     const drafts=JSON.parse(localStorage.getItem('k123_drafts')||'[]');
-    items=drafts.map((d,i)=>({id:'L'+(i+1),at:d.at,name:d.name,group:d.group,contact:d.contact,req1:d.req1,req2:d.req2,urgent:d.urgent,covenant:d.covenant,notify:d.notify,share:d.share==='class'?'학우 공유':'교수만',status:'기도중',log:[]}));
+    items=drafts.map((d,i)=>({id:'L'+(i+1),at:d.at,name:d.name,group:d.group,contact:d.contact,req1:d.req1,req2:d.req2,urgent:d.urgent,covenant:d.covenant,notify:d.notify,share:d.share==='class'?'동료 공유':'김성수만',status:'기도중',log:[]}));
     if(manual) toast('API 미설정 — 로컬 테스트 데이터');
     render();return;
   }
@@ -184,7 +184,7 @@ function render(){
   if(filter==='answered') rows=rows.filter(x=>x.status==='응답됨'||x.status==='부분응답');
   rows.sort((a,b)=>(b.urgent-a.urgent)||(weekCount(a)-weekCount(b))||String(b.at).localeCompare(String(a.at)));
   const list=document.getElementById('list');
-  if(!rows.length){list.innerHTML='<div class="empty">'+(filter==='need'?'이번 주 기도가 모두 끝났습니다.':'해당하는 기도 제목이 없습니다.')+'</div>';return;}
+  if(!rows.length){list.innerHTML='<div class="empty">'+(filter==='need'?'이번 주 사역자 기도가 모두 끝났습니다.':'해당하는 기도 제목이 없습니다.')+'</div>';return;}
   list.innerHTML=rows.map(x=>{
     const wc=weekCount(x), td=logOf(x).includes(t), wk=wc>=TARGET;
     const stc=x.status==='응답됨'?'a':x.status==='부분응답'?'p':x.status==='종료'?'c':'';

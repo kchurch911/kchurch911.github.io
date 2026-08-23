@@ -1,11 +1,11 @@
 /**
- * K-Church 911 · 123 기도 (학우 기도 언약) — Google Apps Script 백엔드
+ * K-Church 911 · 123 기도 (사역자 기도 언약) — Google Apps Script 백엔드
  *
- * 학우들이 kchurch911.com/123prayer/ 에서 보낸 기도 제목을 Google Sheet에 모으고,
- * 교수(코디네이터)가 kchurch911.com/123prayer/pray.html 에서 목록을 보며 "기도함"을 기록합니다.
+ * 사역자들이 kchurch911.com/123prayer/ 에서 보낸 기도 제목을 Google Sheet에 모으고,
+ * 김성수(코디네이터)가 kchurch911.com/123prayer/pray.html 에서 목록을 보며 "기도함"을 기록합니다.
  *
  * 설정 (한 번만):
- * 1. sheets.google.com → 새 스프레드시트 → 이름 "123 학우 기도"
+ * 1. sheets.google.com → 새 스프레드시트 → 이름 "123 사역자 기도"
  * 2. 확장 프로그램 → Apps Script → 이 코드 전체 붙여넣기 → 아래 PRAY_KEY 를 원하는 비밀번호로 변경 → Ctrl+S
  * 3. 배포 → 새 배포 → 웹 앱 / 실행: 나 / 액세스: 모든 사용자 → 배포 → 권한 허용
  * 4. 웹 앱 URL(…/exec) 복사 → 123prayer/index.html 과 pray.html 의 API_URL 에 붙여넣기
@@ -13,12 +13,12 @@
  *
  * API
  *   POST {action:'submit', ...form}                 → 새 기도 제목 저장
- *   POST {action:'prayed', key, id, date}           → 기도 기록 추가 (교수)
- *   POST {action:'status', key, id, status}         → 상태 변경 (교수): 기도중 | 응답됨 | 부분응답 | 종료
- *   GET  ?list=1&key=PRAY_KEY                        → 전체 목록 JSON (교수)
+ *   POST {action:'prayed', key, id, date}           → 기도 기록 추가 (김성수)
+ *   POST {action:'status', key, id, status}         → 상태 변경 (김성수): 기도중 | 응답됨 | 부분응답 | 종료
+ *   GET  ?list=1&key=PRAY_KEY                        → 전체 목록 JSON (김성수)
  */
 
-const SHEET_NAME  = '123 학우 기도';
+const SHEET_NAME  = '123 사역자 기도';
 const PRAY_KEY    = 'kingdom123';          // ← pray.html 에서 입력하는 비밀번호 (꼭 바꾸세요)
 const NOTIFY_EMAIL = '';                   // 새 기도 제목이 오면 알림 받을 이메일 (비우면 알림 없음)
 
@@ -38,7 +38,7 @@ function doPost(e) {
         data.name || '', data.group || '', data.contact || '',
         data.req1 || '', data.req2 || '',
         data.urgent ? 'Y' : '', data.covenant ? 'Y' : '', data.notify ? 'Y' : '',
-        data.share === 'class' ? '학우 공유' : '교수만',
+        data.share === 'class' ? '동료 공유' : '김성수만',
         data.lang === 'en' ? 'EN' : 'KO',
         '기도중', '[]'
       ]);
@@ -90,7 +90,14 @@ function doGet(e) {
 
 // ── helpers ────────────────────────────────────────────────────────
 function getSheet_() {
-  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  // 시트에 연결된 스크립트면 그 시트를, 독립 스크립트면 "123 사역자 기도" 스프레드시트를 자동 생성해 사용
+  let ss = SpreadsheetApp.getActiveSpreadsheet();
+  if (!ss) {
+    const props = PropertiesService.getScriptProperties();
+    const id = props.getProperty('SSID');
+    if (id) { try { ss = SpreadsheetApp.openById(id); } catch (err) { ss = null; } }
+    if (!ss) { ss = SpreadsheetApp.create(SHEET_NAME); props.setProperty('SSID', ss.getId()); }
+  }
   let sh = ss.getSheetByName(SHEET_NAME);
   if (!sh) sh = ss.insertSheet(SHEET_NAME);
   if (sh.getLastRow() === 0) {
