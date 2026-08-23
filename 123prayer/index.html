@@ -40,6 +40,7 @@ body{font-family:'Noto Sans KR','Inter',sans-serif;background:var(--bg);color:va
 .hero h1 b{color:var(--gold)}
 .hero .sub{font-size:1.05rem;font-weight:500;color:var(--text);margin-top:4px}
 .hero .desc{font-size:.88rem;color:var(--muted);max-width:520px;margin:14px auto 0;line-height:1.8;font-weight:300}
+.hero .desc .nm{color:var(--gold);font-weight:600;transition:color .3s}
 
 /* 123 pills */
 .pills{display:flex;justify-content:center;gap:10px;margin:26px auto 0;flex-wrap:wrap}
@@ -118,7 +119,7 @@ footer a{color:var(--gold-d);text-decoration:none}
   <div class="eyebrow" data-ko="Kingdom Leaders · Kingdom Now" data-en="Kingdom Leaders · Kingdom Now">Kingdom Leaders · Kingdom Now</div>
   <h1>1<b>2</b>3 <span style="font-size:.5em;letter-spacing:4px;display:block;margin-top:6px;color:var(--muted);font-weight:700">PRAYER</span></h1>
   <div class="sub" data-ko="사역자 기도 언약" data-en="Prayer Covenant for Kingdom Workers">사역자 기도 언약</div>
-  <p class="desc" data-ko="하나님 나라를 섬기는 당신의 자리에서 — 지금 기도가 필요한 제목을 나눠 주세요. 제가(김성수) 한 사람 한 사람의 이름을 부르며 일주일에 두 번, 삼 분씩 기도합니다. 같은 약속으로 함께해 주시면 서로를 붙드는 기도의 띠가 됩니다." data-en="Wherever you serve the Kingdom — share what you need prayer for right now. I (Paul Kim) will pray for you by name, twice a week, three minutes each. Join the same covenant and we hold one another in prayer.">하나님 나라를 섬기는 당신의 자리에서 — 지금 기도가 필요한 제목을 나눠 주세요. 제가(김성수) 한 사람 한 사람의 이름을 부르며 일주일에 두 번, 삼 분씩 기도합니다. 같은 약속으로 함께해 주시면 서로를 붙드는 기도의 띠가 됩니다.</p>
+  <p class="desc" data-ko="하나님 나라를 섬기는 자리에서 지금 기도가 필요한 제목을 나눠 주세요. 제가(김성수) <b class=nm>○○님</b>의 이름을 부르며 일주일에 두 번, 삼 분씩 기도합니다. 같은 약속으로 함께해 주시면 서로를 붙드는 기도의 띠가 됩니다." data-en="Wherever you serve the Kingdom, share what you need prayer for right now. I (Paul Kim) will call <b class=nm>your name</b> in prayer — twice a week, three minutes each. Join the same covenant and we hold one another in prayer.">하나님 나라를 섬기는 자리에서 지금 기도가 필요한 제목을 나눠 주세요. 제가(김성수) <b class=nm>○○님</b>의 이름을 부르며 일주일에 두 번, 삼 분씩 기도합니다. 같은 약속으로 함께해 주시면 서로를 붙드는 기도의 띠가 됩니다.</p>
   <div class="pills">
     <div class="pill"><b>1</b><span data-ko="주일 동안" data-en="week">주일 동안</span></div>
     <div class="pill"><b>2</b><span data-ko="번" data-en="times">번</span></div>
@@ -191,10 +192,13 @@ function applyLang() {
   document.querySelectorAll('[data-ko][data-en]').forEach(el => { el.innerHTML = el.getAttribute(lang === 'ko' ? 'data-ko' : 'data-en'); });
   document.querySelectorAll('[data-ph-ko]').forEach(el => { el.placeholder = el.getAttribute(lang === 'ko' ? 'data-ph-ko' : 'data-ph-en'); });
   document.getElementById('langBtn').textContent = lang === 'ko' ? 'ENGLISH' : '한국어';
+  if (typeof syncName === 'function') syncName();
 }
 function toggleLang() { lang = lang === 'ko' ? 'en' : 'ko'; localStorage.setItem('k123_lang', lang); applyLang(); }
 applyLang();
 
+function syncName() { const n = (document.getElementById('name').value || '').trim().replace(/[<>&]/g, ''); document.querySelectorAll('.desc .nm').forEach(el => { el.textContent = n ? (lang === 'ko' ? n + '님' : n) : (lang === 'ko' ? '○○님' : 'your name'); }); }
+document.addEventListener('input', e => { if (e.target && e.target.id === 'name') syncName(); });
 function cnt(el, id) { document.getElementById(id).textContent = el.value.length + ' / ' + el.maxLength; }
 function toast(m) { const t = document.getElementById('toast'); t.textContent = m; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 3000); }
 
