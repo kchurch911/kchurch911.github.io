@@ -118,7 +118,7 @@ footer a{color:var(--gold-d);text-decoration:none}
   <div class="eyebrow" data-ko="Kingdom Leaders · Kingdom Now" data-en="Kingdom Leaders · Kingdom Now">Kingdom Leaders · Kingdom Now</div>
   <h1>1<b>2</b>3 <span style="font-size:.5em;letter-spacing:4px;display:block;margin-top:6px;color:var(--muted);font-weight:700">PRAYER</span></h1>
   <div class="sub" data-ko="사역자 기도 언약" data-en="Prayer Covenant for Kingdom Workers">사역자 기도 언약</div>
-  <p class="desc" data-ko="신학생·개척자·목회자·평신도 사역자 — 하나님 나라를 섬기는 분이라면 누구나 기도 제목을 나눠 주세요. 제가(김성수) 한 사람 한 사람의 이름을 부르며 일주일에 두 번, 삼 분씩 기도합니다. 같은 약속으로 함께해 주시면 서로를 붙드는 기도의 띠가 됩니다." data-en="Seminarians, church planters, pastors, lay ministers — anyone serving the Kingdom: share your prayer request. I (Paul Kim) will pray for you by name, twice a week, three minutes each. Join the same covenant and we hold one another in prayer.">신학생·개척자·목회자·평신도 사역자 — 하나님 나라를 섬기는 분이라면 누구나 기도 제목을 나눠 주세요. 제가(김성수) 한 사람 한 사람의 이름을 부르며 일주일에 두 번, 삼 분씩 기도합니다. 같은 약속으로 함께해 주시면 서로를 붙드는 기도의 띠가 됩니다.</p>
+  <p class="desc" data-ko="하나님 나라를 섬기는 당신의 자리에서 — 지금 기도가 필요한 제목을 나눠 주세요. 제가(김성수) 한 사람 한 사람의 이름을 부르며 일주일에 두 번, 삼 분씩 기도합니다. 같은 약속으로 함께해 주시면 서로를 붙드는 기도의 띠가 됩니다." data-en="Wherever you serve the Kingdom — share what you need prayer for right now. I (Paul Kim) will pray for you by name, twice a week, three minutes each. Join the same covenant and we hold one another in prayer.">하나님 나라를 섬기는 당신의 자리에서 — 지금 기도가 필요한 제목을 나눠 주세요. 제가(김성수) 한 사람 한 사람의 이름을 부르며 일주일에 두 번, 삼 분씩 기도합니다. 같은 약속으로 함께해 주시면 서로를 붙드는 기도의 띠가 됩니다.</p>
   <div class="pills">
     <div class="pill"><b>1</b><span data-ko="주일 동안" data-en="week">주일 동안</span></div>
     <div class="pill"><b>2</b><span data-ko="번" data-en="times">번</span></div>
@@ -171,7 +171,7 @@ footer a{color:var(--gold-d);text-decoration:none}
     <div class="done" id="done">
       <div class="ring"><svg class="ico" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
       <h3>RECEIVED</h3>
-      <p data-ko="기도 제목이 잘 도착했습니다.<br>이번 주부터 이름을 부르며 기도하겠습니다." data-en="Your prayer request has arrived.<br>Starting this week, I will pray for you by name.">기도 제목이 잘 도착했습니다.<br>이번 주부터 이름을 부르며 기도하겠습니다.</p>
+      <p id="doneMsg" data-ko="기도 제목이 잘 도착했습니다.<br>이번 주부터 이름을 부르며 기도하겠습니다." data-en="Your prayer request has arrived.<br>Starting this week, I will pray for you by name.">기도 제목이 잘 도착했습니다.<br>이번 주부터 이름을 부르며 기도하겠습니다.</p>
       <div class="verse" data-ko="“쉬지 말고 기도하라. 범사에 감사하라. 이것이 그리스도 예수 안에서 너희를 향하신 하나님의 뜻이니라.” (살전 5:17-18)" data-en="“Pray without ceasing; give thanks in all circumstances; for this is the will of God in Christ Jesus for you.” (1 Thess 5:17-18)">“쉬지 말고 기도하라. 범사에 감사하라. 이것이 그리스도 예수 안에서 너희를 향하신 하나님의 뜻이니라.” (살전 5:17-18)</div>
       <button class="again" onclick="resetForm()" data-ko="다른 기도 제목 보내기" data-en="Send another request">다른 기도 제목 보내기</button>
     </div>
@@ -222,6 +222,7 @@ async function submitForm(e) {
       // API 미설정 시 로컬 보관 (테스트용)
       const box = JSON.parse(localStorage.getItem('k123_drafts') || '[]'); box.push({ ...data, at: new Date().toISOString() }); localStorage.setItem('k123_drafts', JSON.stringify(box));
     }
+    const dm = document.getElementById('doneMsg'); if (dm) { const nm = data.name.replace(/[<>&]/g, ''); dm.innerHTML = lang === 'ko' ? (nm + '님, 기도 제목이 잘 도착했습니다.<br>이번 주부터 ' + nm + '님의 이름을 부르며 기도하겠습니다.') : (nm + ', your prayer request has arrived.<br>Starting this week, I will pray for you by name.'); }
     document.getElementById('f').style.display = 'none';
     document.getElementById('done').style.display = 'block';
     window.scrollTo({ top: document.getElementById('formCard').offsetTop - 80, behavior: 'smooth' });
