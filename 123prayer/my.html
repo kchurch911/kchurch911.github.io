@@ -71,7 +71,7 @@ footer a{color:var(--gold-d);text-decoration:none}
 </div>
 
 <div class="wrap">
-  <div id="lock" class="lock" data-ko="기도 페이지 주소가 올바르지 않습니다. 확인 메일의 링크로 들어와 주세요." data-en="This prayer page link is not valid. Please open the link from your confirmation email.">불러오는 중…</div>
+  <div id="lock" class="lock" data-ko="이 페이지는 기도 제목을 보낸 뒤 받은 개인 링크로 열립니다. (제출 직후 화면과 확인 메일에 있습니다)<br><br><a href='index.html' style='color:#f0c040;font-weight:700;text-decoration:none;border:1px solid rgba(240,192,64,0.4);border-radius:12px;padding:10px 16px;display:inline-block'>기도 제목 보내기 →</a>" data-en="This page opens from the personal link you receive after sending a prayer request (shown right after sending, and in your confirmation email).<br><br><a href='index.html' style='color:#f0c040;font-weight:700;text-decoration:none;border:1px solid rgba(240,192,64,0.4);border-radius:12px;padding:10px 16px;display:inline-block'>Send a prayer request →</a>">불러오는 중…</div>
   <div id="page" style="display:none">
     <div class="hero">
       <div class="eyebrow">My Prayer Page</div>
@@ -145,7 +145,7 @@ async function load(){
     render();
   }catch(e){ showLock(); }
 }
-function showLock(){ const l=document.getElementById('lock'); l.textContent = l.getAttribute(lang==='ko'?'data-ko':'data-en'); }
+function showLock(){ const l=document.getElementById('lock'); l.innerHTML = l.getAttribute(lang==='ko'?'data-ko':'data-en'); }
 function render(){
   const ko = lang==='ko';
   document.getElementById('hello').innerHTML = ko ? `<b>${esc(ME.name)}</b>님, 반갑습니다.` : `Welcome, <b>${esc(ME.name)}</b>.`;
