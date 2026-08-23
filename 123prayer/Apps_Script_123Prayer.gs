@@ -338,7 +338,8 @@ function styleRow_(sheet, row, urgent) {
 }
 // ── 유틸 ─────────────────────────────────────────────────────────
 function today_() { return Utilities.formatDate(new Date(), 'America/Los_Angeles', 'yyyy-MM-dd'); }
-function fmt_(v) { if (!v) return ''; if (v instanceof Date) return Utilities.formatDate(v, 'America/Los_Angeles', 'yyyy-MM-dd'); const s = String(v); return /^\d{4}-\d{2}-\d{2}/.test(s) ? s.slice(0,10) : s; }
+function fmt_(v) { if (!v) return ''; if (v instanceof Date) return Utilities.formatDate(v, sheetTz_(), 'yyyy-MM-dd'); const s = String(v); return /^\d{4}-\d{2}-\d{2}/.test(s) ? s.slice(0,10) : s; }
+let _tz = null; function sheetTz_() { if (_tz) return _tz; try { _tz = ss_().getSpreadsheetTimeZone(); } catch (err) { _tz = 'America/Los_Angeles'; } return _tz; }
 function addDays_(ymd, n) { const d = new Date(ymd + 'T12:00:00'); d.setDate(d.getDate() + n); return Utilities.formatDate(d, 'America/Los_Angeles', 'yyyy-MM-dd'); }
 function daysBetween_(a, b) { return Math.round((new Date(b + 'T12:00:00') - new Date(a + 'T12:00:00')) / 86400000); }
 function json_(o) { return ContentService.createTextOutput(JSON.stringify(o)).setMimeType(ContentService.MimeType.JSON); }
