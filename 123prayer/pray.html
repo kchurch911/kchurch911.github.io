@@ -153,7 +153,7 @@ async function load(manual){
   if(!API_URL){
     // API 미설정: index.html 에서 로컬 저장된 초안(k123_drafts)을 보여줌 (테스트용)
     const drafts=JSON.parse(localStorage.getItem('k123_drafts')||'[]');
-    items=drafts.map((d,i)=>({id:'L'+(i+1),at:d.at,name:d.name,group:d.group,contact:d.contact,req1:d.req1,req2:d.req2,urgent:d.urgent,covenant:d.covenant,notify:d.notify,share:d.share==='class'?'동료 공유':'김성수만',status:'기도중',log:[]}));
+    items=drafts.map((d,i)=>({id:'L'+(i+1),at:d.at,name:d.name,group:d.group,contact:d.contact,req1:d.req1,req2:d.req2,urgent:d.urgent,covenant:d.covenant,notify:d.notify,share:d.share==='class'?'동역자 공유':'김성수만',status:'기도중',log:[]}));
     if(manual) toast('API 미설정 — 로컬 테스트 데이터');
     render();return;
   }
