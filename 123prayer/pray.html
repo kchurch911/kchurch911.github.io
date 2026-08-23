@@ -129,7 +129,7 @@ body{font-family:'Noto Sans KR','Inter',sans-serif;background:var(--bg);color:va
 
 <script>
 // ── 설정: Apps_Script_123Prayer.gs 배포 후 …/exec URL ──
-const API_URL = '';
+const API_URL = 'https://script.google.com/macros/s/AKfycbzvUszZLsrinVz3pYkjCdFy1T5oHG6HSPexZ2s7KM5hrsMMCyxdg4p5uVKpb9qpTgQ7Lg/exec';
 const TARGET = 2;
 
 let KEY = localStorage.getItem('k123_key') || '';
@@ -191,7 +191,7 @@ function render(){
     return `<div class="c ${x.urgent?'urgent':''} ${wk?'done':''}">
       <div class="ch">
         <div class="av">${(x.name||'?').charAt(0)}</div>
-        <div class="nm"><b>${esc(x.name)}</b><small>${esc(x.group||'')}${x.group&&x.at?' · ':''}${esc(String(x.at||'').slice(0,10))}</small></div>
+        <div class="nm"><b>${esc(x.name)}</b><small>${esc(x.group||'')}${x.group&&x.at?' · ':''}${esc(fmtAt(x.at))}</small></div>
         ${x.urgent?'<span class="tag u">긴급</span>':''}
         ${x.covenant?'<span class="tag cov">123 언약</span>':''}
         <span class="tag st ${stc}">${esc(x.status||'기도중')}</span>
@@ -214,6 +214,7 @@ function render(){
     </div>`;
   }).join('');
 }
+function fmtAt(v){ if(!v) return ""; const s=String(v); if(/^d{4}-d{2}-d{2}/.test(s)) return s.slice(0,10); const d=new Date(s); if(isNaN(d)) return s.slice(0,10); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
 
 async function prayed(id){

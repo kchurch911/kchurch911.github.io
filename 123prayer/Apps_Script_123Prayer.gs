@@ -21,6 +21,7 @@
 const SHEET_NAME  = '123 사역자 기도';
 const PRAY_KEY    = 'kingdom123';          // ← pray.html 에서 입력하는 비밀번호 (꼭 바꾸세요)
 const NOTIFY_EMAIL = '';                   // 새 기도 제목이 오면 알림 받을 이메일 (비우면 알림 없음)
+const SPREADSHEET_ID = '13RaexIVdty9uZL91nOBDY4IcvIR5PQcWQ8hfJdznwXA'; // 123 사역자 기도 (pastor@ijiguchon.org 소유, gmc.hc300 편집자)
 
 const HEADERS = ['번호','접수일시','이름','소속','연락처','기도 제목 1','기도 제목 2','긴급','123 언약','응답 소식','공개 범위','언어','상태','기도 기록'];
 
@@ -129,3 +130,5 @@ function notify_(d, now) {
 function json_(o) { return ContentService.createTextOutput(JSON.stringify(o)).setMimeType(ContentService.MimeType.JSON); }
 
 function test_() { Logger.log(doGet({ parameter: { list: '1', key: PRAY_KEY } }).getContent()); }
+// 에디터에서 실행: 시트 생성·권한 확인
+function setupCheck() { const sh = getSheet_(); Logger.log('Sheet URL: ' + sh.getParent().getUrl()); return sh.getParent().getUrl(); }
