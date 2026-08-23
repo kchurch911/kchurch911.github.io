@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>123 Prayer Room — K-Church 911</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Cinzel:wght@600;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#09090f;--navy:#0f1020;--navy2:#1a1a2e;--gold:#f0c040;--gold-l:#ffe066;--gold-d:#a07820;--blue:#2997ff;--green:#34c759;--pink:#ff6b8a;--amber:#ff9f0a;--text:rgba(255,255,255,0.96);--muted:rgba(255,255,255,0.62);--dim:rgba(255,255,255,0.05);--border:rgba(255,255,255,0.10)}
+body{font-family:'Noto Sans KR','Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--gold-d);border-radius:2px}
+.ico{width:1em;height:1em;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;display:inline-block;vertical-align:-.15em;flex-shrink:0}
+.bar{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(7,13,26,0.9);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,162,39,0.12)}
+.brand{font-family:'Cinzel',serif;font-weight:900;letter-spacing:2px;color:var(--gold);font-size:.85rem;text-decoration:none;display:flex;align-items:center;gap:10px;white-space:nowrap}
+.brand span{font-family:'Noto Sans KR',sans-serif;font-weight:300;font-size:.68rem;color:var(--muted);letter-spacing:1px}
+.bar .r{display:flex;gap:8px;align-items:center}
+.ghost{background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:20px;padding:6px 12px;font-size:.72rem;font-weight:600;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:6px}
+.ghost:hover{border-color:rgba(240,192,64,0.5);color:var(--gold)}
+.wrap{max-width:760px;margin:0 auto;padding:18px 16px 90px}
+
+/* lock */
+.lock{max-width:380px;margin:90px auto;text-align:center;padding:30px 22px;border:1px solid var(--border);border-radius:22px;background:rgba(26,26,46,0.7)}
+.lock h2{font-family:'Cinzel',serif;letter-spacing:3px;color:#fff;font-size:1.2rem;margin-bottom:6px}
+.lock p{font-size:.8rem;color:var(--muted);margin-bottom:16px;font-weight:300}
+.lock input{width:100%;background:rgba(255,255,255,0.05);border:1px solid var(--border);color:#fff;border-radius:12px;padding:12px 14px;font-size:1rem;text-align:center;letter-spacing:3px;font-family:inherit}
+.lock button{width:100%;margin-top:10px;background:var(--gold);color:#07080d;border:none;border-radius:12px;padding:12px;font-weight:800;font-family:inherit;cursor:pointer}
+.lock small{display:block;margin-top:12px;color:var(--muted);font-size:.7rem;line-height:1.6}
+
+/* week strip */
+.week{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border:1px solid var(--border);border-radius:18px;background:linear-gradient(135deg,rgba(26,26,46,0.9),rgba(15,16,32,0.9));margin-bottom:14px;gap:12px;flex-wrap:wrap}
+.week .t{font-size:.66rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-family:'Inter',sans-serif;font-weight:600}
+.week .big{font-family:'Cinzel',serif;font-size:1.6rem;color:#fff;line-height:1.1}
+.week .big small{font-size:.6em;color:var(--muted);font-family:'Noto Sans KR',sans-serif;font-weight:300;letter-spacing:0}
+.days{display:flex;gap:5px}
+.d{width:26px;height:26px;border-radius:50%;border:1px solid rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:.62rem;color:var(--muted)}
+.d.today{border-color:var(--gold);color:var(--gold)}
+.d.on{background:var(--gold);border-color:var(--gold);color:#07080d;font-weight:800}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+.st{border:1px solid var(--border);border-radius:14px;padding:12px 10px;text-align:center;background:rgba(255,255,255,0.02)}
+.st b{display:block;font-family:'Cinzel',serif;font-size:1.5rem;color:#fff}
+.st span{font-size:.68rem;color:var(--muted)}
+.st.ok b{color:#6dda8a}.st.need b{color:var(--amber)}
+
+/* tools */
+.tools{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+.tools input{flex:1;min-width:160px;background:rgba(255,255,255,0.04);border:1px solid var(--border);color:#fff;border-radius:12px;padding:10px 12px;font-size:.85rem;font-family:inherit}
+.tab{background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:20px;padding:8px 12px;font-size:.74rem;font-weight:600;cursor:pointer;font-family:inherit}
+.tab.on{border-color:var(--gold);color:var(--gold);background:rgba(240,192,64,0.08)}
+
+/* cards */
+.list{display:flex;flex-direction:column;gap:10px}
+.c{border:1px solid var(--border);border-radius:18px;background:rgba(26,26,46,0.6);overflow:hidden;transition:border .2s}
+.c.urgent{border-color:rgba(255,107,138,0.5)}
+.c.done{opacity:.75}
+.ch{display:flex;align-items:center;gap:12px;padding:12px 14px;border-bottom:1px solid var(--border)}
+.av{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,#2a2a4a,#3d3d6e);display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--gold);flex-shrink:0;font-size:.95rem}
+.nm{flex:1;min-width:0}
+.nm b{font-size:.95rem;color:#fff}
+.nm small{display:block;font-size:.7rem;color:var(--muted);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tag{font-size:.62rem;font-weight:700;padding:3px 8px;border-radius:10px;letter-spacing:.5px}
+.tag.u{background:rgba(255,107,138,0.15);color:var(--pink)}
+.tag.cov{background:rgba(52,199,89,0.12);color:#6dda8a}
+.tag.st{background:rgba(255,255,255,0.06);color:var(--muted)}
+.tag.st.a{background:rgba(52,199,89,0.15);color:#6dda8a}.tag.st.p{background:rgba(255,159,10,0.15);color:#ffbe4f}.tag.st.c{background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.35)}
+.dots{display:flex;gap:4px;align-items:center}
+.dot{width:9px;height:9px;border-radius:50%;border:1px solid rgba(255,255,255,0.25)}
+.dot.on{background:var(--gold);border-color:var(--gold)}
+.dot.td{background:#6dda8a;border-color:#6dda8a}
+.cb{padding:12px 14px}
+.rq{font-size:.88rem;line-height:1.65;color:var(--text);padding-left:12px;border-left:2px solid rgba(240,192,64,0.35);margin-bottom:8px;white-space:pre-wrap}
+.rq.two{border-left-color:rgba(41,151,255,0.4)}
+.meta{font-size:.7rem;color:var(--muted);display:flex;gap:10px;flex-wrap:wrap;margin:6px 0 10px}
+.act{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.pray{flex:1;min-width:150px;background:var(--gold);color:#07080d;border:none;border-radius:12px;padding:11px;font-weight:800;font-family:inherit;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;font-size:.88rem;transition:all .2s}
+.pray:hover{background:var(--gold-l)}
+.pray.td{background:rgba(52,199,89,0.15);color:#6dda8a;cursor:default;border:1px solid rgba(52,199,89,0.3)}
+.pray.wk{background:rgba(255,255,255,0.05);color:var(--muted);cursor:default;border:1px solid var(--border)}
+.sel{background:rgba(255,255,255,0.04);border:1px solid var(--border);color:var(--text);border-radius:12px;padding:10px;font-family:inherit;font-size:.78rem}
+.empty{text-align:center;padding:40px 20px;color:var(--muted);font-size:.85rem;border:1px dashed var(--border);border-radius:18px}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--gold);color:#07080d;padding:12px 20px;border-radius:12px;font-size:.85rem;font-weight:700;opacity:0;transition:all .3s;z-index:300;white-space:nowrap}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media(max-width:480px){.brand{font-size:.72rem;letter-spacing:1px}.brand span{display:none}.ghost span{display:none}.ghost{padding:7px 10px}}
+@media print{.bar,.tools,.pray,.sel,.week .days{display:none!important}body{background:#fff;color:#000}.c,.st,.week{border-color:#ccc;background:#fff}.nm b,.rq,.st b,.week .big{color:#000}}
+</style>
+</head>
+<body>
+<div class="bar">
+  <a class="brand" href="index.html">K-CHURCH <b>911</b> <span>Prayer Room</span></a>
+  <div class="r">
+    <button class="ghost" onclick="load(true)"><svg class="ico" viewBox="0 0 24 24"><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"/><path d="M3 21v-5h5"/><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"/><path d="M21 3v5h-5"/></svg><span id="t-refresh">새로고침</span></button>
+    <button class="ghost" onclick="window.print()"><svg class="ico" viewBox="0 0 24 24"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg></button>
+    <button class="ghost" onclick="lock()"><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></button>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="lock" id="lock">
+    <h2>PRAYER ROOM</h2>
+    <p>교수 전용 · 비밀번호를 입력하세요</p>
+    <input type="password" id="key" placeholder="••••••" onkeydown="if(event.key==='Enter')unlock()">
+    <button onclick="unlock()">들어가기</button>
+    <small>비밀번호는 Apps Script 의 PRAY_KEY 값입니다.<br>이 기기에 기억되어 다음부터 바로 열립니다.</small>
+  </div>
+
+  <div id="room" style="display:none">
+    <div class="week">
+      <div><div class="t">This Week · 1주 2회 3분</div><div class="big"><span id="wkDone">0</span><small> / <span id="wkTotal">0</span> 명 완료</small></div></div>
+      <div class="days" id="days"></div>
+    </div>
+    <div class="stats">
+      <div class="st"><b id="sTotal">0</b><span>학우</span></div>
+      <div class="st ok"><b id="sDone">0</b><span>이번 주 2회 완료</span></div>
+      <div class="st need"><b id="sNeed">0</b><span>기도 필요</span></div>
+    </div>
+    <div class="tools">
+      <input type="text" id="q" placeholder="이름 · 소속 검색" oninput="render()">
+      <button class="tab on" data-f="need" onclick="setF(this)">기도 필요</button>
+      <button class="tab" data-f="all" onclick="setF(this)">전체</button>
+      <button class="tab" data-f="urgent" onclick="setF(this)">긴급</button>
+      <button class="tab" data-f="answered" onclick="setF(this)">응답</button>
+    </div>
+    <div class="list" id="list"><div class="empty">불러오는 중…</div></div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+// ── 설정: Apps_Script_123Prayer.gs 배포 후 …/exec URL ──
+const API_URL = '';
+const TARGET = 2;
+
+let KEY = localStorage.getItem('k123_key') || '';
+let items = [], filter = 'need';
+const localLog = JSON.parse(localStorage.getItem('k123_locallog') || '{}');   // 오프라인/미설정 시 기도 기록 백업
+
+function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2600);}
+function today(){const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function weekStart(){const d=new Date();d.setHours(0,0,0,0);d.setDate(d.getDate()-(d.getDay()+6)%7);return d;}   // 월요일 시작
+function inWeek(s){const d=new Date(s+'T12:00:00');const ws=weekStart();const we=new Date(ws);we.setDate(ws.getDate()+7);return d>=ws&&d<we;}
+
+function unlock(){const k=document.getElementById('key').value.trim();if(!k){toast('비밀번호를 입력하세요');return;}KEY=k;localStorage.setItem('k123_key',k);enter();}
+function lock(){KEY='';localStorage.removeItem('k123_key');document.getElementById('room').style.display='none';document.getElementById('lock').style.display='block';}
+function enter(){document.getElementById('lock').style.display='none';document.getElementById('room').style.display='block';drawDays();load();}
+if(KEY) enter();
+
+function drawDays(){const names=['월','화','수','목','금','토','일'];const ws=weekStart();const el=document.getElementById('days');el.innerHTML='';const t=today();for(let i=0;i<7;i++){const d=new Date(ws);d.setDate(ws.getDate()+i);const s=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');const on=items.some(x=>logOf(x).includes(s));const div=document.createElement('div');div.className='d'+(s===t?' today':'')+(on?' on':'');div.textContent=names[i];el.appendChild(div);}}
+
+async function load(manual){
+  const list=document.getElementById('list');
+  if(!API_URL){
+    // API 미설정: index.html 에서 로컬 저장된 초안(k123_drafts)을 보여줌 (테스트용)
+    const drafts=JSON.parse(localStorage.getItem('k123_drafts')||'[]');
+    items=drafts.map((d,i)=>({id:'L'+(i+1),at:d.at,name:d.name,group:d.group,contact:d.contact,req1:d.req1,req2:d.req2,urgent:d.urgent,covenant:d.covenant,notify:d.notify,share:d.share==='class'?'학우 공유':'교수만',status:'기도중',log:[]}));
+    if(manual) toast('API 미설정 — 로컬 테스트 데이터');
+    render();return;
+  }
+  try{
+    const r=await fetch(API_URL+'?list=1&key='+encodeURIComponent(KEY)+'&t='+Date.now(),{cache:'no-store'});
+    const j=await r.json();
+    if(!j.ok){ if(j.error==='unauthorized'){toast('비밀번호가 틀립니다');lock();} else toast('오류: '+j.error); return; }
+    items=j.items||[]; render(); if(manual) toast('새로고침 완료');
+  }catch(e){ toast('불러오기 실패: '+e.message); }
+}
+function logOf(x){const a=new Set(x.log||[]);(localLog[x.id]||[]).forEach(d=>a.add(d));return [...a];}
+function weekCount(x){return logOf(x).filter(inWeek).length;}
+function setF(btn){document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));btn.classList.add('on');filter=btn.dataset.f;render();}
+
+function render(){
+  const q=(document.getElementById('q').value||'').toLowerCase();
+  const t=today();
+  let done=0;
+  items.forEach(x=>{if(weekCount(x)>=TARGET)done++;});
+  document.getElementById('sTotal').textContent=items.length;
+  document.getElementById('sDone').textContent=done;
+  document.getElementById('sNeed').textContent=items.length-done;
+  document.getElementById('wkDone').textContent=done;document.getElementById('wkTotal').textContent=items.length;
+  drawDays();
+  let rows=items.filter(x=>!q||((x.name||'')+' '+(x.group||'')).toLowerCase().includes(q));
+  if(filter==='need') rows=rows.filter(x=>weekCount(x)<TARGET&&x.status!=='종료');
+  if(filter==='urgent') rows=rows.filter(x=>x.urgent);
+  if(filter==='answered') rows=rows.filter(x=>x.status==='응답됨'||x.status==='부분응답');
+  rows.sort((a,b)=>(b.urgent-a.urgent)||(weekCount(a)-weekCount(b))||String(b.at).localeCompare(String(a.at)));
+  const list=document.getElementById('list');
+  if(!rows.length){list.innerHTML='<div class="empty">'+(filter==='need'?'이번 주 기도가 모두 끝났습니다.':'해당하는 기도 제목이 없습니다.')+'</div>';return;}
+  list.innerHTML=rows.map(x=>{
+    const wc=weekCount(x), td=logOf(x).includes(t), wk=wc>=TARGET;
+    const stc=x.status==='응답됨'?'a':x.status==='부분응답'?'p':x.status==='종료'?'c':'';
+    return `<div class="c ${x.urgent?'urgent':''} ${wk?'done':''}">
+      <div class="ch">
+        <div class="av">${(x.name||'?').charAt(0)}</div>
+        <div class="nm"><b>${esc(x.name)}</b><small>${esc(x.group||'')}${x.group&&x.at?' · ':''}${esc(String(x.at||'').slice(0,10))}</small></div>
+        ${x.urgent?'<span class="tag u">긴급</span>':''}
+        ${x.covenant?'<span class="tag cov">123 언약</span>':''}
+        <span class="tag st ${stc}">${esc(x.status||'기도중')}</span>
+        <div class="dots">${Array.from({length:TARGET},(_,i)=>`<span class="dot ${i<wc?(td&&i===wc-1?'td':'on'):''}"></span>`).join('')}</div>
+      </div>
+      <div class="cb">
+        <div class="rq">${esc(x.req1)}</div>
+        ${x.req2?`<div class="rq two">${esc(x.req2)}</div>`:''}
+        <div class="meta">${x.contact?`<span>${esc(x.contact)}</span>`:''}<span>${esc(x.share||'')}</span>${x.notify?'<span>응답 소식 원함</span>':''}<span>누적 ${logOf(x).length}회</span></div>
+        <div class="act">
+          <button class="pray ${wk?'wk':td?'td':''}" ${(wk||td)?'disabled':''} onclick="prayed('${x.id}')">
+            <svg class="ico" viewBox="0 0 24 24"><path d="M12 3c-2.4 3-4 6-4 10v6h8v-6c0-4-1.6-7-4-10z"/><path d="M12 3v16"/></svg>
+            ${wk?'이번 주 완료':td?'오늘 기도함':'기도함 — 3분'}
+          </button>
+          <select class="sel" onchange="setStatus('${x.id}',this.value)">
+            ${['기도중','응답됨','부분응답','종료'].map(s=>`<option ${x.status===s?'selected':''}>${s}</option>`).join('')}
+          </select>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+
+async function prayed(id){
+  const x=items.find(i=>String(i.id)===String(id)); if(!x) return;
+  const d=today();
+  (localLog[id]=localLog[id]||[]).includes(d)||localLog[id].push(d); localStorage.setItem('k123_locallog',JSON.stringify(localLog));
+  if(!x.log) x.log=[]; if(!x.log.includes(d)) x.log.push(d);
+  render(); toast(x.name+' — 기도 기록 완료');
+  if(API_URL){ try{ await fetch(API_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'prayed',key:KEY,id,date:d})}); }catch(e){} }
+}
+async function setStatus(id,status){
+  const x=items.find(i=>String(i.id)===String(id)); if(!x) return; x.status=status; render();
+  if(API_URL){ try{ await fetch(API_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'status',key:KEY,id,status})}); toast('상태 저장: '+status);}catch(e){} }
+}
+</script>
+</body>
+</html>

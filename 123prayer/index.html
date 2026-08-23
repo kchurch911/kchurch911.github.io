@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>123 Prayer — K-Church 911</title>
+<meta name="description" content="123 기도 언약: 1주 2회 3분. 학우 여러분의 기도 제목을 나눠 주세요 — 교수가 한 분 한 분을 위해 기도합니다.">
+<meta property="og:title" content="123 Prayer — 학우 기도 언약">
+<meta property="og:description" content="1주 2회 3분. 기도 제목을 나눠 주시면 함께 기도합니다.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Cinzel:wght@600;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#09090f; --navy:#0f1020; --navy2:#1a1a2e;
+  --gold:#f0c040; --gold-l:#ffe066; --gold-d:#a07820;
+  --blue:#2997ff; --green:#34c759; --pink:#ff6b8a;
+  --text:rgba(255,255,255,0.96); --muted:rgba(255,255,255,0.62);
+  --dim:rgba(255,255,255,0.05); --border:rgba(255,255,255,0.10);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans KR','Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--gold-d);border-radius:2px}
+.ico{width:1em;height:1em;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;display:inline-block;vertical-align:-.15em;flex-shrink:0}
+
+/* top bar */
+.bar{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:14px 22px;background:rgba(7,13,26,0.85);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,162,39,0.12)}
+.brand{font-family:'Cinzel',serif;font-weight:900;letter-spacing:2px;color:var(--gold);font-size:.9rem;text-decoration:none;display:flex;align-items:center;gap:10px}
+.brand span{font-family:'Noto Sans KR',sans-serif;font-weight:300;font-size:.7rem;color:var(--muted);letter-spacing:1px}
+.lang{background:transparent;border:1px solid rgba(240,192,64,0.4);color:var(--gold);border-radius:20px;padding:6px 14px;font-size:.75rem;font-weight:700;cursor:pointer;font-family:inherit;letter-spacing:1px}
+.lang:hover{background:rgba(240,192,64,0.1)}
+
+/* hero */
+.hero{position:relative;padding:118px 22px 40px;text-align:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 70% 55% at 50% 20%,rgba(41,151,255,0.20) 0%,transparent 65%),radial-gradient(ellipse 50% 40% at 15% 75%,rgba(255,159,10,0.10) 0%,transparent 55%),radial-gradient(ellipse 60% 50% at 50% 100%,rgba(240,192,64,0.08) 0%,transparent 60%)}
+.hero>*{position:relative;z-index:1}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.66rem;letter-spacing:4px;text-transform:uppercase;color:var(--gold);font-family:'Inter',sans-serif;font-weight:600}
+.eyebrow::before,.eyebrow::after{content:'';width:26px;height:1px;background:var(--gold-d)}
+.hero h1{font-family:'Cinzel',serif;font-size:clamp(2.4rem,8vw,3.6rem);font-weight:900;letter-spacing:3px;color:#fff;margin:14px 0 6px;line-height:1}
+.hero h1 b{color:var(--gold)}
+.hero .sub{font-size:1.05rem;font-weight:500;color:var(--text);margin-top:4px}
+.hero .desc{font-size:.88rem;color:var(--muted);max-width:520px;margin:14px auto 0;line-height:1.8;font-weight:300}
+
+/* 123 pills */
+.pills{display:flex;justify-content:center;gap:10px;margin:26px auto 0;flex-wrap:wrap}
+.pill{display:flex;flex-direction:column;align-items:center;justify-content:center;width:92px;height:92px;border-radius:50%;border:1px solid rgba(240,192,64,0.35);background:rgba(240,192,64,0.06)}
+.pill b{font-family:'Cinzel',serif;font-size:1.7rem;color:var(--gold);line-height:1}
+.pill span{font-size:.7rem;color:var(--muted);margin-top:4px;letter-spacing:.5px}
+
+/* card */
+.wrap{max-width:620px;margin:0 auto;padding:0 18px 80px}
+.card{background:linear-gradient(180deg,rgba(26,26,46,0.9),rgba(15,16,32,0.9));border:1px solid var(--border);border-radius:22px;padding:26px 22px;box-shadow:0 30px 80px rgba(0,0,0,0.45)}
+.sec{font-size:.66rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-family:'Inter',sans-serif;font-weight:600;display:flex;align-items:center;gap:10px;margin:22px 0 12px}
+.sec::after{content:'';flex:1;height:1px;background:rgba(240,192,64,0.18)}
+.sec:first-child{margin-top:0}
+label{display:block;font-size:.82rem;font-weight:500;color:var(--text);margin:14px 0 6px}
+label small{color:var(--muted);font-weight:300;margin-left:6px}
+input[type=text],input[type=email],textarea{width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:12px;color:var(--text);padding:12px 14px;font-size:.95rem;font-family:inherit;transition:border .2s,background .2s}
+input:focus,textarea:focus{outline:none;border-color:rgba(240,192,64,0.6);background:rgba(255,255,255,0.06)}
+textarea{min-height:96px;resize:vertical;line-height:1.6}
+::placeholder{color:rgba(255,255,255,0.3)}
+.count{text-align:right;font-size:.7rem;color:var(--muted);margin-top:4px}
+
+/* choices */
+.chk{display:flex;gap:12px;align-items:flex-start;padding:13px 14px;border:1px solid var(--border);border-radius:14px;margin-top:10px;cursor:pointer;transition:border .2s,background .2s;background:rgba(255,255,255,0.02)}
+.chk:hover{border-color:rgba(240,192,64,0.35)}
+.chk input{position:absolute;opacity:0;pointer-events:none}
+.box{width:20px;height:20px;border-radius:6px;border:1.5px solid rgba(255,255,255,0.35);flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.box .ico{opacity:0;font-size:13px;color:#07080d;stroke-width:3}
+.chk input:checked ~ .box{background:var(--gold);border-color:var(--gold)}
+.chk input:checked ~ .box .ico{opacity:1}
+.chk.cov input:checked ~ .box{background:var(--green);border-color:var(--green)}
+.chk .t{font-size:.86rem;font-weight:500;line-height:1.45}
+.chk .t small{display:block;font-size:.74rem;color:var(--muted);font-weight:300;margin-top:2px}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.seg label{margin:0;cursor:pointer}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg .opt{display:block;text-align:center;padding:11px 8px;border:1px solid var(--border);border-radius:12px;font-size:.82rem;color:var(--muted);transition:all .15s}
+.seg input:checked ~ .opt{border-color:var(--gold);color:var(--gold);background:rgba(240,192,64,0.08)}
+.urg input:checked ~ .opt{border-color:var(--pink);color:var(--pink);background:rgba(255,107,138,0.08)}
+
+/* covenant */
+.cov-box{margin-top:18px;border:1px solid rgba(52,199,89,0.35);background:rgba(52,199,89,0.06);border-radius:16px;padding:16px 16px 6px}
+.cov-box h4{font-size:.9rem;font-weight:700;color:#6dda8a;display:flex;align-items:center;gap:8px}
+.cov-box p{font-size:.8rem;color:var(--muted);line-height:1.7;margin-top:6px;font-weight:300}
+.cov-box .chk{border-color:rgba(52,199,89,0.3);background:transparent}
+
+/* submit */
+.btn{width:100%;margin-top:22px;background:var(--gold);color:#07080d;border:none;border-radius:14px;padding:15px;font-size:1rem;font-weight:800;font-family:inherit;cursor:pointer;letter-spacing:.5px;transition:background .2s,transform .15s;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn:hover{background:var(--gold-l);transform:translateY(-1px)}
+.btn:disabled{opacity:.5;cursor:default;transform:none}
+.fine{font-size:.72rem;color:var(--muted);text-align:center;margin-top:12px;line-height:1.6;font-weight:300}
+
+/* done */
+.done{display:none;text-align:center;padding:30px 10px 10px}
+.done .ring{width:72px;height:72px;border-radius:50%;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;color:var(--gold);font-size:30px}
+.done h3{font-family:'Cinzel',serif;color:#fff;font-size:1.3rem;letter-spacing:2px}
+.done p{color:var(--muted);font-size:.88rem;line-height:1.8;margin-top:10px;font-weight:300}
+.done .verse{margin-top:18px;padding:14px;border-left:2px solid var(--gold-d);text-align:left;font-size:.82rem;color:var(--text);line-height:1.7;background:rgba(240,192,64,0.05);border-radius:0 10px 10px 0}
+.done .again{margin-top:18px;background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:12px;padding:10px 18px;font-family:inherit;cursor:pointer;font-size:.82rem}
+
+footer{text-align:center;color:var(--muted);font-size:.72rem;padding:20px;border-top:1px solid var(--border);font-weight:300;letter-spacing:.3px}
+footer a{color:var(--gold-d);text-decoration:none}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--gold);color:#07080d;padding:12px 20px;border-radius:12px;font-size:.85rem;font-weight:700;opacity:0;transition:all .3s;z-index:300;white-space:nowrap}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media(max-width:420px){.pill{width:82px;height:82px}.pill b{font-size:1.5rem}.eyebrow{letter-spacing:2px;font-size:.6rem}.eyebrow::before,.eyebrow::after{width:14px}.brand{font-size:.78rem;letter-spacing:1px}}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <a class="brand" href="https://kchurch911.com/">K-CHURCH <b>911</b> <span>123 Prayer</span></a>
+  <button class="lang" onclick="toggleLang()" id="langBtn">ENGLISH</button>
+</div>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="eyebrow" data-ko="Kingdom Leaders · Kingdom Now" data-en="Kingdom Leaders · Kingdom Now">Kingdom Leaders · Kingdom Now</div>
+  <h1>1<b>2</b>3 <span style="font-size:.5em;letter-spacing:4px;display:block;margin-top:6px;color:var(--muted);font-weight:700">PRAYER</span></h1>
+  <div class="sub" data-ko="학우 기도 언약" data-en="Student Prayer Covenant">학우 기도 언약</div>
+  <p class="desc" data-ko="여러분의 기도 제목을 나눠 주세요. 교수가 한 사람 한 사람의 이름을 부르며 일주일에 두 번, 삼 분씩 기도합니다. 여러분도 같은 약속으로 함께해 주시면 서로를 붙드는 기도의 띠가 됩니다." data-en="Share your prayer request. Your professor will pray for you by name — twice a week, three minutes each. If you join the same covenant, we hold one another in prayer.">여러분의 기도 제목을 나눠 주세요. 교수가 한 사람 한 사람의 이름을 부르며 일주일에 두 번, 삼 분씩 기도합니다. 여러분도 같은 약속으로 함께해 주시면 서로를 붙드는 기도의 띠가 됩니다.</p>
+  <div class="pills">
+    <div class="pill"><b>1</b><span data-ko="주일 동안" data-en="week">주일 동안</span></div>
+    <div class="pill"><b>2</b><span data-ko="번" data-en="times">번</span></div>
+    <div class="pill"><b>3</b><span data-ko="분씩" data-en="minutes">분씩</span></div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="card" id="formCard">
+    <form id="f" onsubmit="return submitForm(event)" novalidate>
+      <div class="sec" data-ko="나의 정보" data-en="About you">나의 정보</div>
+      <label for="name" data-ko="이름" data-en="Name">이름</label>
+      <input type="text" id="name" required autocomplete="name" data-ph-ko="예: 홍길동" data-ph-en="e.g. Jane Kim" placeholder="예: 홍길동">
+      <label for="group"><span data-ko="소속" data-en="Class / Program">소속</span><small data-ko="학교 · 과목 · 기수" data-en="school · course · cohort">학교 · 과목 · 기수</small></label>
+      <input type="text" id="group" data-ph-ko="예: MBTS 2026 가을 · 설교학" data-ph-en="e.g. MBTS Fall 2026 · Homiletics" placeholder="예: MBTS 2026 가을 · 설교학">
+      <label for="contact"><span data-ko="연락처" data-en="Contact">연락처</span><small data-ko="선택 — 응답 소식을 받고 싶을 때" data-en="optional — for follow-up">선택 — 응답 소식을 받고 싶을 때</small></label>
+      <input type="text" id="contact" data-ph-ko="이메일 또는 전화번호" data-ph-en="Email or phone" placeholder="이메일 또는 전화번호">
+
+      <div class="sec" data-ko="기도 제목" data-en="Prayer requests">기도 제목</div>
+      <label for="req1"><span data-ko="기도 제목 1" data-en="Prayer request 1">기도 제목 1</span></label>
+      <textarea id="req1" required maxlength="400" data-ph-ko="지금 가장 기도가 필요한 한 가지를 적어 주세요." data-ph-en="Write the one thing you most need prayer for right now." placeholder="지금 가장 기도가 필요한 한 가지를 적어 주세요." oninput="cnt(this,'c1')"></textarea>
+      <div class="count" id="c1">0 / 400</div>
+      <label for="req2"><span data-ko="기도 제목 2" data-en="Prayer request 2">기도 제목 2</span><small data-ko="선택" data-en="optional">선택</small></label>
+      <textarea id="req2" maxlength="400" data-ph-ko="가족·학업·진로·사역 등 한 가지 더" data-ph-en="One more — family, studies, calling, ministry" placeholder="가족·학업·진로·사역 등 한 가지 더" oninput="cnt(this,'c2')"></textarea>
+      <div class="count" id="c2">0 / 400</div>
+
+      <label data-ko="긴급도" data-en="Urgency">긴급도</label>
+      <div class="seg">
+        <label><input type="radio" name="urg" value="normal" checked><span class="opt" data-ko="일반" data-en="Normal">일반</span></label>
+        <label class="urg"><input type="radio" name="urg" value="urgent"><span class="opt" data-ko="긴급 — 이번 주 안에" data-en="Urgent — this week">긴급 — 이번 주 안에</span></label>
+      </div>
+
+      <label data-ko="공개 범위" data-en="Who can see this">공개 범위</label>
+      <div class="seg">
+        <label><input type="radio" name="share" value="prof" checked><span class="opt" data-ko="교수만" data-en="Professor only">교수만</span></label>
+        <label><input type="radio" name="share" value="class"><span class="opt" data-ko="학우들과 함께 기도" data-en="Share with classmates">학우들과 함께 기도</span></label>
+      </div>
+
+      <div class="cov-box">
+        <h4><svg class="ico" viewBox="0 0 24 24"><path d="M12 3c-2.4 3-4 6-4 10v6h8v-6c0-4-1.6-7-4-10z"/><path d="M12 3v16"/></svg><span data-ko="123 언약 — 나도 함께 기도합니다" data-en="123 Covenant — I will pray too">123 언약 — 나도 함께 기도합니다</span></h4>
+        <p data-ko="일주일에 두 번, 삼 분씩 — 교수님과 우리 반 학우들을 위해 기도하겠습니다. 부담이 아니라 서로를 붙드는 작은 약속입니다." data-en="Twice a week, three minutes — I will pray for my professor and classmates. Not a burden, but a small promise to hold one another.">일주일에 두 번, 삼 분씩 — 교수님과 우리 반 학우들을 위해 기도하겠습니다. 부담이 아니라 서로를 붙드는 작은 약속입니다.</p>
+        <label class="chk cov"><input type="checkbox" id="covenant" checked><span class="box"><svg class="ico" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span><span class="t" data-ko="네, 1주 2회 3분 기도 언약에 함께합니다" data-en="Yes, I join the 1-2-3 prayer covenant">네, 1주 2회 3분 기도 언약에 함께합니다</span></label>
+        <label class="chk"><input type="checkbox" id="notify"><span class="box"><svg class="ico" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span><span class="t" data-ko="응답 소식이나 격려를 받고 싶습니다" data-en="I'd like follow-up or encouragement"><span>응답 소식이나 격려를 받고 싶습니다</span><small data-ko="연락처를 적어 주셔야 합니다" data-en="requires a contact above">연락처를 적어 주셔야 합니다</small></span></label>
+      </div>
+
+      <button class="btn" type="submit" id="sendBtn"><svg class="ico" viewBox="0 0 24 24"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg><span data-ko="기도 제목 보내기" data-en="Send my prayer request">기도 제목 보내기</span></button>
+      <p class="fine" data-ko="보내주신 내용은 교수(그리고 '학우들과 함께'를 선택한 경우 우리 반)만 봅니다. 언제든 삭제를 요청하실 수 있습니다." data-en="Only your professor (and, if you chose to share, your class) will see this. You may ask for it to be removed at any time.">보내주신 내용은 교수(그리고 '학우들과 함께'를 선택한 경우 우리 반)만 봅니다. 언제든 삭제를 요청하실 수 있습니다.</p>
+    </form>
+
+    <div class="done" id="done">
+      <div class="ring"><svg class="ico" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+      <h3>RECEIVED</h3>
+      <p data-ko="기도 제목이 잘 도착했습니다.<br>이번 주부터 이름을 부르며 기도하겠습니다." data-en="Your prayer request has arrived.<br>Starting this week, I will pray for you by name.">기도 제목이 잘 도착했습니다.<br>이번 주부터 이름을 부르며 기도하겠습니다.</p>
+      <div class="verse" data-ko="“쉬지 말고 기도하라. 범사에 감사하라. 이것이 그리스도 예수 안에서 너희를 향하신 하나님의 뜻이니라.” (살전 5:17-18)" data-en="“Pray without ceasing; give thanks in all circumstances; for this is the will of God in Christ Jesus for you.” (1 Thess 5:17-18)">“쉬지 말고 기도하라. 범사에 감사하라. 이것이 그리스도 예수 안에서 너희를 향하신 하나님의 뜻이니라.” (살전 5:17-18)</div>
+      <button class="again" onclick="resetForm()" data-ko="다른 기도 제목 보내기" data-en="Send another request">다른 기도 제목 보내기</button>
+    </div>
+  </div>
+</div>
+
+<footer>K-Church 911 · Hebron Faith Ecosystem · <a href="https://kchurch911.com/">kchurch911.com</a></footer>
+<div class="toast" id="toast"></div>
+
+<script>
+// ── 설정: Apps_Script_123Prayer.gs 배포 후 …/exec URL 을 넣으세요 ──
+const API_URL = '';
+
+let lang = localStorage.getItem('k123_lang') || (navigator.language && navigator.language.startsWith('en') ? 'en' : 'ko');
+function applyLang() {
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-ko][data-en]').forEach(el => { el.innerHTML = el.getAttribute(lang === 'ko' ? 'data-ko' : 'data-en'); });
+  document.querySelectorAll('[data-ph-ko]').forEach(el => { el.placeholder = el.getAttribute(lang === 'ko' ? 'data-ph-ko' : 'data-ph-en'); });
+  document.getElementById('langBtn').textContent = lang === 'ko' ? 'ENGLISH' : '한국어';
+}
+function toggleLang() { lang = lang === 'ko' ? 'en' : 'ko'; localStorage.setItem('k123_lang', lang); applyLang(); }
+applyLang();
+
+function cnt(el, id) { document.getElementById(id).textContent = el.value.length + ' / ' + el.maxLength; }
+function toast(m) { const t = document.getElementById('toast'); t.textContent = m; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 3000); }
+
+async function submitForm(e) {
+  e.preventDefault();
+  const v = id => document.getElementById(id).value.trim();
+  const data = {
+    action: 'submit', lang,
+    name: v('name'), group: v('group'), contact: v('contact'),
+    req1: v('req1'), req2: v('req2'),
+    urgent: document.querySelector('input[name=urg]:checked').value === 'urgent',
+    share: document.querySelector('input[name=share]:checked').value,
+    covenant: document.getElementById('covenant').checked,
+    notify: document.getElementById('notify').checked,
+  };
+  if (!data.name) { toast(lang === 'ko' ? '이름을 적어 주세요.' : 'Please enter your name.'); document.getElementById('name').focus(); return false; }
+  if (!data.req1) { toast(lang === 'ko' ? '기도 제목 1을 적어 주세요.' : 'Please write prayer request 1.'); document.getElementById('req1').focus(); return false; }
+  if (data.notify && !data.contact) { toast(lang === 'ko' ? '응답 소식을 받으려면 연락처가 필요합니다.' : 'Please add a contact for follow-up.'); document.getElementById('contact').focus(); return false; }
+
+  const btn = document.getElementById('sendBtn'); btn.disabled = true;
+  try {
+    if (API_URL) {
+      await fetch(API_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(data) });
+    } else {
+      // API 미설정 시 로컬 보관 (테스트용)
+      const box = JSON.parse(localStorage.getItem('k123_drafts') || '[]'); box.push({ ...data, at: new Date().toISOString() }); localStorage.setItem('k123_drafts', JSON.stringify(box));
+    }
+    document.getElementById('f').style.display = 'none';
+    document.getElementById('done').style.display = 'block';
+    window.scrollTo({ top: document.getElementById('formCard').offsetTop - 80, behavior: 'smooth' });
+  } catch (err) {
+    toast(lang === 'ko' ? '전송에 실패했습니다. 잠시 후 다시 시도해 주세요.' : 'Could not send. Please try again.');
+  } finally { btn.disabled = false; }
+  return false;
+}
+function resetForm() {
+  document.getElementById('f').reset(); ['c1','c2'].forEach(id => document.getElementById(id).textContent = '0 / 400');
+  document.getElementById('covenant').checked = true;
+  document.getElementById('done').style.display = 'none'; document.getElementById('f').style.display = 'block';
+}
+</script>
+</body>
+</html>
