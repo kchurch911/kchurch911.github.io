@@ -107,7 +107,7 @@ body{font-family:'Noto Sans KR','Inter',sans-serif;background:var(--bg);color:va
 
   <div id="room" style="display:none">
     <div class="week">
-      <div><div class="t">This Week · 1주 2회 3분</div><div class="big"><span id="wkDone">0</span><small> / <span id="wkTotal">0</span> 명 완료</small></div></div>
+      <div><div class="t">This Week · 1주 2회 3초</div><div class="big"><span id="wkDone">0</span><small> / <span id="wkTotal">0</span> 명 완료</small></div></div>
       <div class="days" id="days"></div>
     </div>
     <div class="stats">
@@ -204,7 +204,7 @@ function render(){
         <div class="act">
           <button class="pray ${wk?'wk':td?'td':''}" ${(wk||td)?'disabled':''} onclick="prayed('${x.id}')">
             <svg class="ico" viewBox="0 0 24 24"><path d="M12 3c-2.4 3-4 6-4 10v6h8v-6c0-4-1.6-7-4-10z"/><path d="M12 3v16"/></svg>
-            ${wk?'이번 주 완료':td?'오늘 기도함':'기도함 — 3분'}
+            ${wk?'이번 주 완료':td?'오늘 기도함':'기도함 — 3초'}
           </button>
           <select class="sel" onchange="setStatus('${x.id}',this.value)">
             ${['기도중','응답됨','부분응답','종료'].map(s=>`<option ${x.status===s?'selected':''}>${s}</option>`).join('')}
