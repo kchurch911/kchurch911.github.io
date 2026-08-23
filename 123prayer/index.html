@@ -140,10 +140,18 @@ footer a{color:var(--gold-d);text-decoration:none}
       <input type="text" id="name" required autocomplete="name" data-ph-ko="예: 홍길동" data-ph-en="e.g. Jane Kim" placeholder="예: 홍길동">
       <label for="group"><span data-ko="섬기는 자리" data-en="Where you serve">섬기는 자리</span><small data-ko="신학생 · 개척 · 교회 · 사역 부서" data-en="seminary · church plant · church · ministry">신학생 · 개척 · 교회 · 사역 부서</small></label>
       <input type="text" id="group" data-ph-ko="예: 신학생 / 시애틀 ○○교회 개척 / 청년부 교사" data-ph-en="e.g. seminary student / church plant in Tacoma / youth ministry" placeholder="예: 신학생 / 시애틀 ○○교회 개척 / 청년부 교사">
+      <label for="org"><span data-ko="소속 교회·기관" data-en="Church / organization">소속 교회·기관</span><small data-ko="선택" data-en="optional">선택</small></label>
+      <input type="text" id="org" data-ph-ko="예: 시애틀지구촌교회 / ○○신학교 / ○○선교회" data-ph-en="e.g. GMC Seattle / seminary / mission" placeholder="예: 시애틀지구촌교회 / ○○신학교 / ○○선교회">
       <label for="contact"><span data-ko="연락처" data-en="Contact">연락처</span><small data-ko="선택 — 응답 소식을 받고 싶을 때" data-en="optional — for follow-up">선택 — 응답 소식을 받고 싶을 때</small></label>
       <input type="text" id="contact" data-ph-ko="이메일 또는 전화번호" data-ph-en="Email or phone" placeholder="이메일 또는 전화번호">
 
       <div class="sec" data-ko="기도 제목" data-en="Prayer requests">기도 제목</div>
+      <label data-ko="누구를 위한 기도인가요?" data-en="Who is this prayer for?">누구를 위한 기도인가요?</label>
+      <div class="seg">
+        <label><input type="radio" name="who" value="self" checked onchange="whoChanged()"><span class="opt" data-ko="나" data-en="Myself">나</span></label>
+        <label><input type="radio" name="who" value="vip" onchange="whoChanged()"><span class="opt" data-ko="소중한 분 (VIP)" data-en="Someone dear (VIP)">소중한 분 (VIP)</span></label>
+      </div>
+      <input type="text" id="vipName" style="display:none;margin-top:8px" data-ph-ko="소중한 분 이름 또는 관계 (예: 어머니, 직장동료 김○○)" data-ph-en="Their name or relationship (e.g. my mother, coworker Kim)" placeholder="소중한 분 이름 또는 관계 (예: 어머니, 직장동료 김○○)">
       <label for="req1"><span data-ko="기도 제목 1" data-en="Prayer request 1">기도 제목 1</span></label>
       <textarea id="req1" required maxlength="400" data-ph-ko="지금 가장 기도가 필요한 한 가지를 적어 주세요." data-ph-en="Write the one thing you most need prayer for right now." placeholder="지금 가장 기도가 필요한 한 가지를 적어 주세요." oninput="cnt(this,'c1')"></textarea>
       <div class="count" id="c1">0 / 400</div>
@@ -186,6 +194,14 @@ footer a{color:var(--gold-d);text-decoration:none}
       <h3>RECEIVED</h3>
       <p id="doneMsg" data-ko="기도 제목이 잘 도착했습니다.<br>이번 주부터 이름을 부르며 기도하겠습니다." data-en="Your prayer request has arrived.<br>Starting this week, I will pray for you by name.">기도 제목이 잘 도착했습니다.<br>이번 주부터 이름을 부르며 기도하겠습니다.</p>
       <div class="verse" data-ko="“쉬지 말고 기도하라. 범사에 감사하라. 이것이 그리스도 예수 안에서 너희를 향하신 하나님의 뜻이니라.” (살전 5:17-18)" data-en="“Pray without ceasing; give thanks in all circumstances; for this is the will of God in Christ Jesus for you.” (1 Thess 5:17-18)">“쉬지 말고 기도하라. 범사에 감사하라. 이것이 그리스도 예수 안에서 너희를 향하신 하나님의 뜻이니라.” (살전 5:17-18)</div>
+      <div id="myLinkBox" style="display:none;margin-top:18px;text-align:left;border:1px solid rgba(240,192,64,0.3);background:rgba(240,192,64,0.06);border-radius:14px;padding:14px">
+        <div style="font-size:.66rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);font-family:'Inter',sans-serif;font-weight:600;margin-bottom:6px" data-ko="나의 기도 페이지" data-en="Your prayer page">나의 기도 페이지</div>
+        <div style="font-size:.82rem;color:var(--muted);line-height:1.7;font-weight:300" data-ko="이 링크에서 기도 제목을 추가하고, 응답받은 제목을 표시할 수 있습니다. 이메일을 적으셨다면 확인 메일에도 같은 링크가 있습니다. 저장해 두세요." data-en="Use this link to add requests and mark answered prayers. If you gave an email, it is in your confirmation mail too. Keep it.">이 링크에서 기도 제목을 추가하고, 응답받은 제목을 표시할 수 있습니다. 이메일을 적으셨다면 확인 메일에도 같은 링크가 있습니다. 저장해 두세요.</div>
+        <div style="display:flex;gap:8px;margin-top:10px;align-items:center">
+          <input type="text" id="myLink" readonly style="flex:1;font-size:.8rem;padding:10px 12px" onclick="this.select()">
+          <button type="button" class="again" style="margin:0;white-space:nowrap" onclick="copyMyLink()" data-ko="복사" data-en="Copy">복사</button>
+        </div>
+      </div>
       <button class="again" onclick="resetForm()" data-ko="다른 기도 제목 보내기" data-en="Send another request">다른 기도 제목 보내기</button>
     </div>
   </div>
@@ -212,6 +228,10 @@ applyLang();
 function syncName() { const n = (document.getElementById('name').value || '').trim().replace(/[<>&]/g, ''); document.querySelectorAll('.desc .nm').forEach(el => { el.textContent = n ? (lang === 'ko' ? n + '님' : n) : (lang === 'ko' ? '○○님' : 'your name'); }); }
 document.addEventListener('input', e => { if (e.target && e.target.id === 'name') syncName(); });
 function cnt(el, id) { document.getElementById(id).textContent = el.value.length + ' / ' + el.maxLength; }
+function whoChanged() { const vip = document.querySelector('input[name=who]:checked').value === 'vip'; document.getElementById('vipName').style.display = vip ? 'block' : 'none'; }
+function copyMyLink() { const i = document.getElementById('myLink'); i.select(); try { navigator.clipboard.writeText(i.value); toast(lang === 'ko' ? '링크를 복사했습니다' : 'Link copied'); } catch (e) { document.execCommand('copy'); } }
+// 김목사 기도제목 — API 값으로 동기화 (기도방에서 수정하면 여기도 바뀜)
+(async () => { if (!API_URL) return; try { const r = await fetch(API_URL + '?pastor=1&t=' + Date.now(), { cache: 'no-store' }); const j = await r.json(); if (j.ok && j.items && j.items.length) { const ol = document.querySelector('.pk-list'); if (ol) ol.innerHTML = j.items.map(x => '<li>' + String(x).replace(/[<>&]/g, '') + '</li>').join(''); } } catch (e) {} })();
 function toast(m) { const t = document.getElementById('toast'); t.textContent = m; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 3000); }
 
 async function submitForm(e) {
@@ -225,6 +245,9 @@ async function submitForm(e) {
     share: document.querySelector('input[name=share]:checked').value,
     covenant: document.getElementById('covenant').checked,
     notify: document.getElementById('notify').checked,
+    org: v('org'),
+    whoType: document.querySelector('input[name=who]:checked').value,
+    vipName: v('vipName'),
   };
   if (!data.name) { toast(lang === 'ko' ? '이름을 적어 주세요.' : 'Please enter your name.'); document.getElementById('name').focus(); return false; }
   if (!data.req1) { toast(lang === 'ko' ? '기도 제목 1을 적어 주세요.' : 'Please write prayer request 1.'); document.getElementById('req1').focus(); return false; }
@@ -232,8 +255,16 @@ async function submitForm(e) {
 
   const btn = document.getElementById('sendBtn'); btn.disabled = true;
   try {
+    let token = '';
     if (API_URL) {
-      await fetch(API_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(data) });
+      try {
+        const r = await fetch(API_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(data), redirect: 'follow' });
+        const j = await r.json(); if (j && j.ok && j.token) token = j.token;
+      } catch (e) { // 응답을 못 읽으면(CORS) 전송만 — 메일의 링크로 안내
+        await fetch(API_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(data) }).catch(() => {});
+      }
+      const box = document.getElementById('myLinkBox');
+      if (token) { document.getElementById('myLink').value = location.origin + location.pathname.replace(/[^/]*$/, '') + 'my.html?t=' + token; box.style.display = 'block'; } else { box.style.display = 'none'; }
     } else {
       // API 미설정 시 로컬 보관 (테스트용)
       const box = JSON.parse(localStorage.getItem('k123_drafts') || '[]'); box.push({ ...data, at: new Date().toISOString() }); localStorage.setItem('k123_drafts', JSON.stringify(box));

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>나의 기도 페이지 — 123 Prayer · K-Church 911</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Cinzel:wght@600;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#09090f;--navy:#0f1020;--navy2:#1a1a2e;--gold:#f0c040;--gold-l:#ffe066;--gold-d:#a07820;--blue:#2997ff;--green:#34c759;--pink:#ff6b8a;--amber:#ff9f0a;--text:rgba(255,255,255,0.96);--muted:rgba(255,255,255,0.62);--dim:rgba(255,255,255,0.05);--border:rgba(255,255,255,0.10)}
+body{font-family:'Noto Sans KR','Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--gold-d);border-radius:2px}
+.ico{width:1em;height:1em;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;display:inline-block;vertical-align:-.15em;flex-shrink:0}
+.bar{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:12px 18px;background:rgba(7,13,26,0.9);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,162,39,0.12)}
+.brand{font-family:'Cinzel',serif;font-weight:900;letter-spacing:2px;color:var(--gold);font-size:.85rem;text-decoration:none;display:flex;align-items:center;gap:10px;white-space:nowrap}
+.brand span{font-family:'Noto Sans KR',sans-serif;font-weight:300;font-size:.68rem;color:var(--muted);letter-spacing:1px}
+.lang{background:transparent;border:1px solid rgba(240,192,64,0.4);color:var(--gold);border-radius:20px;padding:6px 14px;font-size:.72rem;font-weight:700;cursor:pointer;font-family:inherit;letter-spacing:1px}
+.wrap{max-width:640px;margin:0 auto;padding:22px 16px 90px}
+.hero{text-align:center;padding:18px 0 8px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-family:'Inter',sans-serif;font-weight:600}
+.eyebrow::before,.eyebrow::after{content:'';width:20px;height:1px;background:var(--gold-d)}
+h1{font-family:'Cinzel',serif;font-size:1.6rem;letter-spacing:2px;color:#fff;margin-top:8px}
+.hello{font-size:1rem;color:var(--text);margin-top:6px;font-weight:500}
+.hello b{color:var(--gold)}
+.sub{font-size:.82rem;color:var(--muted);margin-top:6px;line-height:1.7;font-weight:300}
+.card{border:1px solid var(--border);border-radius:18px;background:rgba(26,26,46,0.6);padding:16px;margin-top:14px}
+.sec{font-size:.64rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-family:'Inter',sans-serif;font-weight:600;display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.sec::after{content:'';flex:1;height:1px;background:rgba(240,192,64,0.18)}
+.pk{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px}
+.pk li{font-size:.9rem;line-height:1.55;font-weight:500}
+.pk li::marker{color:var(--gold);font-weight:700}
+.cov{margin-top:12px;font-size:.8rem;color:var(--muted);line-height:1.7;font-weight:300;border-top:1px dashed var(--border);padding-top:10px}
+.rq{border-left:2px solid rgba(240,192,64,0.4);padding:2px 0 2px 12px;margin:10px 0}
+.rq.ans{border-left-color:rgba(52,199,89,0.6)}
+.rq .t{font-size:.92rem;line-height:1.6;white-space:pre-wrap}
+.rq .t2{font-size:.85rem;line-height:1.6;color:var(--text);opacity:.85;white-space:pre-wrap;margin-top:4px}
+.rq .m{font-size:.7rem;color:var(--muted);margin-top:6px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.tag{font-size:.62rem;font-weight:700;padding:2px 8px;border-radius:10px;letter-spacing:.5px}
+.tag.a{background:rgba(52,199,89,0.15);color:#6dda8a}.tag.p{background:rgba(255,159,10,0.15);color:#ffbe4f}.tag.o{background:rgba(255,255,255,0.07);color:var(--muted)}.tag.u{background:rgba(255,107,138,0.15);color:var(--pink)}
+.btn{border:none;border-radius:12px;padding:11px 14px;font-weight:800;font-family:inherit;cursor:pointer;font-size:.86rem;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:all .2s}
+.btn.gold{background:var(--gold);color:#07080d}.btn.gold:hover{background:var(--gold-l)}
+.btn.green{background:rgba(52,199,89,0.15);color:#6dda8a;border:1px solid rgba(52,199,89,0.35)}
+.btn.ghost{background:transparent;color:var(--muted);border:1px solid var(--border)}
+.btn:disabled{opacity:.5;cursor:default}
+.btn.w{width:100%;margin-top:10px}
+textarea,input[type=text]{width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:12px;color:var(--text);padding:11px 13px;font-size:.92rem;font-family:inherit}
+textarea{min-height:84px;resize:vertical;line-height:1.6}
+textarea:focus,input:focus{outline:none;border-color:rgba(240,192,64,0.6)}
+::placeholder{color:rgba(255,255,255,0.3)}
+label{display:block;font-size:.8rem;font-weight:500;margin:12px 0 6px}
+.note{display:none;margin-top:8px}
+.renew{background:linear-gradient(135deg,rgba(240,192,64,0.12),rgba(41,151,255,0.08));border:1px solid rgba(240,192,64,0.3)}
+.renew .big{font-family:'Cinzel',serif;font-size:1.3rem;color:#fff}
+.stat{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.st{border:1px solid var(--border);border-radius:12px;padding:10px 6px;text-align:center;background:rgba(255,255,255,0.02)}
+.st b{display:block;font-family:'Cinzel',serif;font-size:1.3rem;color:#fff}
+.st span{font-size:.64rem;color:var(--muted)}
+.lock{text-align:center;padding:50px 20px;color:var(--muted)}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--gold);color:#07080d;padding:12px 20px;border-radius:12px;font-size:.85rem;font-weight:700;opacity:0;transition:all .3s;z-index:300;white-space:nowrap}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+footer{text-align:center;color:var(--muted);font-size:.7rem;padding:20px;border-top:1px solid var(--border);font-weight:300}
+footer a{color:var(--gold-d);text-decoration:none}
+</style>
+</head>
+<body>
+<div class="bar">
+  <a class="brand" href="index.html">K-CHURCH <b>911</b> <span>123 Prayer</span></a>
+  <button class="lang" onclick="toggleLang()" id="langBtn">ENGLISH</button>
+</div>
+
+<div class="wrap">
+  <div id="lock" class="lock" data-ko="기도 페이지 주소가 올바르지 않습니다. 확인 메일의 링크로 들어와 주세요." data-en="This prayer page link is not valid. Please open the link from your confirmation email.">불러오는 중…</div>
+  <div id="page" style="display:none">
+    <div class="hero">
+      <div class="eyebrow">My Prayer Page</div>
+      <h1>123 PRAYER</h1>
+      <div class="hello" id="hello"></div>
+      <div class="sub" id="subline"></div>
+    </div>
+
+    <div class="card">
+      <div class="sec" data-ko="김목사 기도제목" data-en="Pastor Kim's prayer requests">김목사 기도제목</div>
+      <ol class="pk" id="pastorList"></ol>
+      <div class="cov" data-ko="일주일에 두 번, 삼 초 이상 — 김목사 기도제목을 위해 기도해 주세요. 저도 같은 리듬으로 이름을 부르며 기도합니다." data-en="Twice a week, at least three seconds — please pray for these. I pray for you by name in the same rhythm.">일주일에 두 번, 삼 초 이상 — 김목사 기도제목을 위해 기도해 주세요. 저도 같은 리듬으로 이름을 부르며 기도합니다.</div>
+    </div>
+
+    <div class="card">
+      <div class="sec" data-ko="나의 기도 제목" data-en="My prayer requests">나의 기도 제목</div>
+      <div id="myList"></div>
+      <div class="stat">
+        <div class="st"><b id="sPrayed">0</b><span data-ko="받은 기도" data-en="prayers received">받은 기도</span></div>
+        <div class="st"><b id="sAns">0</b><span data-ko="응답" data-en="answered">응답</span></div>
+        <div class="st"><b id="sSince">—</b><span data-ko="함께한 날" data-en="days together">함께한 날</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="sec" data-ko="새 기도 제목 보내기" data-en="Send a new request">새 기도 제목 보내기</div>
+      <textarea id="nreq1" maxlength="400" data-ph-ko="지금 기도가 필요한 한 가지" data-ph-en="One thing you need prayer for now" placeholder="지금 기도가 필요한 한 가지"></textarea>
+      <label data-ko="한 가지 더 (선택)" data-en="One more (optional)">한 가지 더 (선택)</label>
+      <textarea id="nreq2" maxlength="400" style="min-height:64px"></textarea>
+      <button class="btn gold w" onclick="addReq()"><svg class="ico" viewBox="0 0 24 24"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg><span data-ko="보내기" data-en="Send">보내기</span></button>
+    </div>
+
+    <div class="card renew" id="renewCard">
+      <div class="sec" data-ko="기도 언약 갱신" data-en="Renew the covenant">기도 언약 갱신</div>
+      <div class="big" id="renewTitle"></div>
+      <div class="sub" id="renewSub"></div>
+      <button class="btn gold w" onclick="renew()"><span data-ko="올해도 계속 기도해 주세요" data-en="Keep praying for me this year">올해도 계속 기도해 주세요</span></button>
+    </div>
+
+    <div class="card">
+      <div class="sec" data-ko="연락처" data-en="Contact">연락처</div>
+      <div class="sub" data-ko="응답 소식·갱신 안내를 받을 이메일입니다. 비워 두면 메일은 가지 않습니다." data-en="Email for answered-prayer notes and yearly renewal. Leave blank for no email.">응답 소식·갱신 안내를 받을 이메일입니다. 비워 두면 메일은 가지 않습니다.</div>
+      <input type="text" id="contact" placeholder="email@example.com" style="margin-top:8px">
+      <button class="btn ghost w" onclick="saveContact()"><span data-ko="연락처 저장" data-en="Save contact">연락처 저장</span></button>
+    </div>
+  </div>
+</div>
+<footer>K-Church 911 · 123 Prayer · <a href="index.html">kchurch911.com/123prayer</a></footer>
+<div class="toast" id="toast"></div>
+
+<script>
+const API_URL = 'https://script.google.com/macros/s/AKfycbzvUszZLsrinVz3pYkjCdFy1T5oHG6HSPexZ2s7KM5hrsMMCyxdg4p5uVKpb9qpTgQ7Lg/exec';
+const TOKEN = new URLSearchParams(location.search).get('t') || '';
+let lang = localStorage.getItem('k123_lang') || (navigator.language && navigator.language.startsWith('en') ? 'en' : 'ko');
+let ME = null, REQS = [], PASTOR = [];
+function applyLang(){ document.documentElement.lang=lang; document.querySelectorAll('[data-ko][data-en]').forEach(el=>{ el.innerHTML = el.getAttribute(lang==='ko'?'data-ko':'data-en'); }); document.querySelectorAll('[data-ph-ko]').forEach(el=>{ el.placeholder = el.getAttribute(lang==='ko'?'data-ph-ko':'data-ph-en'); }); document.getElementById('langBtn').textContent = lang==='ko'?'ENGLISH':'한국어'; if (ME) render(); }
+function toggleLang(){ lang = lang==='ko'?'en':'ko'; localStorage.setItem('k123_lang',lang); applyLang(); }
+function toast(m){ const t=document.getElementById('toast'); t.textContent=m; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2800); }
+function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function fmt(v){ if(!v) return ''; const s=String(v); if(/^\d{4}-\d{2}-\d{2}/.test(s)) return s.slice(0,10); const d=new Date(s); return isNaN(d)?s.slice(0,10):d.toISOString().slice(0,10); }
+async function post(body){ try{ await fetch(API_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(body)}); }catch(e){} }
+
+async function load(){
+  if(!TOKEN){ showLock(); return; }
+  try{
+    const r = await fetch(API_URL+'?me='+encodeURIComponent(TOKEN)+'&t='+Date.now(),{cache:'no-store'});
+    const j = await r.json();
+    if(!j.ok){ showLock(); return; }
+    ME=j.me; REQS=j.requests||[]; PASTOR=j.pastor||[];
+    document.getElementById('lock').style.display='none'; document.getElementById('page').style.display='block';
+    render();
+  }catch(e){ showLock(); }
+}
+function showLock(){ const l=document.getElementById('lock'); l.textContent = l.getAttribute(lang==='ko'?'data-ko':'data-en'); }
+function render(){
+  const ko = lang==='ko';
+  document.getElementById('hello').innerHTML = ko ? `<b>${esc(ME.name)}</b>님, 반갑습니다.` : `Welcome, <b>${esc(ME.name)}</b>.`;
+  document.getElementById('subline').textContent = ko ? `제가(김성수) ${ME.name}님의 이름을 부르며 일주일에 두 번, 삼 초 이상 기도합니다.` : `I (Paul Kim) call your name in prayer — twice a week, at least three seconds.`;
+  document.getElementById('pastorList').innerHTML = PASTOR.map(p=>`<li>${esc(p)}</li>`).join('');
+  const list = document.getElementById('myList');
+  const open = REQS.filter(r=>r.status!=='종료');
+  if(!open.length) list.innerHTML = `<div class="sub">${ko?'아직 기도 제목이 없습니다. 아래에서 보내 주세요.':'No requests yet — send one below.'}</div>`;
+  else list.innerHTML = open.slice().sort((a,b)=>String(b.at).localeCompare(String(a.at))).map(r=>{
+    const ans = r.status==='응답됨'; const part = r.status==='부분응답';
+    return `<div class="rq ${ans?'ans':''}">
+      <div class="t">${esc(r.req1)}</div>${r.req2?`<div class="t2">${esc(r.req2)}</div>`:''}
+      <div class="m"><span>${esc(fmt(r.at))}</span>${r.urgent?'<span class="tag u">'+(ko?'긴급':'URGENT')+'</span>':''}<span class="tag ${ans?'a':part?'p':'o'}">${esc(ko?r.status:({'기도중':'praying','응답됨':'answered','부분응답':'partly answered','종료':'closed'}[r.status]||r.status))}</span>${r.log&&r.log.length?`<span>${ko?'받은 기도 '+r.log.length+'회':r.log.length+' prayers'}</span>`:''}${r.answerNote?`<span>· ${esc(r.answerNote)}</span>`:''}</div>
+      ${ans?'' : `<button class="btn green" style="margin-top:8px" onclick="toggleNote('${r.id}')"><svg class="ico" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span>${ko?'응답 받았어요':'God answered'}</span></button>
+      <div class="note" id="note-${r.id}"><input type="text" id="ntext-${r.id}" maxlength="300" placeholder="${ko?'감사 한 줄 (선택) — 예: 수술 잘 끝났습니다':'A line of thanks (optional)'}"><button class="btn gold w" onclick="answered('${r.id}')">${ko?'응답으로 표시하기':'Mark as answered'}</button></div>`}
+    </div>`; }).join('');
+  document.getElementById('sPrayed').textContent = ME.prayed||0;
+  document.getElementById('sAns').textContent = ME.answered||0;
+  const since = ME.joined ? Math.max(0, Math.round((Date.now()-new Date(fmt(ME.joined)+'T12:00:00'))/86400000)) : 0;
+  document.getElementById('sSince').textContent = since;
+  // 갱신 카드
+  const next = fmt(ME.next); const days = next ? Math.round((new Date(next+'T12:00:00')-new Date())/86400000) : null;
+  const rt=document.getElementById('renewTitle'), rs=document.getElementById('renewSub');
+  if(ME.status==='보관'){ rt.textContent = ko?'잠시 보관 중':'Resting for now'; rs.textContent = ko?'버튼을 누르면 다시 시작합니다.':'Tap to begin again.'; }
+  else if(days!==null && days<=14){ rt.textContent = ko?(days<=0?'갱신할 때입니다':days+'일 뒤 갱신'):(days<=0?'Time to renew':'Renews in '+days+' days'); rs.textContent = ko?'올해도 계속 기도받기를 원하시면 눌러 주세요.':'Tap to keep the covenant going this year.'; }
+  else { rt.textContent = ko?'언약 진행 중':'Covenant active'; rs.textContent = ko?`다음 갱신: ${next||'-'} (갱신일 2주 전에 안내 메일을 드립니다)`:`Next renewal: ${next||'-'} (you'll get a note two weeks before)`; }
+  document.getElementById('contact').value = ME.contact||'';
+}
+window.toggleNote = id => { const n=document.getElementById('note-'+id); n.style.display = n.style.display==='block'?'none':'block'; };
+window.answered = async id => { const note=(document.getElementById('ntext-'+id)?.value||'').trim(); const r=REQS.find(x=>String(x.id)===String(id)); if(r){ r.status='응답됨'; r.answerNote=note; ME.answered=(ME.answered||0)+1; } render(); toast(lang==='ko'?'응답을 함께 기뻐합니다':'Rejoicing with you'); await post({action:'answered',token:TOKEN,id,note}); };
+window.addReq = async () => { const r1=document.getElementById('nreq1').value.trim(), r2=document.getElementById('nreq2').value.trim(); if(!r1){ toast(lang==='ko'?'기도 제목을 적어 주세요':'Please write a request'); return; } await post({action:'add',token:TOKEN,req1:r1,req2:r2}); REQS.push({id:'new'+Date.now(),at:new Date().toISOString(),req1:r1,req2:r2,status:'기도중',log:[]}); ME.status='활동'; const d=new Date(); d.setDate(d.getDate()+365); ME.next=d.toISOString().slice(0,10); document.getElementById('nreq1').value=''; document.getElementById('nreq2').value=''; render(); toast(lang==='ko'?'기도 제목을 보냈습니다':'Sent'); };
+window.renew = async () => { await post({action:'renew',token:TOKEN}); const d=new Date(); d.setDate(d.getDate()+365); ME.next=d.toISOString().slice(0,10); ME.status='활동'; render(); toast(lang==='ko'?'감사합니다 — 올해도 함께 기도합니다':'Thank you — we continue this year'); };
+window.saveContact = async () => { const c=document.getElementById('contact').value.trim(); await post({action:'contact',token:TOKEN,contact:c}); ME.contact=c; toast(lang==='ko'?'저장했습니다':'Saved'); };
+applyLang(); load();
+</script>
+</body>
+</html>

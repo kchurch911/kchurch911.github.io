@@ -80,6 +80,19 @@ body{font-family:'Noto Sans KR','Inter',sans-serif;background:var(--bg);color:va
 .pray.wk{background:rgba(255,255,255,0.05);color:var(--muted);cursor:default;border:1px solid var(--border)}
 .sel{background:rgba(255,255,255,0.04);border:1px solid var(--border);color:var(--text);border-radius:12px;padding:10px;font-family:inherit;font-size:.78rem}
 .empty{text-align:center;padding:40px 20px;color:var(--muted);font-size:.85rem;border:1px dashed var(--border);border-radius:18px}
+.pp{border:1px solid var(--border);border-radius:16px;background:rgba(26,26,46,0.6);padding:12px 14px}
+.pp .h{display:flex;align-items:center;gap:10px}
+.pp .h b{font-size:.95rem;color:#fff}
+.pp .h small{color:var(--muted);font-size:.7rem;display:block;margin-top:1px}
+.pp .g{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:10px 0 8px}
+.pp .g div{text-align:center;border:1px solid var(--border);border-radius:10px;padding:6px 2px}
+.pp .g b{display:block;font-family:'Cinzel',serif;color:#fff;font-size:1rem}
+.pp .g span{font-size:.6rem;color:var(--muted)}
+.pp textarea{width:100%;min-height:44px;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:10px;color:var(--text);padding:8px 10px;font-family:inherit;font-size:.8rem;resize:vertical}
+.pp .r{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.mini{background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:10px;padding:7px 10px;font-size:.72rem;font-weight:600;cursor:pointer;font-family:inherit}
+.mini:hover{border-color:rgba(240,192,64,0.5);color:var(--gold)}
+.pe{display:flex;gap:6px;margin-bottom:6px}.pe input{flex:1;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:10px;color:var(--text);padding:9px 11px;font-family:inherit;font-size:.85rem}
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--gold);color:#07080d;padding:12px 20px;border-radius:12px;font-size:.85rem;font-weight:700;opacity:0;transition:all .3s;z-index:300;white-space:nowrap}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 @media(max-width:480px){.brand{font-size:.72rem;letter-spacing:1px}.brand span{display:none}.ghost span{display:none}.ghost{padding:7px 10px}}
@@ -115,6 +128,24 @@ body{font-family:'Noto Sans KR','Inter',sans-serif;background:var(--bg);color:va
       <div class="st ok"><b id="sDone">0</b><span>이번 주 2회 완료</span></div>
       <div class="st need"><b id="sNeed">0</b><span>기도 필요</span></div>
     </div>
+    <div class="tools" style="margin-bottom:8px">
+      <button class="tab on" data-m="pray" onclick="setMode(this)">기도</button>
+      <button class="tab" data-m="people" onclick="setMode(this)">명단</button>
+      <button class="tab" data-m="pastor" onclick="setMode(this)">김목사 기도제목</button>
+      <span id="cronInfo" style="margin-left:auto;font-size:.68rem;color:var(--muted);align-self:center"></span>
+    </div>
+    <div id="modePastor" style="display:none" class="c"><div class="cb">
+      <div style="font-size:.66rem;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-family:'Inter',sans-serif;font-weight:600;margin-bottom:8px">김목사 기도제목 · 폼과 확인 메일, 개인 페이지에 표시됩니다</div>
+      <div id="pastorEdit"></div>
+      <button class="pray" style="margin-top:8px;flex:none;width:100%" onclick="savePastor()">저장</button>
+    </div></div>
+    <div id="modePeople" style="display:none">
+      <div class="tools"><input type="text" id="pq" placeholder="이름 · 연락처 · 소속 검색" oninput="renderPeople()">
+        <button class="tab on" data-pf="active" onclick="setPF(this)">활동</button><button class="tab" data-pf="due" onclick="setPF(this)">갱신 대기</button><button class="tab" data-pf="archived" onclick="setPF(this)">보관</button><button class="tab" data-pf="all" onclick="setPF(this)">전체</button>
+      </div>
+      <div class="list" id="peopleList"><div class="empty">불러오는 중…</div></div>
+    </div>
+    <div id="modePray">
     <div class="tools">
       <input type="text" id="q" placeholder="이름 · 섬기는 자리 검색" oninput="render()">
       <button class="tab on" data-f="need" onclick="setF(this)">기도 필요</button>
@@ -123,6 +154,7 @@ body{font-family:'Noto Sans KR','Inter',sans-serif;background:var(--bg);color:va
       <button class="tab" data-f="answered" onclick="setF(this)">응답</button>
     </div>
     <div class="list" id="list"><div class="empty">불러오는 중…</div></div>
+    </div>
   </div>
 </div>
 <div class="toast" id="toast"></div>
@@ -133,7 +165,7 @@ const API_URL = 'https://script.google.com/macros/s/AKfycbzvUszZLsrinVz3pYkjCdFy
 const TARGET = 2;
 
 let KEY = localStorage.getItem('k123_key') || '';
-let items = [], filter = 'need';
+let items = [], filter = 'need', people = [], pf = 'active', mode = 'pray', pastorReqs = [];
 const localLog = JSON.parse(localStorage.getItem('k123_locallog') || '{}');   // 오프라인/미설정 시 기도 기록 백업
 
 function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2600);}
@@ -161,12 +193,52 @@ async function load(manual){
     const r=await fetch(API_URL+'?list=1&key='+encodeURIComponent(KEY)+'&t='+Date.now(),{cache:'no-store'});
     const j=await r.json();
     if(!j.ok){ if(j.error==='unauthorized'){toast('비밀번호가 틀립니다');lock();} else toast('오류: '+j.error); return; }
-    items=j.items||[]; render(); if(manual) toast('새로고침 완료');
+    items=j.items||[]; if(j.pastor) pastorReqs=j.pastor; render(); if(manual) toast('새로고침 완료'); if(!manual) runCron();
   }catch(e){ toast('불러오기 실패: '+e.message); }
 }
 function logOf(x){const a=new Set(x.log||[]);(localLog[x.id]||[]).forEach(d=>a.add(d));return [...a];}
 function weekCount(x){return logOf(x).filter(inWeek).length;}
-function setF(btn){document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));btn.classList.add('on');filter=btn.dataset.f;render();}
+function setF(btn){document.querySelectorAll('.tab[data-f]').forEach(b=>b.classList.remove('on'));btn.classList.add('on');filter=btn.dataset.f;render();}
+function setMode(btn){document.querySelectorAll('.tab[data-m]').forEach(b=>b.classList.remove('on'));btn.classList.add('on');mode=btn.dataset.m;
+  document.getElementById('modePray').style.display = mode==='pray'?'block':'none';
+  document.getElementById('modePeople').style.display = mode==='people'?'block':'none';
+  document.getElementById('modePastor').style.display = mode==='pastor'?'block':'none';
+  if(mode==='people') loadPeople(); if(mode==='pastor') renderPastorEdit();}
+function setPF(btn){document.querySelectorAll('.tab[data-pf]').forEach(b=>b.classList.remove('on'));btn.classList.add('on');pf=btn.dataset.pf;renderPeople();}
+async function loadPeople(manual){
+  if(!API_URL) { people=[]; renderPeople(); return; }
+  try{ const r=await fetch(API_URL+'?people=1&key='+encodeURIComponent(KEY)+'&t='+Date.now(),{cache:'no-store'}); const j=await r.json(); if(!j.ok){toast('명단 오류: '+j.error);return;} people=j.items||[]; renderPeople(); if(manual) toast('명단 새로고침'); }catch(e){ toast('명단 불러오기 실패'); }
+}
+function renderPeople(){
+  const q=(document.getElementById('pq')?.value||'').toLowerCase();
+  let rows=people.filter(p=>!q||((p.name||'')+' '+(p.contact||'')+' '+(p.group||'')+' '+(p.org||'')).toLowerCase().includes(q));
+  if(pf==='active') rows=rows.filter(p=>p.status==='활동'); if(pf==='due') rows=rows.filter(p=>p.status==='갱신 대기'); if(pf==='archived') rows=rows.filter(p=>p.status==='보관');
+  rows.sort((a,b)=>String(a.next||'').localeCompare(String(b.next||'')));
+  const el=document.getElementById('peopleList');
+  if(!rows.length){ el.innerHTML='<div class="empty">해당하는 분이 없습니다.</div>'; return; }
+  const isMail = c => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(c||'').trim());
+  el.innerHTML = rows.map(p=>{
+    const days = p.next ? Math.round((new Date(fmtAt(p.next)+'T12:00:00')-new Date())/86400000) : null;
+    const link = location.origin+location.pathname.replace(/[^/]*$/,'')+'my.html?t='+p.token;
+    return `<div class="pp">
+      <div class="h"><div class="av">${esc((p.name||'?').charAt(0))}</div><div style="flex:1;min-width:0"><b>${esc(p.name)}</b><small>${esc(p.group||'')}${p.org?' · '+esc(p.org):''}${p.contact?' · '+esc(p.contact):''}${isMail(p.contact)?'':' · <span style=color:#ffbe4f>이메일 없음</span>'}</small></div>
+        <span class="tag st ${p.status==='활동'?'a':p.status==='갱신 대기'?'p':'c'}">${esc(p.status||'')}</span></div>
+      <div class="g"><div><b>${p.prayed||0}</b><span>받은 기도</span></div><div><b>${p.answered||0}</b><span>응답</span></div><div><b>${esc(fmtAt(p.joined)||'-')}</b><span>첫 등록</span></div><div><b>${days===null?'-':(days<0?'D+'+(-days):'D-'+days)}</b><span>갱신 ${esc(fmtAt(p.next)||'')}</span></div></div>
+      ${p.lastReq?`<div style="font-size:.8rem;color:var(--muted);margin-bottom:6px">최근: ${esc(p.lastReq)}</div>`:''}
+      <textarea id="memo-${p.token}" placeholder="메모 (예: 9월 개척 준비 · 10/3 통화)">${esc(p.memo||'')}</textarea>
+      <div class="r">
+        <button class="mini" onclick="saveMemo('${p.token}')">메모 저장</button>
+        <button class="mini" onclick="copyText('${link}')">개인 페이지 링크 복사</button>
+        ${p.contact?`<button class="mini" onclick="copyText('${esc(p.contact)}')">연락처 복사</button>`:''}
+        <select class="sel" style="padding:6px 8px" onchange="setPStatus('${p.token}',this.value)">${['활동','갱신 대기','보관'].map(s=>'<option '+(p.status===s?'selected':'')+'>'+s+'</option>').join('')}</select>
+      </div></div>`; }).join('');
+}
+async function saveMemo(token){ const memo=(document.getElementById('memo-'+token)?.value||''); const p=people.find(x=>x.token===token); if(p) p.memo=memo; try{ await fetch(API_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'memo',key:KEY,token,memo})}); }catch(e){} toast('메모 저장'); }
+async function setPStatus(token,pstatus){ const p=people.find(x=>x.token===token); if(p) p.status=pstatus; try{ await fetch(API_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'memo',key:KEY,token,pstatus})}); }catch(e){} toast('상태: '+pstatus); renderPeople(); }
+function copyText(t){ try{ navigator.clipboard.writeText(t); toast('복사했습니다'); }catch(e){ prompt('복사하세요', t); } }
+function renderPastorEdit(){ const el=document.getElementById('pastorEdit'); const arr=(pastorReqs&&pastorReqs.length?pastorReqs:['','']).slice(); while(arr.length<4) arr.push(''); el.innerHTML = arr.map((t,i)=>`<div class="pe"><input type="text" id="pr-${i}" value="${esc(t)}" placeholder="기도제목 ${i+1}${i>1?' (선택)':''}"></div>`).join(''); }
+async function savePastor(){ const items=[0,1,2,3].map(i=>(document.getElementById('pr-'+i)?.value||'').trim()).filter(Boolean); if(!items.length){toast('한 줄 이상 적어 주세요');return;} pastorReqs=items; try{ await fetch(API_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'setPastor',key:KEY,items})}); }catch(e){} toast('김목사 기도제목 저장 — 폼·메일·개인 페이지에 반영됩니다'); }
+async function runCron(){ if(!API_URL) return; try{ const r=await fetch(API_URL+'?cron=1&key='+encodeURIComponent(KEY)+'&t='+Date.now(),{cache:'no-store'}); const j=await r.json(); const el=document.getElementById('cronInfo'); if(el&&j.ok) el.textContent = (j.sent||j.archived) ? ('갱신 안내 '+(j.sent||0)+'통 · 보관 '+(j.archived||0)) : '갱신 점검 완료'; }catch(e){} }
 
 function render(){
   const q=(document.getElementById('q').value||'').toLowerCase();
@@ -198,9 +270,10 @@ function render(){
         <div class="dots">${Array.from({length:TARGET},(_,i)=>`<span class="dot ${i<wc?(td&&i===wc-1?'td':'on'):''}"></span>`).join('')}</div>
       </div>
       <div class="cb">
+        ${x.whoType==='소중한 분'?`<div style="font-size:.7rem;color:#ffbe4f;font-weight:700;margin-bottom:4px">소중한 분을 위한 기도${x.vipName?' · '+esc(x.vipName):''}</div>`:''}
         <div class="rq">${esc(x.req1)}</div>
         ${x.req2?`<div class="rq two">${esc(x.req2)}</div>`:''}
-        <div class="meta">${x.contact?`<span>${esc(x.contact)}</span>`:''}<span>${esc(x.share||'')}</span>${x.notify?'<span>응답 소식 원함</span>':''}<span>누적 ${logOf(x).length}회</span></div>
+        <div class="meta">${x.contact?`<span>${esc(x.contact)}</span>`:''}<span>${esc(x.share||'')}</span>${x.notify?'<span>응답 소식 원함</span>':''}<span>누적 ${logOf(x).length}회</span>${x.answeredAt?`<span>응답 ${esc(fmtAt(x.answeredAt))}</span>`:''}${x.answerNote?`<span style="color:#6dda8a">· ${esc(x.answerNote)}</span>`:''}${x.token?`<button class="mini" style="padding:3px 8px" onclick="copyText(location.origin+location.pathname.replace(/[^/]*$/,'')+'my.html?t=${esc(x.token)}')">개인 링크</button>`:''}</div>
         <div class="act">
           <button class="pray ${wk?'wk':td?'td':''}" ${(wk||td)?'disabled':''} onclick="prayed('${x.id}')">
             <svg class="ico" viewBox="0 0 24 24"><path d="M12 3c-2.4 3-4 6-4 10v6h8v-6c0-4-1.6-7-4-10z"/><path d="M12 3v16"/></svg>
@@ -226,8 +299,11 @@ async function prayed(id){
   if(API_URL){ try{ await fetch(API_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'prayed',key:KEY,id,date:d})}); }catch(e){} }
 }
 async function setStatus(id,status){
-  const x=items.find(i=>String(i.id)===String(id)); if(!x) return; x.status=status; render();
-  if(API_URL){ try{ await fetch(API_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'status',key:KEY,id,status})}); toast('상태 저장: '+status);}catch(e){} }
+  const x=items.find(i=>String(i.id)===String(id)); if(!x) return;
+  let note='';
+  if(status==='응답됨'||status==='부분응답'){ note=(prompt((x.name||'')+' — 응답 메모 (선택, 본인에게 메일로 함께 전해집니다)', x.answerNote||'')||'').trim(); }
+  x.status=status; if(note) x.answerNote=note; if(status==='응답됨'&&!x.answeredAt) x.answeredAt=today(); render();
+  if(API_URL){ try{ await fetch(API_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'status',key:KEY,id,status,note})}); toast('상태 저장: '+status);}catch(e){} }
 }
 </script>
 </body>
