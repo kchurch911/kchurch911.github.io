@@ -230,12 +230,25 @@ function renderPeople(){
         <button class="mini" onclick="saveMemo('${p.token}')">메모 저장</button>
         <button class="mini" onclick="copyText('${link}')">개인 페이지 링크 복사</button>
         ${p.contact?`<button class="mini" onclick="copyText('${esc(p.contact)}')">연락처 복사</button>`:''}
+        <button class="mini" style="color:var(--pink);border-color:rgba(255,107,138,0.35)" onclick="delPerson('${p.token}','${esc(p.name)}')">명단에서 삭제</button>
         <select class="sel" style="padding:6px 8px" onchange="setPStatus('${p.token}',this.value)">${['활동','갱신 대기','보관'].map(s=>'<option '+(p.status===s?'selected':'')+'>'+s+'</option>').join('')}</select>
       </div></div>`; }).join('');
 }
 async function saveMemo(token){ const memo=(document.getElementById('memo-'+token)?.value||''); const p=people.find(x=>x.token===token); if(p) p.memo=memo; try{ await fetch(API_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'memo',key:KEY,token,memo})}); }catch(e){} toast('메모 저장'); }
 async function setPStatus(token,pstatus){ const p=people.find(x=>x.token===token); if(p) p.status=pstatus; try{ await fetch(API_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'memo',key:KEY,token,pstatus})}); }catch(e){} toast('상태: '+pstatus); renderPeople(); }
 function copyText(t){ try{ navigator.clipboard.writeText(t); toast('복사했습니다'); }catch(e){ prompt('복사하세요', t); } }
+async function delReq(id){
+  const x=items.find(i=>String(i.id)===String(id)); if(!x) return;
+  if(!confirm((x.name||'')+' — 이 기도 제목을 삭제할까요?\n"'+String(x.req1||'').slice(0,60)+'"\n(시트에서 완전히 지워지며 되돌릴 수 없습니다)')) return;
+  items=items.filter(i=>String(i.id)!==String(id)); render(); toast('삭제했습니다');
+  try{ await fetch(API_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'delete',key:KEY,id})}); }catch(e){}
+}
+async function delPerson(token,name){
+  const cnt=items.filter(i=>String(i.token||'')===String(token)).length;
+  if(!confirm(name+' 님을 명단에서 삭제할까요?\n기도 제목 '+cnt+'건도 함께 삭제됩니다. (되돌릴 수 없습니다)')) return;
+  people=people.filter(p=>p.token!==token); items=items.filter(i=>String(i.token||'')!==String(token)); renderPeople(); render(); toast('명단에서 삭제했습니다');
+  try{ await fetch(API_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'deletePerson',key:KEY,token})}); }catch(e){}
+}
 function renderPastorEdit(){ const el=document.getElementById('pastorEdit'); const arr=(pastorReqs&&pastorReqs.length?pastorReqs:['','']).slice(); while(arr.length<4) arr.push(''); el.innerHTML = arr.map((t,i)=>`<div class="pe"><input type="text" id="pr-${i}" value="${esc(t)}" placeholder="기도제목 ${i+1}${i>1?' (선택)':''}"></div>`).join(''); }
 async function savePastor(){ const items=[0,1,2,3].map(i=>(document.getElementById('pr-'+i)?.value||'').trim()).filter(Boolean); if(!items.length){toast('한 줄 이상 적어 주세요');return;} pastorReqs=items; try{ await fetch(API_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'setPastor',key:KEY,items})}); }catch(e){} toast('김목사 기도제목 저장 — 폼·메일·개인 페이지에 반영됩니다'); }
 async function runCron(){ if(!API_URL) return; try{ const r=await fetch(API_URL+'?cron=1&key='+encodeURIComponent(KEY)+'&t='+Date.now(),{cache:'no-store'}); const j=await r.json(); const el=document.getElementById('cronInfo'); if(el&&j.ok) el.textContent = (j.sent||j.archived) ? ('갱신 안내 '+(j.sent||0)+'통 · 보관 '+(j.archived||0)) : '갱신 점검 완료'; }catch(e){} }
@@ -282,6 +295,7 @@ function render(){
           <select class="sel" onchange="setStatus('${x.id}',this.value)">
             ${['기도중','응답됨','부분응답','종료'].map(s=>`<option ${x.status===s?'selected':''}>${s}</option>`).join('')}
           </select>
+          <button class="mini" style="color:var(--pink);border-color:rgba(255,107,138,0.35)" onclick="delReq('${x.id}')">삭제</button>
         </div>
       </div>
     </div>`;

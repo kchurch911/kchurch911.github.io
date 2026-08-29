@@ -57,6 +57,22 @@ function doPost(e) {
     if (action === 'setPastor') { PropertiesService.getScriptProperties().setProperty('PASTOR_REQS', JSON.stringify((data.items || []).map(String).filter(Boolean).slice(0, 6))); return json_({ ok: true, items: pastorReqs_() }); }
     if (action === 'memo') { const p = findPerson_(data.token); if (!p) return json_({ ok:false, error:'not found' }); const ps = getPeople_(); if (data.memo !== undefined) ps.getRange(p.row, PCOL['메모']).setValue(String(data.memo||'')); if (data.pstatus) ps.getRange(p.row, PCOL['상태']).setValue(String(data.pstatus)); return json_({ ok: true }); }
 
+    if (action === 'delete') {
+      const sheet = getSheet_(); const row = findRow_(sheet, data.id);
+      if (!row) return json_({ ok: false, error: 'not found' });
+      sheet.deleteRow(row);
+      return json_({ ok: true });
+    }
+    if (action === 'deletePerson') {
+      const p = findPerson_(data.token); if (!p) return json_({ ok: false, error: 'not found' });
+      const sheet = getSheet_(); const last = sheet.getLastRow(); let removed = 0;
+      for (let row = last; row >= 2; row--) {
+        if (String(sheet.getRange(row, COL['토큰']).getValue()) === String(data.token)) { sheet.deleteRow(row); removed++; }
+      }
+      getPeople_().deleteRow(p.row);
+      return json_({ ok: true, removed });
+    }
+
     const sheet = getSheet_();
     const row = findRow_(sheet, data.id);
     if (!row) return json_({ ok: false, error: 'not found' });
