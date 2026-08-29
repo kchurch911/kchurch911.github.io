@@ -89,6 +89,9 @@ textarea{min-height:96px;resize:vertical;line-height:1.6}
 .cov-box h4{font-size:.9rem;font-weight:700;color:#6dda8a;display:flex;align-items:center;gap:8px}
 .cov-box p{font-size:.8rem;color:var(--muted);line-height:1.7;margin-top:6px;font-weight:300}
 .cov-box .chk{border-color:rgba(52,199,89,0.3);background:transparent}
+#covBody{overflow:hidden;transition:max-height .3s ease,opacity .25s ease;max-height:800px;opacity:1}
+.cov-box.folded #covBody{max-height:0;opacity:0}
+.cov-box.folded .cov-chev{transform:rotate(-90deg)}
 .pk-box{margin:12px 0 4px;padding:12px 14px;border-radius:12px;background:rgba(240,192,64,0.06);border:1px solid rgba(240,192,64,0.25)}
 .pk-title{font-size:.68rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);font-family:'Inter',sans-serif;font-weight:600;margin-bottom:8px}
 .pk-list{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px}
@@ -176,7 +179,8 @@ footer a{color:var(--gold-d);text-decoration:none}
       </div>
 
       <div class="cov-box">
-        <h4><svg class="ico" viewBox="0 0 24 24"><path d="M12 3c-2.4 3-4 6-4 10v6h8v-6c0-4-1.6-7-4-10z"/><path d="M12 3v16"/></svg><span data-ko="123 언약 — 나도 함께 기도합니다" data-en="123 Covenant — I will pray too">123 언약 — 나도 함께 기도합니다</span></h4>
+        <h4 onclick="toggleCov()" style="cursor:pointer;user-select:none;display:flex;align-items:center;gap:8px;"><svg class="ico" viewBox="0 0 24 24"><path d="M12 3c-2.4 3-4 6-4 10v6h8v-6c0-4-1.6-7-4-10z"/><path d="M12 3v16"/></svg><span data-ko="123 언약 — 나도 함께 기도합니다" data-en="123 Covenant — I will pray too">123 언약 — 나도 함께 기도합니다</span><svg class="ico cov-chev" id="covChev" viewBox="0 0 24 24" style="margin-left:auto;transition:transform .25s;font-size:14px;opacity:.7"><path d="M6 9l6 6 6-6"/></svg></h4>
+        <div id="covBody">
         <p data-ko="일주일에 두 번, 삼 초 이상 — 김목사 기도제목을 위해 기도하겠습니다." data-en="Twice a week, at least three seconds — I will pray for Pastor Kim's prayer requests.">일주일에 두 번, 삼 초 이상 — 김목사 기도제목을 위해 기도하겠습니다.</p>
         <div class="pk-box">
           <div class="pk-title" data-ko="김목사 기도제목" data-en="Pastor Kim's prayer requests">김목사 기도제목</div>
@@ -187,6 +191,7 @@ footer a{color:var(--gold-d);text-decoration:none}
         </div>
         <label class="chk cov"><input type="checkbox" id="covenant" checked><span class="box"><svg class="ico" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span><span class="t" data-ko="네, 1주 2회 3초 이상 기도 언약에 함께합니다" data-en="Yes, I join the 1-2-3 prayer covenant">네, 1주 2회 3초 이상 기도 언약에 함께합니다</span></label>
         <label class="chk"><input type="checkbox" id="notify"><span class="box"><svg class="ico" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span><span class="t" data-ko="응답 소식이나 격려를 받고 싶습니다" data-en="I'd like follow-up or encouragement"><span>응답 소식이나 격려를 받고 싶습니다</span><small data-ko="연락처를 적어 주셔야 합니다" data-en="requires a contact above">연락처를 적어 주셔야 합니다</small></span></label>
+        </div>
       </div>
 
       <button class="btn" type="submit" id="sendBtn"><svg class="ico" viewBox="0 0 24 24"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg><span data-ko="기도 제목 보내기" data-en="Send my prayer request">기도 제목 보내기</span></button>
@@ -232,6 +237,8 @@ applyLang();
 function syncName() { const n = (document.getElementById('name').value || '').trim().replace(/[<>&]/g, ''); document.querySelectorAll('.desc .nm').forEach(el => { el.textContent = n ? (lang === 'ko' ? n + '님' : n) : (lang === 'ko' ? '○○님' : 'your name'); }); }
 document.addEventListener('input', e => { if (e.target && e.target.id === 'name') syncName(); });
 function cnt(el, id) { document.getElementById(id).textContent = el.value.length + ' / ' + el.maxLength; }
+function toggleCov() { const box = document.querySelector('.cov-box'); box.classList.toggle('folded'); try { localStorage.setItem('k123_cov_folded', box.classList.contains('folded') ? '1' : ''); } catch (e) {} }
+(function(){ try { if (localStorage.getItem('k123_cov_folded') === '1') document.querySelector('.cov-box').classList.add('folded'); } catch (e) {} })();
 function whoChanged() { const vip = document.querySelector('input[name=who]:checked').value === 'vip'; document.getElementById('vipName').style.display = vip ? 'block' : 'none'; }
 function copyMyLink() { const i = document.getElementById('myLink'); i.select(); try { navigator.clipboard.writeText(i.value); toast(lang === 'ko' ? '링크를 복사했습니다' : 'Link copied'); } catch (e) { document.execCommand('copy'); } }
 // 김목사 기도제목 — API 값으로 동기화 (기도방에서 수정하면 여기도 바뀜)
