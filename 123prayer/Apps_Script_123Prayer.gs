@@ -26,7 +26,7 @@
 const SHEET_NAME   = '123 사역자 기도';
 const PEOPLE_SHEET = '사역자 명단';
 const PRAY_KEY     = 'CHANGE_ME';            // ← 실제 비밀번호는 Apps Script 편집기에서만 설정 (공개 저장소에 넣지 말 것)
-const NOTIFY_EMAIL = '';                     // 새 기도 제목이 오면 알림 받을 이메일 (비우면 알림 없음)
+const NOTIFY_EMAIL = 'kchurch911@gmail.com';                     // 새 기도 제목이 오면 알림 받을 이메일 (비우면 알림 없음)
 const SPREADSHEET_ID = '13RaexIVdty9uZL91nOBDY4IcvIR5PQcWQ8hfJdznwXA'; // 123 사역자 기도 (pastor@ijiguchon.org 소유, gmc.hc300 편집자)
 const SITE = 'https://kchurch911.com/123prayer/';
 const SENDER_KO = '김성수 · 123 Prayer', SENDER_EN = 'Paul Kim · 123 Prayer';
