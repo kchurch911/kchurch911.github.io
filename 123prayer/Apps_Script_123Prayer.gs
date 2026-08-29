@@ -279,7 +279,7 @@ function confirm_(d, token) {
     const subject = en ? '[123 Prayer] Your prayer request has arrived' : '[123 Prayer] ' + name + '님, 기도 제목이 잘 도착했습니다';
     const body = en
       ? [name + ', your prayer request has arrived.', 'Starting this week I will call your name in prayer — twice a week, at least three seconds each.', '', 'Your request:', '- ' + (d.req1 || ''), d.req2 ? '- ' + d.req2 : '', '', "Pastor Kim's prayer requests (please pray twice a week, 3+ seconds):", ...pr.map(x => '- ' + x), '', 'Your prayer page (update requests, mark answered):', myLink_(token), '', '“Pray without ceasing; give thanks in all circumstances.” (1 Thess 5:17-18)', '', SENDER_EN, SITE].filter(x => x !== '').join('\n')
-      : [name + '님, 기도 제목이 잘 도착했습니다.', '이번 주부터 ' + name + '님의 이름을 부르며 일주일에 두 번, 삼 초 이상 기도하겠습니다.', '', '보내주신 기도 제목:', '- ' + (d.req1 || ''), d.req2 ? '- ' + d.req2 : '', '', '김목사 기도제목 (일주일에 두 번, 3초 이상 함께 기도해 주세요):', ...pr.map(x => '- ' + x), '', '나의 기도 페이지 (기도 제목 추가·응답 표시):', myLink_(token), '', '“쉬지 말고 기도하라. 범사에 감사하라.” (살전 5:17-18)', '', SENDER_KO, SITE].filter(x => x !== '').join('\n');
+      : [name + '님, 기도 제목이 잘 도착했습니다.', '이번 주부터 ' + name + '님의 이름을 부르며 일주일에 두 번, 삼 초 이상 기도하겠습니다.', '', '보내주신 기도 제목:', '- ' + (d.req1 || ''), d.req2 ? '- ' + d.req2 : '', '', '김목사 기도제목 (일주일에 두 번, 3초 이상 함께 기도해 주세요):', ...pr.map(x => '- ' + x), '', '나의 기도 페이지 (기도 제목 추가·응답 표시):', myLink_(token), '', '“끊임없이 기도하십시오. 모든 일에 감사하십시오.” (살전 5:17-18, 새번역)', '', SENDER_KO, SITE].filter(x => x !== '').join('\n');
     MailApp.sendEmail({ to, subject, body, name: en ? SENDER_EN : SENDER_KO });
   } catch (err) { Logger.log('confirm mail failed: ' + err); }
 }

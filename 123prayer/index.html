@@ -7,6 +7,10 @@
 <meta name="description" content="사역자를 위한 123 기도 언약: 1주 2회 3초 이상. 기도 제목을 나눠 주시면 한 분 한 분의 이름을 부르며 기도합니다.">
 <meta property="og:title" content="123 Prayer — 사역자 기도 언약">
 <meta property="og:description" content="1주 2회 3초 이상. 기도 제목을 나눠 주시면 함께 기도합니다.">
+<meta property="og:image" content="https://kchurch911.com/123prayer/og-123prayer.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://kchurch911.com/123prayer/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Cinzel:wght@600;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -149,7 +153,7 @@ footer a{color:var(--gold-d);text-decoration:none}
       <label data-ko="누구를 위한 기도인가요?" data-en="Who is this prayer for?">누구를 위한 기도인가요?</label>
       <div class="seg">
         <label><input type="radio" name="who" value="self" checked onchange="whoChanged()"><span class="opt" data-ko="나" data-en="Myself">나</span></label>
-        <label><input type="radio" name="who" value="vip" onchange="whoChanged()"><span class="opt" data-ko="소중한 분 (VIP)" data-en="Someone dear (VIP)">소중한 분 (VIP)</span></label>
+        <label><input type="radio" name="who" value="vip" onchange="whoChanged()"><span class="opt" data-ko="소중한 분" data-en="Someone dear">소중한 분</span></label>
       </div>
       <input type="text" id="vipName" style="display:none;margin-top:8px" data-ph-ko="소중한 분 이름 또는 관계 (예: 어머니, 직장동료 김○○)" data-ph-en="Their name or relationship (e.g. my mother, coworker Kim)" placeholder="소중한 분 이름 또는 관계 (예: 어머니, 직장동료 김○○)">
       <label for="req1"><span data-ko="기도 제목 1" data-en="Prayer request 1">기도 제목 1</span></label>
@@ -186,14 +190,14 @@ footer a{color:var(--gold-d);text-decoration:none}
       </div>
 
       <button class="btn" type="submit" id="sendBtn"><svg class="ico" viewBox="0 0 24 24"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></svg><span data-ko="기도 제목 보내기" data-en="Send my prayer request">기도 제목 보내기</span></button>
-      <p class="fine" data-ko="보내주신 내용은 언제든 삭제를 요청하실 수 있습니다." data-en="You may ask for what you sent to be removed at any time.">보내주신 내용은 언제든 삭제를 요청하실 수 있습니다.</p>
+      <p class="fine" data-ko="보내주신 내용은 언제든 삭제를 요청하실 수 있습니다 (kchurch911@gmail.com)." data-en="You may ask for what you sent to be removed at any time (kchurch911@gmail.com).">보내주신 내용은 언제든 삭제를 요청하실 수 있습니다 (kchurch911@gmail.com).</p>
     </form>
 
     <div class="done" id="done">
       <div class="ring"><svg class="ico" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
-      <h3>RECEIVED</h3>
+      <h3 style="font-family:'Noto Sans KR',sans-serif;letter-spacing:0;" data-ko="잘 받았습니다" data-en="Received">잘 받았습니다</h3>
       <p id="doneMsg" data-ko="기도 제목이 잘 도착했습니다.<br>이번 주부터 이름을 부르며 기도하겠습니다." data-en="Your prayer request has arrived.<br>Starting this week, I will pray for you by name.">기도 제목이 잘 도착했습니다.<br>이번 주부터 이름을 부르며 기도하겠습니다.</p>
-      <div class="verse" data-ko="“쉬지 말고 기도하라. 범사에 감사하라. 이것이 그리스도 예수 안에서 너희를 향하신 하나님의 뜻이니라.” (살전 5:17-18)" data-en="“Pray without ceasing; give thanks in all circumstances; for this is the will of God in Christ Jesus for you.” (1 Thess 5:17-18)">“쉬지 말고 기도하라. 범사에 감사하라. 이것이 그리스도 예수 안에서 너희를 향하신 하나님의 뜻이니라.” (살전 5:17-18)</div>
+      <div class="verse" data-ko="“끊임없이 기도하십시오. 모든 일에 감사하십시오. 이것이 그리스도 예수 안에서 여러분에게 바라시는 하나님의 뜻입니다.” (살전 5:17-18, 새번역)" data-en="“Pray without ceasing; give thanks in all circumstances; for this is the will of God in Christ Jesus for you.” (1 Thess 5:17-18)">“끊임없이 기도하십시오. 모든 일에 감사하십시오. 이것이 그리스도 예수 안에서 여러분에게 바라시는 하나님의 뜻입니다.” (살전 5:17-18, 새번역)</div>
       <div id="myLinkBox" style="display:none;margin-top:18px;text-align:left;border:1px solid rgba(240,192,64,0.3);background:rgba(240,192,64,0.06);border-radius:14px;padding:14px">
         <div style="font-size:.66rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);font-family:'Inter',sans-serif;font-weight:600;margin-bottom:6px" data-ko="나의 기도 페이지" data-en="Your prayer page">나의 기도 페이지</div>
         <div style="font-size:.82rem;color:var(--muted);line-height:1.7;font-weight:300" data-ko="이 링크에서 기도 제목을 추가하고, 응답받은 제목을 표시할 수 있습니다. 이메일을 적으셨다면 확인 메일에도 같은 링크가 있습니다. 저장해 두세요." data-en="Use this link to add requests and mark answered prayers. If you gave an email, it is in your confirmation mail too. Keep it.">이 링크에서 기도 제목을 추가하고, 응답받은 제목을 표시할 수 있습니다. 이메일을 적으셨다면 확인 메일에도 같은 링크가 있습니다. 저장해 두세요.</div>
@@ -207,7 +211,7 @@ footer a{color:var(--gold-d);text-decoration:none}
   </div>
 </div>
 
-<footer>"쉬지 말고 기도하라" (살전 5:17) · <a href="https://kchurch911.com/">K-Church 911</a></footer>
+<footer>"끊임없이 기도하십시오" (살전 5:17, 새번역) · <a href="https://kchurch911.com/">K-Church 911</a></footer>
 <div class="toast" id="toast"></div>
 
 <script>
