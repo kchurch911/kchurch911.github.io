@@ -284,7 +284,7 @@ function render(){
         <div class="dots">${Array.from({length:TARGET},(_,i)=>`<span class="dot ${i<wc?(td&&i===wc-1?'td':'on'):''}"></span>`).join('')}</div>
       </div>
       <div class="cb">
-        ${x.whoType==='소중한 분'?`<div style="font-size:.7rem;color:#ffbe4f;font-weight:700;margin-bottom:4px">소중한 분을 위한 기도${x.vipName?' · '+esc(x.vipName):''}</div>`:''}
+        ${x.whoType==='소중한 분'?`<div style="font-size:.7rem;color:#ffbe4f;font-weight:700;margin-bottom:4px">이웃을 위한 기도${x.vipName?' · '+esc(x.vipName):''}</div>`:''}
         <div class="rq">${esc(x.req1)}</div>
         ${x.req2?`<div class="rq two">${esc(x.req2)}</div>`:''}
         <div class="meta">${x.contact?`<span>${esc(x.contact)}</span>`:''}<span>${esc(x.share||'')}</span>${x.notify?'<span>응답 소식 원함</span>':''}<span>누적 ${logOf(x).length}회</span>${x.answeredAt?`<span>응답 ${esc(fmtAt(x.answeredAt))}</span>`:''}${x.answerNote?`<span style="color:#6dda8a">· ${esc(x.answerNote)}</span>`:''}${x.token?`<button class="mini" style="padding:3px 8px" onclick="copyText(location.origin+location.pathname.replace(/[^/]*$/,'')+'my.html?t=${esc(x.token)}')">개인 링크</button>`:''}</div>

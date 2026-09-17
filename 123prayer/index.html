@@ -156,9 +156,9 @@ footer a{color:var(--gold-d);text-decoration:none}
       <label data-ko="누구를 위한 기도인가요?" data-en="Who is this prayer for?">누구를 위한 기도인가요?</label>
       <div class="seg">
         <label><input type="radio" name="who" value="self" checked onchange="whoChanged()"><span class="opt" data-ko="나" data-en="Myself">나</span></label>
-        <label><input type="radio" name="who" value="vip" onchange="whoChanged()"><span class="opt" data-ko="소중한 분" data-en="Someone dear">소중한 분</span></label>
+        <label><input type="radio" name="who" value="vip" onchange="whoChanged()"><span class="opt" data-ko="이웃" data-en="A neighbor">이웃</span></label>
       </div>
-      <input type="text" id="vipName" style="display:none;margin-top:8px" data-ph-ko="소중한 분 이름 또는 관계 (예: 어머니, 직장동료 김○○)" data-ph-en="Their name or relationship (e.g. my mother, coworker Kim)" placeholder="소중한 분 이름 또는 관계 (예: 어머니, 직장동료 김○○)">
+      <input type="text" id="vipName" style="display:none;margin-top:8px" data-ph-ko="이웃의 이름 또는 관계 (예: 어머니, 직장동료 김○○)" data-ph-en="Their name or relationship (e.g. my mother, coworker Kim)" placeholder="이웃의 이름 또는 관계 (예: 어머니, 직장동료 김○○)">
       <label for="req1"><span data-ko="기도 제목 1" data-en="Prayer request 1">기도 제목 1</span></label>
       <textarea id="req1" required maxlength="400" data-ph-ko="지금 가장 기도가 필요한 한 가지를 적어 주세요." data-ph-en="Write the one thing you most need prayer for right now." placeholder="지금 가장 기도가 필요한 한 가지를 적어 주세요." oninput="cnt(this,'c1')"></textarea>
       <div class="count" id="c1">0 / 400</div>
