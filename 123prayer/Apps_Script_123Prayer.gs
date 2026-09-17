@@ -1,7 +1,7 @@
 /**
- * K-Church 911 · 123 Prayer (기도 언약) — Google Apps Script 백엔드  v5
+ * K-Church 911 · 123 Prayer (기도 벨트) — Google Apps Script 백엔드  v5
  *
- * 김성수 개인의 기도 언약 사역: 성도·외부 사역자 모두 kchurch911.com/123prayer/ 한 곳으로.
+ * 김성수 개인의 기도 벨트 사역: 성도·외부 사역자 모두 kchurch911.com/123prayer/ 한 곳으로.
  *   - 시트 1 "123 사역자 기도": 기도 제목 (제출 건마다 1행)
  *   - 시트 2 "사역자 명단":     사람마다 1행 (토큰·등록일·갱신일·상태·응답 수·메모)
  *   - 김목사 기도제목: 스크립트 속성(PASTOR_REQS)에 JSON 저장, 기도방에서 수정
@@ -298,10 +298,10 @@ function renewalMail_(p, stage) {
   try {
     const en = p.lang === 'EN'; const name = p.name; const link = myLink_(p.token); const pr = pastorReqs_();
     const S = {
-      soon:  en ? ['[123 Prayer] One year of prayer — let’s renew in two weeks', 'It has been almost a year since I began praying for you by name. In two weeks the covenant comes up for renewal.', 'If you would like me to keep praying, open your page and tap “Keep praying for me this year” — and update your requests if they have changed.']
-                : ['[123 Prayer] 기도한 지 1년 — 2주 뒤 갱신합니다', name + '님의 이름을 부르며 기도한 지 곧 1년이 됩니다. 2주 뒤에 언약을 갱신합니다.', '계속 기도받기를 원하시면 나의 기도 페이지에서 "올해도 계속 기도해 주세요"를 눌러 주시고, 바뀐 기도 제목이 있으면 새로 적어 주세요.'],
-      due:   en ? ['[123 Prayer] Today: renew our prayer covenant', 'Today marks one year. Thank you for walking this year in prayer together.', 'Tap “Keep praying for me this year” on your page to continue (and share a fresh request). If I don’t hear back in two weeks, I will gently set your page aside — you can come back any time.']
-                : ['[123 Prayer] 오늘, 기도 언약을 갱신합니다', '오늘로 1년이 되었습니다. 한 해 동안 함께 기도해 주셔서 감사합니다.', '나의 기도 페이지에서 "올해도 계속 기도해 주세요"를 누르시면 계속됩니다(새 기도 제목도 적어 주세요). 2주 안에 응답이 없으면 조용히 보관 상태로 두겠습니다 — 언제든 다시 오실 수 있습니다.'],
+      soon:  en ? ['[123 Prayer] One year of prayer — let’s renew in two weeks', 'It has been almost a year since I began praying for you by name. In two weeks our prayer belt comes up for renewal.', 'If you would like me to keep praying, open your page and tap “Keep praying for me this year” — and update your requests if they have changed.']
+                : ['[123 Prayer] 기도한 지 1년 — 2주 뒤 갱신합니다', name + '님의 이름을 부르며 기도한 지 곧 1년이 됩니다. 2주 뒤에 기도 벨트를 갱신합니다.', '계속 기도받기를 원하시면 나의 기도 페이지에서 "올해도 계속 기도해 주세요"를 눌러 주시고, 바뀐 기도 제목이 있으면 새로 적어 주세요.'],
+      due:   en ? ['[123 Prayer] Today: renew our prayer belt', 'Today marks one year. Thank you for walking this year in prayer together.', 'Tap “Keep praying for me this year” on your page to continue (and share a fresh request). If I don’t hear back in two weeks, I will gently set your page aside — you can come back any time.']
+                : ['[123 Prayer] 오늘, 기도 벨트를 갱신합니다', '오늘로 1년이 되었습니다. 한 해 동안 함께 기도해 주셔서 감사합니다.', '나의 기도 페이지에서 "올해도 계속 기도해 주세요"를 누르시면 계속됩니다(새 기도 제목도 적어 주세요). 2주 안에 응답이 없으면 조용히 보관 상태로 두겠습니다 — 언제든 다시 오실 수 있습니다.'],
       final: en ? ['[123 Prayer] Last note — your page will rest for now', 'I have not heard back, so I will set your prayer page aside for now — with gratitude for this year.', 'Whenever you wish, open your page and tap “Keep praying for me” or send a new request, and we begin again.']
                 : ['[123 Prayer] 마지막 안내 — 잠시 보관합니다', '응답이 없어 기도 페이지를 잠시 보관 상태로 둡니다 — 한 해 동안 감사했습니다.', '언제든 페이지에서 "올해도 계속 기도해 주세요"를 누르거나 새 기도 제목을 보내시면 다시 시작합니다.']
     }[stage];

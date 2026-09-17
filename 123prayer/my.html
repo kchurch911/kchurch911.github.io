@@ -105,7 +105,7 @@ footer a{color:var(--gold-d);text-decoration:none}
     </div>
 
     <div class="card renew" id="renewCard">
-      <div class="sec" data-ko="기도 언약 갱신" data-en="Renew the covenant">기도 언약 갱신</div>
+      <div class="sec" data-ko="기도 벨트 갱신" data-en="Renew the prayer belt">기도 벨트 갱신</div>
       <div class="big" id="renewTitle"></div>
       <div class="sub" id="renewSub"></div>
       <button class="btn gold w" onclick="renew()"><span data-ko="올해도 계속 기도해 주세요" data-en="Keep praying for me this year">올해도 계속 기도해 주세요</span></button>
@@ -170,8 +170,8 @@ function render(){
   const next = fmt(ME.next); const days = next ? Math.round((new Date(next+'T12:00:00')-new Date())/86400000) : null;
   const rt=document.getElementById('renewTitle'), rs=document.getElementById('renewSub');
   if(ME.status==='보관'){ rt.textContent = ko?'잠시 보관 중':'Resting for now'; rs.textContent = ko?'버튼을 누르면 다시 시작합니다.':'Tap to begin again.'; }
-  else if(days!==null && days<=14){ rt.textContent = ko?(days<=0?'갱신할 때입니다':days+'일 뒤 갱신'):(days<=0?'Time to renew':'Renews in '+days+' days'); rs.textContent = ko?'올해도 계속 기도받기를 원하시면 눌러 주세요.':'Tap to keep the covenant going this year.'; }
-  else { rt.textContent = ko?'언약 진행 중':'Covenant active'; rs.textContent = ko?`다음 갱신: ${next||'-'} (갱신일 2주 전에 안내 메일을 드립니다)`:`Next renewal: ${next||'-'} (you'll get a note two weeks before)`; }
+  else if(days!==null && days<=14){ rt.textContent = ko?(days<=0?'갱신할 때입니다':days+'일 뒤 갱신'):(days<=0?'Time to renew':'Renews in '+days+' days'); rs.textContent = ko?'올해도 계속 기도받기를 원하시면 눌러 주세요.':'Tap to stay in the prayer belt this year.'; }
+  else { rt.textContent = ko?'기도 벨트 진행 중':'Prayer belt active'; rs.textContent = ko?`다음 갱신: ${next||'-'} (갱신일 2주 전에 안내 메일을 드립니다)`:`Next renewal: ${next||'-'} (you'll get a note two weeks before)`; }
   document.getElementById('contact').value = ME.contact||'';
 }
 window.toggleNote = id => { const n=document.getElementById('note-'+id); n.style.display = n.style.display==='block'?'none':'block'; };
