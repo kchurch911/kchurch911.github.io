@@ -279,7 +279,7 @@ function render(){
         <div class="av">${(x.name||'?').charAt(0)}</div>
         <div class="nm"><b>${esc(x.name)}</b><small>${esc(x.group||'')}${x.group&&x.at?' · ':''}${esc(fmtAt(x.at))}</small></div>
         ${x.urgent?'<span class="tag u">긴급</span>':''}
-        ${x.covenant?'<span class="tag cov">123 언약</span>':''}
+        ${x.covenant?'<span class="tag cov">123 기도 벨트</span>':''}
         <span class="tag st ${stc}">${esc(x.status||'기도중')}</span>
         <div class="dots">${Array.from({length:TARGET},(_,i)=>`<span class="dot ${i<wc?(td&&i===wc-1?'td':'on'):''}"></span>`).join('')}</div>
       </div>
