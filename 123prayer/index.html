@@ -190,7 +190,6 @@ footer a{color:var(--gold-d);text-decoration:none}
           </ol>
         </div>
         <label class="chk cov"><input type="checkbox" id="covenant" checked><span class="box"><svg class="ico" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span><span class="t" data-ko="네. 123 기도 벨트와 함께합니다." data-en="Yes. I join the 123 prayer belt.">네. 123 기도 벨트와 함께합니다.</span></label>
-        <label class="chk"><input type="checkbox" id="notify"><span class="box"><svg class="ico" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span><span class="t" data-ko="응답 소식이나 격려를 받고 싶습니다" data-en="I'd like follow-up or encouragement"><span>응답 소식이나 격려를 받고 싶습니다</span><small data-ko="연락처를 적어 주셔야 합니다" data-en="requires a contact above">연락처를 적어 주셔야 합니다</small></span></label>
         </div>
       </div>
 
@@ -255,7 +254,7 @@ async function submitForm(e) {
     urgent: document.querySelector('input[name=urg]:checked').value === 'urgent',
     share: document.querySelector('input[name=share]:checked').value,
     covenant: document.getElementById('covenant').checked,
-    notify: document.getElementById('notify').checked,
+    notify: !!(document.getElementById('notify')||{}).checked,
     org: v('org'),
     whoType: document.querySelector('input[name=who]:checked').value,
     vipName: v('vipName'),
