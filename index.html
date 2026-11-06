@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>K-Church 911 — Hebron Faith Ecosystem</title>
-<meta name="description" content="For the Church, for the Kingdom. 교회를 세우고 목회자를 일으키는 비영리 사역 — 개척·훈련·성장·확산을 함께 걷는 K-Church 911.">
+<meta name="description" content="찾고 · 세우고 · 보낸다 — 그리스도의 제자들을 찾아 준비시켜 세상 모든 영역으로 파송한다. 목회 코칭과 개척 동행, K-Church 911.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Cinzel:wght@600;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -70,7 +70,7 @@ nav{
 }
 .fb-logo-svg{width:28px;height:28px;vertical-align:middle;margin-right:6px}
 .fb-logo strong{color:var(--gold-l)}
-.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links{display:flex;gap:22px;align-items:center}
 .nav-links a{
   color:var(--muted);font-size:.8rem;text-decoration:none;
   transition:color .2s;letter-spacing:.5px;
@@ -234,6 +234,75 @@ section{padding:96px 24px}
   margin-bottom:16px;line-height:1.25;
 }
 .sec-desc{color:var(--muted);font-size:.95rem;line-height:1.8;max-width:640px}
+
+/* ── 언어 전환 버튼 ── */
+.lang-btn{
+  background:transparent;border:1px solid rgba(201,162,39,0.35);
+  color:var(--gold);font-family:'Inter',sans-serif;
+  font-weight:600;font-size:.7rem;letter-spacing:1px;
+  padding:7px 12px;border-radius:30px;cursor:pointer;
+  min-height:32px;transition:background .2s,border-color .2s;
+}
+.lang-btn:hover{background:rgba(201,162,39,0.12);border-color:var(--gold)}
+.lang-btn:focus-visible{outline:2px solid var(--gold-l);outline-offset:2px}
+.lang-btn .on{color:var(--gold-l)}
+.lang-btn .off{color:rgba(255,255,255,0.38)}
+.lang-btn .sep{color:rgba(255,255,255,0.22);margin:0 5px}
+
+/* 한글 제목은 Cinzel에 한글 글자가 없어 대체 글꼴을 지정 */
+html[lang="ko"] .hero h1{
+  font-family:'Noto Sans KR',sans-serif;font-weight:900;
+  letter-spacing:-1px;font-size:clamp(2.1rem,6.2vw,4.3rem);
+}
+html[lang="ko"] .hf-w,
+html[lang="ko"] .mission-slogan{font-family:'Noto Sans KR',sans-serif;letter-spacing:-.5px}
+
+/* ── MISSION · VISION (사명 · 비전) ── */
+.mission-bg{
+  background:linear-gradient(180deg,var(--bg) 0%,#0c0d1a 50%,var(--bg) 100%);
+  padding:88px 24px;
+}
+.mission-bg .section-inner{max-width:960px;margin:0 auto}
+.mission-slogan{
+  font-family:'Cinzel',serif;font-weight:700;
+  font-size:clamp(1.3rem,4vw,2.1rem);letter-spacing:2px;
+  text-align:center;margin-bottom:10px;
+  background:linear-gradient(135deg,var(--gold-l),var(--gold));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.mission-slogan-sub{
+  text-align:center;color:var(--muted);
+  font-size:.75rem;letter-spacing:3px;text-transform:uppercase;
+  margin-bottom:52px;
+}
+.mv-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:28px}
+@media(max-width:760px){.mv-grid{grid-template-columns:1fr}}
+.mv-card{
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.09);
+  border-radius:20px;padding:36px 30px;
+}
+.mv-card.mission{border-color:rgba(240,192,64,0.26);background:rgba(240,192,64,0.05)}
+.mv-card.vision{border-color:rgba(41,151,255,0.24);background:rgba(41,151,255,0.05)}
+.mv-label{
+  font-size:.66rem;letter-spacing:3px;text-transform:uppercase;
+  margin-bottom:16px;display:block;
+}
+.mv-card.mission .mv-label{color:var(--gold)}
+.mv-card.vision .mv-label{color:var(--blue-l)}
+.mv-card p{
+  font-size:clamp(1rem,2.4vw,1.18rem);
+  line-height:1.85;color:rgba(255,255,255,0.92);font-weight:500;
+}
+.mv-root{
+  text-align:center;border-top:1px solid var(--border);
+  padding-top:28px;
+}
+.mv-root strong{
+  display:block;font-size:clamp(.98rem,2.4vw,1.15rem);
+  color:var(--gold-l);font-weight:600;margin-bottom:8px;line-height:1.7;
+}
+.mv-root span{font-size:.85rem;color:var(--muted);line-height:1.7}
 
 /* ── CORE IDENTITY (상담·코칭·동역) ── */
 .core-id{background:var(--bg);padding:80px 24px}
@@ -998,9 +1067,13 @@ footer{
 
 /* ── RESPONSIVE ── */
 @media(max-width:900px){
-  nav{padding:14px 20px}
+  nav{padding:14px 20px;gap:10px}
   .nav-links{display:none}
   .ham{display:block}
+  /* 모바일 상단바: 로고 + 언어 + 메뉴만 남긴다 */
+  .nav-logo span:not(.nav-logo-text){display:none}
+  .nav-cta{display:none}
+  .lang-btn{margin-left:auto;flex-shrink:0}
   .hero-inner{flex-direction:column-reverse;gap:36px}
   .hero-content{text-align:center}
   .hero-flow{justify-content:center}
@@ -1232,16 +1305,21 @@ footer{
     <span>FOR THE CHURCH · FOR THE KINGDOM</span>
   </div>
   <div class="nav-links">
-    <a href="#vision">비전</a>
-    <a href="#journey">여정</a>
-    <a href="#coaching">코칭</a>
-    <a href="#products">플랫폼</a>
-    <a href="#roadmap">로드맵</a>
-    <a href="#partner">동역</a>
-    <a href="#contact">문의</a>
+    <a href="#mission" data-en="Mission">사명</a>
+    <a href="#vision" data-en="Vision">비전</a>
+    <a href="#journey" data-en="Journey">여정</a>
+    <a href="#coaching" data-en="Coaching">코칭</a>
+    <a href="#products" data-en="Platform">플랫폼</a>
+    <a href="#roadmap" data-en="Roadmap">로드맵</a>
+    <a href="#partner" data-en="Partner">동역</a>
+    <a href="#contact" data-en="Contact">문의</a>
   </div>
-  <a href="#contact" class="nav-cta">시작하기</a>
-  <button class="ham" onclick="toggleMenu()">☰</button>
+  <button type="button" class="lang-btn" id="langBtn" onclick="toggleLang()"
+          aria-label="한국어 · English 전환">
+    <span class="on" id="langKo">KO</span><span class="sep">|</span><span class="off" id="langEn">EN</span>
+  </button>
+  <a href="#contact" class="nav-cta" data-en="Start">시작하기</a>
+  <button class="ham" onclick="toggleMenu()" aria-label="메뉴">☰</button>
 </nav>
 
 <!-- HERO -->
@@ -1250,34 +1328,35 @@ footer{
   <div class="hero-stars"></div>
   <div class="hero-inner">
   <div class="hero-content">
-    <div class="hero-eyebrow">
-      ✦ LUKE 17:21 · 하나님의 나라는 너희 가운데에 있다
+    <div class="hero-eyebrow" data-en="✦ For the Church · For the Kingdom">
+      ✦ FOR THE CHURCH · FOR THE KINGDOM
     </div>
-    <h1>For the Church<br>For the Kingdom</h1>
+    <h1 data-en="Find · Form · Send">찾고 · 세우고<br>보낸다</h1>
     <div class="hero-flow">
-      <span class="hf-w">Sonship</span>
+      <span class="hf-w" data-en="Find">찾고</span>
       <span class="hf-arrow">→</span>
-      <span class="hf-w">Kingship</span>
-      <em>받음에서 보냄으로</em>
+      <span class="hf-w" data-en="Form">세우고</span>
+      <span class="hf-arrow">→</span>
+      <span class="hf-w" data-en="Send">보낸다</span>
     </div>
-    <p class="hero-kingdom">지금 당신의 교회, 어디쯤 있나요?</p>
-    <p class="hero-sub">
-      교회가 멈춰있고, 목회자가 지쳐있습니다.<br>
-      Kchurch911은 그 아픔에서 출발합니다.
+    <p class="hero-kingdom" data-en="Where does your church stand today?">지금 당신의 교회, 어디쯤 있나요?</p>
+    <p class="hero-sub" data-en="We find and form disciples of Christ,<br> and send them into every sphere of the world.">
+      그리스도의 제자들을 찾아 준비시켜<br>
+      세상 모든 영역으로 파송한다.
     </p>
-    <p class="hero-verse">
-      "'보아라, 여기에 있다' 또는 '저기에 있다' 하고 말할 수도 없다.<br>
-      보아라, 하나님의 나라는 너희 가운데에 있다" — 누가복음 17:21 (새번역)
+    <p class="hero-verse" data-en="&quot;What you have heard from me in the presence of many witnesses entrust to faithful men, who will be able to teach others also.&quot;<br> — 2 Timothy 2:2 (ESV)">
+      "그대가 많은 증인을 통하여 나에게서 들은 것을 믿음직한 사람들에게 전수하십시오.<br>
+      그리하면 그들이 다른 사람들을 또한 가르칠 수 있을 것입니다" — 디모데후서 2:2 (새번역)
     </p>
     <div class="hero-btns">
-      <button type="button" class="btn-gold" onclick="openDiag()"><svg class="ic"><use href="#ic-pulse"/></svg>1분 교회 자가진단</button>
-      <a href="#coaching" class="btn-ghost">사역 둘러보기</a>
+      <button type="button" class="btn-gold" onclick="openDiag()"><svg class="ic"><use href="#ic-pulse"/></svg><span data-en="1-Minute Church Check">1분 교회 자가진단</span></button>
+      <a href="#coaching" class="btn-ghost" data-en="Explore the ministry">사역 둘러보기</a>
     </div>
     <div class="hero-products">
-      <div class="hp-tag hp-guide"><svg class="ic"><use href="#ic-sprout"/></svg> 개척</div>
-      <div class="hp-tag hp-altar"><svg class="ic"><use href="#ic-cap"/></svg> 훈련</div>
-      <div class="hp-tag hp-app"><svg class="ic"><use href="#ic-chart"/></svg> 성장</div>
-      <div class="hp-tag hp-lingua"><svg class="ic"><use href="#ic-cycle"/></svg> 확산</div>
+      <div class="hp-tag hp-guide"><svg class="ic"><use href="#ic-sprout"/></svg> <span data-en="Plant">개척</span></div>
+      <div class="hp-tag hp-altar"><svg class="ic"><use href="#ic-cap"/></svg> <span data-en="Train">훈련</span></div>
+      <div class="hp-tag hp-app"><svg class="ic"><use href="#ic-chart"/></svg> <span data-en="Grow">성장</span></div>
+      <div class="hp-tag hp-lingua"><svg class="ic"><use href="#ic-cycle"/></svg> <span data-en="Multiply">확산</span></div>
     </div>
   </div>
   <div class="hero-image">
@@ -1297,13 +1376,46 @@ footer{
   </div>
 </div>
 
+<!-- MISSION · VISION -->
+<section class="mission-bg" id="mission">
+  <div class="section-inner">
+    <p class="mission-slogan fade-up" data-en="Find · Form · Send">찾고 · 세우고 · 보낸다</p>
+    <p class="mission-slogan-sub fade-up" data-en="찾고 · 세우고 · 보낸다">Find · Form · Send</p>
+
+    <div class="mv-grid">
+      <div class="mv-card mission fade-up">
+        <span class="mv-label" data-en="Mission">사명</span>
+        <p data-en="We find and form disciples of Christ, and send them into every sphere of the world.">
+          그리스도의 제자들을 찾아 준비시켜<br>
+          세상 모든 영역으로 파송한다.
+        </p>
+      </div>
+      <div class="mv-card vision fade-up">
+        <span class="mv-label" data-en="Vision">비전</span>
+        <p data-en="Grassroots faith growing in every sphere of the world, so that Christ's love is carried wherever they stand, and God is glorified.">
+          세상 모든 영역에 풀뿌리 신앙이 자라,<br>
+          어디에 서 있든 그리스도의 사랑이 전해지고<br>
+          하나님께 영광을 돌린다.
+        </p>
+      </div>
+    </div>
+
+    <div class="mv-root fade-up">
+      <strong data-en="Rooted in the Word of God, built through the biblical church.">본질은 하나님 말씀, 방식은 성경적 교회.</strong>
+      <span data-en="Where we send them may change. The root and the channel do not.">
+        보내는 자리는 달라져도, 뿌리와 통로는 바뀌지 않습니다.
+      </span>
+    </div>
+  </div>
+</section>
+
 <!-- CORE IDENTITY -->
 <section class="core-id" id="core">
   <div class="section-inner">
     <div class="core-key fade-up">
-      <p class="sec-label">K-Church 911 사역의 핵심</p>
-      <h2>하나님 나라의 열쇠는<br><strong>사람</strong>입니다</h2>
-      <p>
+      <p class="sec-label" data-en="The heart of K-Church 911">K-Church 911 사역의 핵심</p>
+      <h2 data-en="The key to the Kingdom<br>is <strong>people</strong>">하나님 나라의 열쇠는<br><strong>사람</strong>입니다</h2>
+      <p data-en="Finding the people after God's own heart, and walking with them at the front line. This is why K-Church 911 exists.">
         하나님의 마음에 합한 좋은 사람을 찾고,<br>
         함께 프론트에 서서 동행하는 것.<br>
         이것이 K-Church 911이 존재하는 이유입니다.
@@ -1314,25 +1426,25 @@ footer{
         <div class="pillar-icon">
           <svg class="ic"><use href="#ic-heart"/></svg>
         </div>
-        <div class="pillar-num">01</div>
-        <h3>상담</h3>
-        <p>목회자의 아픔과 필요를 먼저 경청합니다. 판단 없이, 곁에서 듣는 것이 시작입니다.</p>
+        <div class="pillar-num" data-en="01 · FIND">01 · 찾고</div>
+        <h3 data-en="Listen">상담</h3>
+        <p data-en="We listen first to the pastor's pain and need. Hearing alongside, without judgment, is where it begins.">목회자의 아픔과 필요를 먼저 경청합니다. 판단 없이, 곁에서 듣는 것이 시작입니다.</p>
       </div>
       <div class="pillar">
         <div class="pillar-icon">
           <svg class="ic"><use href="#ic-compass"/></svg>
         </div>
-        <div class="pillar-num">02</div>
-        <h3>코칭</h3>
-        <p>현장에 맞는 길을 함께 찾습니다. 정답을 주는 것이 아니라, 스스로 발견하도록 돕습니다.</p>
+        <div class="pillar-num" data-en="02 · FORM">02 · 세우고</div>
+        <h3 data-en="Coach">코칭</h3>
+        <p data-en="We search out the way that fits the field. Not handing over answers, but helping them find it themselves.">현장에 맞는 길을 함께 찾습니다. 정답을 주는 것이 아니라, 스스로 발견하도록 돕습니다.</p>
       </div>
       <div class="pillar">
         <div class="pillar-icon">
           <svg class="ic"><use href="#ic-people"/></svg>
         </div>
-        <div class="pillar-num">03</div>
-        <h3>동역</h3>
-        <p>프론트에 함께 섭니다. 혼자가 아닌 동행으로, 하나님 나라의 사역을 펼쳐갑니다.</p>
+        <div class="pillar-num" data-en="03 · SEND">03 · 보낸다</div>
+        <h3 data-en="Partner">동역</h3>
+        <p data-en="We stand at the front line together. Not alone but walking alongside, to unfold the ministry of the Kingdom.">프론트에 함께 섭니다. 혼자가 아닌 동행으로, 하나님 나라의 사역을 펼쳐갑니다.</p>
       </div>
     </div>
   </div>
@@ -1464,8 +1576,8 @@ footer{
     <h2 class="sec-title fade-up">우리는 처방보다<br>진단부터 시작합니다</h2>
     <p class="sec-desc fade-up">
       솔루션을 먼저 꺼내지 않습니다. 당신 교회의 <strong>막힌 지점</strong>을 먼저 듣습니다.<br>
-      스무 살 전도사로 시작해 한국과 미국에서 40년, 그중 25년은 시애틀에서 교회를 단독 개척해 섬겼습니다.<br>
-      책이 아니라 그 현장에서 나온 4동력 코칭으로, 개척부터 확산까지 함께 걷습니다.
+      스무 살 전도사로 시작해 한국과 미국에서 40년, 그중 25년은 시애틀에서 교회 개척 후 지금까지 섬기고 있습니다.<br>
+      현장에서 배운 4동력 코칭으로, 개척부터 확산까지 함께 걷습니다.
     </p>
 
     <!-- 코칭 현장 사진 -->
@@ -1782,7 +1894,7 @@ footer{
 <section class="roadmap-bg" id="roadmap">
   <div class="section-inner">
     <p class="sec-label">Kingdom OS · 미래 로드맵</p>
-    <h2 class="sec-title fade-up">시애틀에서 시작해<br>전 세계 교회로</h2>
+    <h2 class="sec-title fade-up" data-en="From Seattle<br>to every church on earth">시애틀에서<br>지구촌 모든 교회로</h2>
     <p class="sec-desc fade-up">
       교회·도시·영성·교육·선교·기술을 하나의 시스템으로 — 점진적으로,
       그러나 서로 연결되며 확장되는 다섯 단계입니다.
@@ -1830,11 +1942,17 @@ footer{
 <!-- PARTNERSHIP (비영리 함께 섬기기) -->
 <section class="partner-bg sec-light" id="partner">
   <div class="section-inner">
-    <p class="sec-label">함께 섬기기 · 비영리 사역 동역</p>
-    <h2 class="sec-title fade-up">한 교회를 살리는 것은<br>하나님 나라를 위함입니다</h2>
-    <p class="sec-desc fade-up">
-      Kchurch911은 후원과 동역으로 세워지는 비영리 사역 기관입니다.
+    <p class="sec-label" data-en="Serving together · Ministry partnership">함께 섬기기 · 사역 동역</p>
+    <h2 class="sec-title fade-up" data-en="Lifting one church<br>is for the sake of the Kingdom">한 교회를 살리는 것은<br>하나님 나라를 위함입니다</h2>
+    <p class="sec-desc fade-up" data-en="K-Church 911 is a ministry built on partnership and support. A church that has been helped goes on to build the next one — please walk this cycle with us.">
+      Kchurch911은 후원과 동역으로 세워지는 사역입니다.
       도움받은 교회가 다음 교회를 세우는 — 자생적 사이클에 함께해 주세요.
+    </p>
+    <p class="sec-desc fade-up" style="font-size:.85rem;margin-top:-8px;margin-bottom:28px">
+      <span data-en="A separate nonprofit corporation (501(c)(3)) is currently being established. Until the IRS determination letter is issued, gifts are not tax-deductible.">
+        현재 비영리 법인(501(c)(3)) 설립을 진행하고 있습니다.
+        승인 전까지는 후원금에 대한 세금 공제가 적용되지 않습니다.
+      </span>
     </p>
     <div class="sec-photo fade-up" style="height:300px;margin-bottom:40px">
       <img src="images/worship.jpg" alt="함께 기도하는 성도들">
@@ -1861,9 +1979,9 @@ footer{
       </div>
       <div class="partner-card featured fade-up">
         <div class="partner-icon"><svg class="ic"><use href="#ic-heart"/></svg></div>
-        <div class="partner-title">후원자</div>
-        <div class="partner-desc">정기·일시 후원으로 코칭과 개척 지원 사역이 멈추지 않게 합니다.</div>
-        <a href="#contact" class="partner-link">후원하기 →</a>
+        <div class="partner-title" data-en="Supporting partner">후원 동역자</div>
+        <div class="partner-desc" data-en="Your support keeps the coaching and church-planting work from stopping. (Not tax-deductible until the nonprofit is approved.)">정기·일시 후원으로 코칭과 개척 지원 사역이 멈추지 않게 합니다. (비영리 설립 승인 전까지는 세금 공제가 적용되지 않습니다.)</div>
+        <a href="#contact" class="partner-link" data-en="Ask about supporting →">후원 문의하기 →</a>
       </div>
     </div>
   </div>
@@ -2005,7 +2123,7 @@ footer{
         <option>코칭 동역 — 선교사</option>
         <option>전문가 재능 기부</option>
         <option>협력 교회 참여</option>
-        <option>후원 (정기 · 일시)</option>
+        <option>후원 문의</option>
         <option>Hebron Platform 도구 도입 문의</option>
         <option>기타</option>
       </select>
@@ -2040,7 +2158,7 @@ footer{
         </div>
         <div class="fb-desc">
           시애틀에서 땅 끝까지.<br>
-          선교적 가정교회 + BAM으로 하나님 나라를 확장하는<br>
+          찾고 · 세우고 · 보낸다 —<br>
           Hebron Faith Ecosystem의 본부.
         </div>
 
@@ -2128,6 +2246,33 @@ const obs = new IntersectionObserver(entries=>{
   });
 },{threshold:0.12});
 document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
+
+/* ── 한 · 영 전환 ──
+   data-en 속성이 있는 요소만 바뀐다.
+   처음 한 번 한국어 원문을 data-ko 에 보관해 두고 둘을 바꿔 끼운다.
+   2단계에서 나머지 섹션에 data-en 을 붙이면 자동으로 따라온다. */
+function applyLang(lang){
+  document.documentElement.setAttribute('lang', lang);
+  document.querySelectorAll('[data-en]').forEach(el=>{
+    if(!el.hasAttribute('data-ko')) el.setAttribute('data-ko', el.innerHTML);
+    el.innerHTML = (lang==='en') ? el.getAttribute('data-en') : el.getAttribute('data-ko');
+  });
+  const ko=document.getElementById('langKo'), en=document.getElementById('langEn');
+  if(ko&&en){
+    ko.className = (lang==='en') ? 'off' : 'on';
+    en.className = (lang==='en') ? 'on' : 'off';
+  }
+  try{ localStorage.setItem('kc911-lang', lang); }catch(e){}
+}
+function toggleLang(){
+  applyLang(document.documentElement.getAttribute('lang')==='en' ? 'ko' : 'en');
+}
+(function initLang(){
+  let saved=null;
+  try{ saved=localStorage.getItem('kc911-lang'); }catch(e){}
+  // 1단계에서는 영문이 일부 섹션만 준비되어 있어 기본값을 한국어로 둔다.
+  applyLang(saved === 'en' ? 'en' : 'ko');
+})();
 
 // Mobile menu
 let menuOpen=false;
