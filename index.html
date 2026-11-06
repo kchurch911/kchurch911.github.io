@@ -1081,6 +1081,11 @@ footer{
 .diag-grade .dot{font-size:.8em;vertical-align:.08em;margin-right:4px}
 
 /* ── RESPONSIVE ── */
+/* 중간 폭: 네비 항목이 늘어나 로고 태그라인까지는 들어가지 않는다 */
+@media(max-width:1200px){
+  .nav-logo span:not(.nav-logo-text){display:none}
+  .nav-links{gap:16px}
+}
 @media(max-width:900px){
   nav{padding:14px 20px;gap:10px}
   .nav-links{display:none}
@@ -1326,7 +1331,7 @@ footer{
     <a href="#coaching" data-en="Coaching">코칭</a>
     <a href="#products" data-en="Platform">플랫폼</a>
     <a href="#roadmap" data-en="Roadmap">로드맵</a>
-    <a href="#partner" data-en="Partner">동역</a>
+    <a href="#partner" data-en="Serve together">함께 섬기기</a>
     <a href="#contact" data-en="Contact">문의</a>
   </div>
   <button type="button" class="lang-btn" id="langBtn" onclick="toggleLang()"
@@ -2174,7 +2179,7 @@ footer{
         <div class="fb-desc">
           각 도시에서 땅 끝까지.<br>
           찾고 · 세우고 · 보낸다 —<br>
-          Hebron Faith Ecosystem의 본부.
+          교회를 세우는 사람들.
         </div>
 
       </div>
