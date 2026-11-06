@@ -2251,8 +2251,8 @@ footer{background:var(--color-ink-deep);color:var(--color-text-inverse);padding:
       <div class="diag-badge"><svg class="ic"><use href="#ic-pulse"/></svg> 교회 건강 자가진단</div>
       <h3 id="diagHead">우리 교회는 지금 어디에 있나요?</h3>
       <p class="diag-lead">
-        10개의 질문에 답하면, 건강한 성경적 교회의 다섯 표지를 기준으로
-        <strong>위기 등급</strong>과 <strong>개척·훈련·성장·확산 4동력 중 가장 막힌 지점</strong>을 짚어드립니다.
+        12개의 질문에 답하면 <strong>개척 · 훈련 · 성장 · 확산</strong> 네 동력 가운데
+        지금 <strong>가장 막힌 지점</strong>을 짚어드립니다. 동력마다 세 문항씩입니다.
         익명입니다. 1분이면 됩니다.
       </p>
       <button class="diag-start" onclick="startDiag()">진단 시작하기 →</button>
@@ -2373,17 +2373,27 @@ function submitForm(e){
 }
 
 // ── 교회 자가진단 ──
+/* 네 동력에 3문항씩 고르게.
+   전에는 개척 1 / 확산 2 / 훈련 3 / 성장 4 였다 —
+   가장 무거운 처방(개척)이 한 문항 위에 서 있었고,
+   그 한 문항마저 내용은 확산 질문이었다. */
 const DIAG_Q = [
-  {t:"예배가 의무가 아닌 갈망에서 드려지고, 기도가 프로그램이 아닌 생명으로 살아있습니까?", c:"grow"},
-  {t:"설교와 교회 문화의 중심이 '행동 변화'가 아닌 '복음으로 인한 변화'입니까?", c:"grow"},
-  {t:"이웃과 지역사회가 \"저 교회가 있어서 다행이다\"라고 느끼는 접점이 있습니까?", c:"grow"},
-  {t:"교회 안에 갈등이 생겼을 때, 복음 안에서 화해하고 회복하는 문화가 있습니까?", c:"grow"},
+  // 개척 — 기초가 바로 놓였는가
+  {t:"이 교회가 왜 이 자리에 있어야 하는지, 목회자와 성도가 같은 대답을 할 수 있습니까?", c:"plant"},
+  {t:"지금 교회를 다시 시작할 수 있다면, 지금과 같은 방식으로 세우시겠습니까?", c:"plant"},
+  {t:"목회자와 같은 방향을 보며 책임을 나누는 핵심팀이 있습니까?", c:"plant"},
+  // 훈련 — 사람이 세워지는가
   {t:"한 사람을 제자로 세우는 명확한 경로(품음→양육→파송)가 있고, 그 경로를 실제로 걷는 성도가 있습니까?", c:"train"},
   {t:"목회자가 모든 사역을 직접 하기보다, 성도의 은사를 발견하고 사역자로 세우는 일에 시간을 쓰고 있습니까?", c:"train"},
   {t:"리더가 또 다른 리더를 낳는 구조가 있습니까? (재생산하는 평신도)", c:"train"},
-  {t:"소그룹(목장·셀·가정교회)이 돌봄에 머물지 않고, 새 사람을 품고 재생산하는 방향으로 움직이고 있습니까?", c:"multiply"},
-  {t:"다음세대(청년·2세)가 신앙의 의무가 아닌 자기 확신으로 교회 안에 있습니까?", c:"multiply"},
-  {t:"지금 교회가 '더하기'가 아닌 '곱하기'를 꿈꾸고 있습니까? (새 교회·선교사·사역을 파송한 경험)", c:"plant"},
+  // 성장 — 깊이가 있는가
+  {t:"예배가 의무가 아닌 갈망에서 드려지고, 기도가 프로그램이 아닌 생명으로 살아 있습니까?", c:"grow"},
+  {t:"설교와 교회 문화의 중심이 '행동 변화'가 아닌 '복음으로 인한 변화'입니까?", c:"grow"},
+  {t:"갈등이 생겼을 때, 복음 안에서 화해하고 회복하는 문화가 있습니까?", c:"grow"},
+  // 확산 — 밖으로 흘러가는가
+  {t:"지난 석 달 사이에, 성도의 집 식탁에 교회 밖 사람이 앉은 적이 있습니까?", c:"multiply"},
+  {t:"소그룹(목장·셀 등)이 돌봄에 머물지 않고, 새 사람을 품고 재생산하는 방향으로 움직이고 있습니까?", c:"multiply"},
+  {t:"새 교회·선교사·사역을 파송해 본 경험이 있습니까? ('더하기'가 아니라 '곱하기')", c:"multiply"},
 ];
 const RX = {
   plant:   {icon:'<svg class="ic"><use href="#ic-sprout"/></svg>', name:"개척 코칭", desc:"소명·DNA·핵심팀·재정 런웨이를 처음부터 다시 설계합니다. 작아도 배가하는 교회의 유전자를 심습니다.", tool:"심층 목회 컨설팅"},
@@ -2406,20 +2416,22 @@ function renderQ(){
 function answer(v){dAns[dIdx]=v;dIdx++;if(dIdx>=DIAG_Q.length){showResult();}else{renderQ();}}
 function prevQ(){if(dIdx>0){dIdx--;renderQ();}}
 function showResult(){
-  const total=dAns.reduce((a,b)=>a+b,0); // 0~20
+  const max=DIAG_Q.length*2;              // 12문항 × 2점 = 24
+  const total=dAns.reduce((a,b)=>a+b,0);
   const cat={plant:[0,0],train:[0,0],grow:[0,0],multiply:[0,0]};
   DIAG_Q.forEach((q,i)=>{cat[q.c][0]+=dAns[i];cat[q.c][1]+=2;});
   // 가장 약한 동력 (평균 최저)
   let weakest='grow',low=99;
   for(const k in cat){const avg=cat[k][0]/cat[k][1];if(avg<low){low=avg;weakest=k;}}
+  // 교회를 등급으로 부르지 않는다 — 지금 어디쯤인지만 말한다
   let grade,gcls,gmsg;
-  if(total>=15){grade='<span class="dot">●</span>안정';gcls="g-green";gmsg="건강한 흐름입니다. 이 동력을 다음 교회로 확산할 때입니다.";}
-  else if(total>=8){grade='<span class="dot">●</span>주의';gcls="g-yellow";gmsg="지금 손쓰면 충분히 회복됩니다. 막힌 지점을 함께 풀어봅시다.";}
-  else{grade='<span class="dot">●</span>위급';gcls="g-red";gmsg="혼자 지지 마세요. 긴급히 함께 걸을 동역자가 필요합니다.";}
+  if(total>=max*0.75){grade='<span class="dot">●</span>자라는 중';gcls="g-green";gmsg="건강한 흐름입니다. 이 힘을 다음 교회로 흘려보낼 때입니다.";}
+  else if(total>=max*0.42){grade='<span class="dot">●</span>살펴볼 때';gcls="g-yellow";gmsg="지금 손쓰면 충분히 회복됩니다. 막힌 지점을 함께 풀어봅시다.";}
+  else{grade='<span class="dot">●</span>도움이 필요할 때';gcls="g-red";gmsg="혼자 지지 마세요. 곁에 설 사람이 필요한 때입니다.";}
   const r=RX[weakest];
   document.getElementById('diagGrade').className='diag-grade '+gcls;
   document.getElementById('diagGrade').innerHTML=grade;
-  document.getElementById('diagScore').innerHTML=`건강 점수 <strong>${total} / 20</strong> · ${gmsg}`;
+  document.getElementById('diagScore').innerHTML=`건강 점수 <strong>${total} / ${max}</strong> · ${gmsg}`;
   document.getElementById('diagRx').innerHTML=`<div class="rx-head">${r.icon} 가장 막힌 지점 — <strong>${r.name}</strong> 추천</div><div class="rx-body">${r.desc}</div>`;
   document.getElementById('diagTool').innerHTML=`<svg class="ic"><use href="#ic-compass"/></svg> 함께 쓰면 좋은 도구: <strong>${r.tool}</strong>`;
   document.getElementById('diagBar').style.width='100%';
@@ -2431,9 +2443,11 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDiag();});
 window.addEventListener('scroll',()=>{
   const nav=document.getElementById('mainNav');
   if(window.scrollY>60){
-    nav.style.background='rgba(7,13,26,0.97)';
+    nav.style.background='rgba(251,250,246,0.97)';
+    nav.style.boxShadow='0 1px 3px rgba(20,26,51,0.07)';
   } else {
-    nav.style.background='rgba(7,13,26,0.85)';
+    nav.style.background='rgba(251,250,246,0.92)';
+    nav.style.boxShadow='none';
   }
 });
 </script>
