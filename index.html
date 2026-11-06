@@ -14,7 +14,11 @@
 <link rel="icon" href="/images/icons/favicon-16.png" sizes="16x16" type="image/png">
 <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
-<meta name="theme-color" content="#0f1020">
+<meta name="theme-color" content="#FBFAF6">
+<!-- 홈 화면에 추가해도 옛 화면이 남지 않게 -->
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <meta name="apple-mobile-web-app-title" content="K-Church 911">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -85,15 +89,16 @@
   --color-focus:#1A4FD6;
 
   /* ── 글자 크기 — 큼직하게 ── */
-  --fs-display:clamp(3.25rem,7.4vw,5.75rem);   /* 52–92 */
-  --fs-h1:clamp(2.5rem,5.4vw,3.875rem);        /* 40–62 */
-  --fs-h2:clamp(2rem,3.9vw,2.875rem);          /* 32–46 */
-  --fs-h3:clamp(1.5rem,2.8vw,2.125rem);        /* 24–34 */
-  --fs-h4:clamp(1.3125rem,2.1vw,1.6875rem);    /* 21–27 */
-  --fs-lead:clamp(1.25rem,2vw,1.6875rem);      /* 20–27 */
-  --fs-body:1.1875rem;                          /* 19 */
-  --fs-sm:1rem;                                 /* 16 */
-  --fs-xs:0.875rem;                             /* 14 — 최소 */
+  /* 계단을 넓게 — 제목은 크게, 본문은 편하게, 사이를 벌린다 */
+  --fs-display:clamp(3.5rem,8vw,6.5rem);        /* 56–104  히어로 */
+  --fs-h1:clamp(2.5rem,5.6vw,4.25rem);          /* 40–68   섹션 제목 */
+  --fs-h2:clamp(1.875rem,3.8vw,2.875rem);       /* 30–46 */
+  --fs-h3:clamp(1.5rem,2.6vw,2rem);             /* 24–32 */
+  --fs-h4:clamp(1.25rem,1.7vw,1.5rem);          /* 20–24   카드 제목 */
+  --fs-lead:clamp(1.1875rem,1.6vw,1.4375rem);   /* 19–23   리드(deck) */
+  --fs-body:1.125rem;                            /* 18     본문 */
+  --fs-sm:1rem;                                  /* 16 */
+  --fs-xs:0.875rem;                              /* 14 — 최소 */
 
   /* ── 간격 ── */
   --space-1:4px;  --space-2:8px;  --space-3:12px; --space-4:16px;
@@ -143,8 +148,37 @@ body{
   overflow-x:hidden;
   -webkit-font-smoothing:antialiased;
 }
-h1,h2,h3,h4{word-break:keep-all;line-height:1.28;letter-spacing:-0.015em}
-strong{font-weight:700}
+h1,h2,h3,h4{word-break:keep-all;line-height:1.12;letter-spacing:-0.035em;font-weight:800}
+h3,h4{line-height:1.3;letter-spacing:-0.025em;font-weight:700}
+
+/* ── 강조 세 단계 ──
+   약: 보조 정보를 한 단계 뒤로
+   중: strong — 문장 안에서 눈이 멈추는 자리
+   강: .em — 한 섹션에 한두 번. 밑줄 하이라이트로 가장 멀리서도 보인다 */
+strong{font-weight:700;color:var(--color-text-primary)}
+.dim{color:var(--color-text-muted);font-weight:400}
+.em{
+  font-weight:700;color:var(--color-accent-hover);
+  background:linear-gradient(180deg,transparent 60%,rgba(232,182,62,0.42) 60%);
+  padding:0 3px;border-radius:2px;
+}
+/* 어두운 띠 위에서 */
+.mission-bg strong,.bam-bg strong,.cta-section strong,
+.id911 strong,.give-back strong,footer strong{color:var(--color-text-inverse)}
+.mission-bg .em,.bam-bg .em,.cta-section .em,.id911 .em,.give-back .em{
+  color:var(--color-accent-bright);
+  background:linear-gradient(180deg,transparent 60%,rgba(232,182,62,0.26) 60%);
+}
+/* 섹션 리드문의 strong은 자동으로 '강' */
+.sec-desc strong,.core-key p strong,.hero-sub strong{
+  font-weight:700;color:var(--color-accent-hover);
+  background:linear-gradient(180deg,transparent 60%,rgba(232,182,62,0.42) 60%);
+  padding:0 3px;border-radius:2px;
+}
+.mission-bg .sec-desc strong,.bam-bg .sec-desc strong,.hero-sub strong{
+  color:var(--color-accent-bright);
+  background:linear-gradient(180deg,transparent 60%,rgba(232,182,62,0.26) 60%);
+}
 
 ::-webkit-scrollbar{width:10px}
 ::-webkit-scrollbar-track{background:var(--color-surface-alt)}
@@ -193,6 +227,21 @@ nav{
 .ham{
   display:none;background:none;border:none;color:var(--color-ink);
   font-size:1.5rem;cursor:pointer;min-width:44px;min-height:44px;
+}
+/* 새로고침 — 홈 화면에 추가하면 주소창이 없어 다시 불러올 방법이 없다 */
+.nav-refresh{display:none}
+@media(max-width:900px){
+  .nav-refresh{
+    display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);
+    width:100%;margin-top:var(--space-2);
+    background:var(--color-surface-alt);border:1px solid var(--color-border);
+    color:var(--color-text-secondary);font-family:inherit;
+    font-size:var(--fs-sm);font-weight:600;
+    padding:13px 18px;border-radius:var(--radius-pill);
+    cursor:pointer;min-height:44px;transition:background .2s;
+  }
+  .nav-refresh:hover{background:var(--color-border)}
+  .nav-refresh .ic{width:1.1em;height:1.1em}
 }
 .lang-btn{
   background:transparent;border:1px solid var(--color-border-strong);
@@ -361,14 +410,14 @@ section{padding:var(--space-24) var(--space-6)}
 .sec-label::after{content:'';flex:1;height:1px;background:var(--color-border)}
 .sec-title{
   font-size:var(--fs-h1);font-weight:800;
-  margin-bottom:var(--space-5);line-height:1.18;
-  color:var(--color-text-primary);letter-spacing:-0.03em;
+  margin-bottom:var(--space-6);line-height:1.08;
+  color:var(--color-text-primary);letter-spacing:-0.042em;
 }
+/* 리드(deck) — 제목과 본문 사이를 잇는 한 단계 */
 .sec-desc{
   color:var(--color-text-secondary);font-size:var(--fs-lead);
-  line-height:1.8;max-width:720px;
+  line-height:1.75;max-width:680px;font-weight:400;
 }
-.sec-desc strong{color:var(--color-text-primary)}
 
 /* 밝은 면 — 흰 바탕 */
 .sec-light{background:var(--color-surface)}
@@ -416,8 +465,8 @@ section{padding:var(--space-24) var(--space-6)}
 .mv-card.mission .mv-label{color:var(--color-accent-bright)}
 .mv-card.vision .mv-label{color:#9DBCFF}
 .mv-card p{
-  font-size:var(--fs-h4);line-height:1.75;
-  color:var(--color-text-inverse);font-weight:500;letter-spacing:-0.012em;
+  font-size:var(--fs-h3);line-height:1.52;
+  color:var(--color-text-inverse);font-weight:600;letter-spacing:-0.025em;
 }
 .mv-root{text-align:center;border-top:1px solid var(--color-border-inverse);padding-top:var(--space-10)}
 .mv-root strong{
@@ -434,13 +483,15 @@ section{padding:var(--space-24) var(--space-6)}
 .core-key .sec-label{justify-content:center;color:var(--color-accent-hover)}
 .core-key .sec-label::after{display:none}
 .core-key h2{
-  font-size:var(--fs-h1);font-weight:800;line-height:1.18;
-  margin-bottom:var(--space-6);color:var(--color-text-primary);letter-spacing:-0.03em;
+  font-size:var(--fs-h1);font-weight:800;line-height:1.08;
+  margin-bottom:var(--space-6);color:var(--color-text-primary);letter-spacing:-0.042em;
 }
-.core-key h2 strong{color:var(--color-accent-hover);font-weight:800}
+.core-key h2 strong{
+  color:var(--color-accent-hover);font-weight:800;background:none;padding:0;
+}
 .core-key p{
   color:var(--color-text-secondary);font-size:var(--fs-lead);
-  line-height:1.85;max-width:620px;margin:0 auto;
+  line-height:1.8;max-width:620px;margin:0 auto;font-weight:400;
 }
 .three-pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-6)}
 .pillar{
@@ -618,15 +669,25 @@ section{padding:var(--space-24) var(--space-6)}
   border-radius:0 var(--radius-xl) var(--radius-xl) 0;
   background:var(--color-accent-soft);
 }
-.confess p{font-size:var(--fs-lead);line-height:1.85;color:var(--color-text-secondary);margin-bottom:var(--space-5)}
+.confess p{font-size:var(--fs-body);line-height:1.85;color:var(--color-text-secondary);margin-bottom:var(--space-5)}
 .confess p:last-child{margin-bottom:0}
-.confess .lead{font-weight:700;color:var(--color-text-primary)}
-.confess strong{color:var(--color-accent-hover);font-weight:700}
-.confess .turn{
-  margin-top:var(--space-6);padding-top:var(--space-5);
-  border-top:1px solid rgba(184,134,43,0.3);
-  font-weight:700;color:var(--color-text-primary);
+.confess .lead{
+  font-size:var(--fs-sm);font-weight:700;color:var(--color-accent-hover);
+  letter-spacing:0.12em;text-transform:none;
 }
+.confess strong{
+  color:var(--color-accent-hover);font-weight:700;
+  background:linear-gradient(180deg,transparent 60%,rgba(232,182,62,0.45) 60%);
+  padding:0 3px;border-radius:2px;
+}
+/* 마지막 한 줄 — 이 섹션의 주장이 여기서 되돌아온다 */
+.confess .turn{
+  margin-top:var(--space-8);padding-top:var(--space-6);
+  border-top:1px solid rgba(184,134,43,0.35);
+  font-size:var(--fs-h3);font-weight:700;line-height:1.5;
+  color:var(--color-text-primary);letter-spacing:-0.025em;
+}
+.confess .turn strong{background:none;padding:0}
 .coach-cv{margin-top:var(--space-8);font-size:var(--fs-body);color:var(--color-text-muted)}
 .diag-card{
   margin-top:var(--space-12);display:flex;align-items:center;justify-content:space-between;
@@ -911,7 +972,7 @@ section{padding:var(--space-24) var(--space-6)}
 .stat-n.c-blue{color:var(--color-train)}
 .stat-n.c-green{color:var(--color-grow)}
 .stat-n.c-gold{color:var(--color-accent-hover)}
-.stat-l{font-size:var(--fs-body);color:var(--color-text-secondary);font-weight:500;line-height:1.5}
+.stat-l{font-size:var(--fs-sm);color:var(--color-text-secondary);font-weight:600;line-height:1.5;letter-spacing:0.02em}
 
 /* ═══ 진단 모달 ═══ */
 .diag-overlay{
@@ -1171,6 +1232,9 @@ footer{background:var(--color-ink-deep);color:var(--color-text-inverse);padding:
     <a href="#roadmap" data-en="Roadmap">로드맵</a>
     <a href="#partner" data-en="Serve together">함께 섬김</a>
     <a href="#contact" data-en="Contact">문의</a>
+    <button type="button" class="nav-refresh" onclick="hardRefresh()" data-en="Refresh page">
+      <svg class="ic" aria-hidden="true"><use href="#ic-cycle"/></svg><span>새로고침</span>
+    </button>
   </div>
   <button type="button" class="lang-btn" id="langBtn" onclick="toggleLang()"
           aria-label="한국어 · English 전환">
@@ -1200,7 +1264,7 @@ footer{background:var(--color-ink-deep);color:var(--color-text-inverse);padding:
     <p class="hero-kingdom" data-en="Where does your church stand today?">지금 당신의 교회, 어디쯤 있나요?</p>
     <p class="hero-sub" data-en="We find and form disciples of Christ,<br> and send them into every sphere of the world.">
       그리스도의 제자들을 찾아 준비시켜<br>
-      세상 모든 영역으로 파송한다.
+      <strong>세상 모든 영역</strong>으로 파송한다.
     </p>
     <p class="hero-verse" data-en="&quot;What you have heard from me in the presence of many witnesses entrust to faithful men, who will be able to teach others also.&quot;<br> — 2 Timothy 2:2 (ESV)">
       "그대가 많은 증인을 통하여 나에게서 들은 것을 믿음직한 사람들에게 전수하십시오.<br>
@@ -1276,7 +1340,7 @@ footer{background:var(--color-ink-deep);color:var(--color-text-inverse);padding:
       <h2 data-en="The key to the Kingdom<br>is <strong>people</strong>">하나님 나라의 열쇠는<br><strong>사람</strong>입니다</h2>
       <p data-en="Finding the people after God's own heart, and walking with them at the front line. This is why K-Church 911 exists.">
         하나님의 마음에 합한 사람을 찾고,<br>
-        그 사람이 설 때까지 곁에 있는 것.<br>
+        그 사람이 설 때까지 <strong>곁에 있는 것</strong>.<br>
         이것이 K-Church 911이 존재하는 이유입니다.
       </p>
     </div>
@@ -1881,7 +1945,7 @@ footer{background:var(--color-ink-deep);color:var(--color-text-inverse);padding:
     <h2 class="sec-title fade-up">당신의 30년이<br>다음 목회자의 첫 1년이 됩니다</h2>
     <p class="sec-desc fade-up">
       한 사람이 코칭할 수 있는 교회에는 한계가 있습니다.<br>
-      경험이 흘러가는 구조가 있을 때, 비로소 더하기가 곱하기가 됩니다.<br>
+      경험이 흘러가는 구조가 있을 때, 비로소 <strong>더하기가 곱하기</strong>가 됩니다.<br>
       먼저 그 길을 걸어보신 분들의 자리를 만들어갑니다.
     </p>
     <div class="corps-criteria">
@@ -2159,6 +2223,20 @@ function toggleLang(){
   applyLang(saved === 'en' ? 'en' : 'ko');
 })();
 
+/* ── 새로고침 ──
+   홈 화면에 추가하면 주소창이 없어 다시 불러올 방법이 없다.
+   캐시를 비우고, 주소에 시각을 붙여 반드시 새로 받아 오게 한다. */
+function hardRefresh(){
+  try{
+    if(window.caches && caches.keys){
+      caches.keys().then(keys=>keys.forEach(k=>caches.delete(k)));
+    }
+  }catch(e){}
+  const u=new URL(location.href);
+  u.searchParams.set('r', Date.now());
+  location.replace(u.toString());
+}
+
 // Mobile menu
 let menuOpen=false;
 function toggleMenu(){
@@ -2171,10 +2249,11 @@ function toggleMenu(){
     links.style.top='62px';
     links.style.left='0';
     links.style.right='0';
-    links.style.background='rgba(7,13,26,0.98)';
-    links.style.padding='20px 32px 24px';
-    links.style.borderBottom='1px solid rgba(201,162,39,0.2)';
-    links.style.gap='18px';
+    links.style.background='var(--color-surface)';
+    links.style.padding='24px 24px 28px';
+    links.style.borderBottom='1px solid var(--color-border)';
+    links.style.boxShadow='var(--shadow-lg)';
+    links.style.gap='20px';
     links.style.zIndex='99';
     links.querySelectorAll('a').forEach(a=>{
       a.onclick=()=>{menuOpen=false;links.style.display=''};
