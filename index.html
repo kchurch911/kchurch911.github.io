@@ -1370,7 +1370,7 @@ footer{background:var(--color-ink-deep);color:var(--color-text-inverse);padding:
       그리하면 그들이 다른 사람들을 또한 가르칠 수 있을 것입니다" — 디모데후서 2:2 (새번역)
     </p>
     <div class="hero-btns">
-      <button type="button" class="btn-gold" onclick="openDiag()"><svg class="ic"><use href="#ic-pulse"/></svg><span data-en="1-Minute Church Check">1분 교회 자가진단</span></button>
+      <button type="button" class="btn-gold" onclick="openDiag()"><svg class="ic"><use href="#ic-pulse"/></svg><span data-en="2-Minute Church Check">2분 교회 자가진단</span></button>
       <a href="#coaching" class="btn-ghost" data-en="Explore the ministry">사역 둘러보기</a>
     </div>
     <div class="hero-products">
@@ -1632,12 +1632,12 @@ footer{background:var(--color-ink-deep);color:var(--color-text-inverse);padding:
       <div class="sec-photo-cap">진짜 필요에서 출발 — 개척 · 훈련 · 성장 · 확산</div>
     </div>
 
-    <!-- 1분 자가진단 진입 -->
+    <!-- 2분 자가진단 진입 -->
     <div class="diag-card fade-up">
       <div class="diag-left">
         <span class="diag-emoji"><svg class="ic"><use href="#ic-pulse"/></svg></span>
         <div>
-          <div class="diag-title">우리 교회 1분 자가진단</div>
+          <div class="diag-title">우리 교회 2분 자가진단</div>
           <div class="diag-sub">필요에서 출발합니다 — 어디가 막혀 있나요?</div>
         </div>
       </div>
@@ -2155,7 +2155,7 @@ footer{background:var(--color-ink-deep);color:var(--color-text-inverse);padding:
     <p class="cta-kicker" data-en="Start in three steps">해결 · 3단계로 시작합니다</p>
     <h2>지금 당장<br>할 수 있는 한 가지</h2>
     <p>
-      <strong style="color:#fff">① 1분 자가진단</strong> — 우리 교회 어디가 막혔는지 확인<br>
+      <strong style="color:#fff">① 2분 자가진단</strong> — 우리 교회 어디가 막혔는지 확인<br>
       <strong style="color:#fff">② 무료 상담 신청</strong> — 사역 40년 · 개척 목회 25년의 코치와 30분 대화<br>
       <strong style="color:#fff">③ 함께 걷습니다</strong> — 당신 교회에 맞는 길을 그립니다
     </p>
@@ -2251,9 +2251,9 @@ footer{background:var(--color-ink-deep);color:var(--color-text-inverse);padding:
       <div class="diag-badge"><svg class="ic"><use href="#ic-pulse"/></svg> 교회 건강 자가진단</div>
       <h3 id="diagHead">우리 교회는 지금 어디에 있나요?</h3>
       <p class="diag-lead">
-        12개의 질문에 답하면 <strong>개척 · 훈련 · 성장 · 확산</strong> 네 동력 가운데
-        지금 <strong>가장 막힌 지점</strong>을 짚어드립니다. 동력마다 세 문항씩입니다.
-        익명입니다. 1분이면 됩니다.
+        16개의 질문에 답하면 <strong>개척 · 훈련 · 성장 · 확산</strong> 네 동력 가운데
+        지금 <strong>가장 막힌 지점</strong>을 짚어드립니다. 동력마다 네 문항씩입니다.
+        익명입니다. 2분이면 됩니다.
       </p>
       <button class="diag-start" onclick="startDiag()">진단 시작하기 →</button>
     </div>
@@ -2373,8 +2373,8 @@ function submitForm(e){
 }
 
 // ── 교회 자가진단 ──
-/* 네 동력에 3문항씩 고르게.
-   전에는 개척 1 / 확산 2 / 훈련 3 / 성장 4 였다 —
+/* 네 동력에 4문항씩 고르게 — 16문항 / 32점.
+   전에는 개척 1 / 확산 2 / 훈련 3 / 성장 4 였다.
    가장 무거운 처방(개척)이 한 문항 위에 서 있었고,
    그 한 문항마저 내용은 확산 질문이었다. */
 const DIAG_Q = [
@@ -2382,18 +2382,22 @@ const DIAG_Q = [
   {t:"이 교회가 왜 이 자리에 있어야 하는지, 목회자와 성도가 같은 대답을 할 수 있습니까?", c:"plant"},
   {t:"지금 교회를 다시 시작할 수 있다면, 지금과 같은 방식으로 세우시겠습니까?", c:"plant"},
   {t:"목회자와 같은 방향을 보며 책임을 나누는 핵심팀이 있습니까?", c:"plant"},
+  {t:"지금의 재정 구조로 앞으로 2~3년을 이어갈 수 있습니까?", c:"plant"},
   // 훈련 — 사람이 세워지는가
   {t:"한 사람을 제자로 세우는 명확한 경로(품음→양육→파송)가 있고, 그 경로를 실제로 걷는 성도가 있습니까?", c:"train"},
   {t:"목회자가 모든 사역을 직접 하기보다, 성도의 은사를 발견하고 사역자로 세우는 일에 시간을 쓰고 있습니까?", c:"train"},
   {t:"리더가 또 다른 리더를 낳는 구조가 있습니까? (재생산하는 평신도)", c:"train"},
+  {t:"목회자 자신이 돌봄을 받는 자리가 있습니까? (쉼 · 영혼 · 가정)", c:"train"},
   // 성장 — 깊이가 있는가
   {t:"예배가 의무가 아닌 갈망에서 드려지고, 기도가 프로그램이 아닌 생명으로 살아 있습니까?", c:"grow"},
   {t:"설교와 교회 문화의 중심이 '행동 변화'가 아닌 '복음으로 인한 변화'입니까?", c:"grow"},
   {t:"갈등이 생겼을 때, 복음 안에서 화해하고 회복하는 문화가 있습니까?", c:"grow"},
+  {t:"이웃과 지역사회가 \"저 교회가 있어서 다행이다\"라고 느끼는 접점이 있습니까?", c:"grow"},
   // 확산 — 밖으로 흘러가는가
   {t:"지난 석 달 사이에, 성도의 집 식탁에 교회 밖 사람이 앉은 적이 있습니까?", c:"multiply"},
   {t:"소그룹(목장·셀 등)이 돌봄에 머물지 않고, 새 사람을 품고 재생산하는 방향으로 움직이고 있습니까?", c:"multiply"},
   {t:"새 교회·선교사·사역을 파송해 본 경험이 있습니까? ('더하기'가 아니라 '곱하기')", c:"multiply"},
+  {t:"다음세대(청년·2세)가 신앙의 의무가 아닌 자기 확신으로 교회 안에 있습니까?", c:"multiply"},
 ];
 const RX = {
   plant:   {icon:'<svg class="ic"><use href="#ic-sprout"/></svg>', name:"개척 코칭", desc:"소명·DNA·핵심팀·재정 런웨이를 처음부터 다시 설계합니다. 작아도 배가하는 교회의 유전자를 심습니다.", tool:"심층 목회 컨설팅"},
