@@ -216,6 +216,48 @@ nav{
   text-decoration:none;transition:color .2s;padding:var(--space-2) 0;
 }
 .nav-links a:hover{color:var(--color-primary)}
+
+/* ── 헤더 목차 — 찾고 · 세우고 · 보낸다 세 묶음 ── */
+.nav-group{position:relative}
+.nav-top{
+  background:none;border:none;font-family:inherit;cursor:pointer;
+  color:var(--color-ink);font-size:var(--fs-sm);font-weight:700;
+  letter-spacing:-0.01em;padding:var(--space-2) var(--space-1);
+  min-height:44px;display:inline-flex;align-items:center;gap:6px;
+  transition:color .2s;
+}
+.nav-top::after{
+  content:'';width:5px;height:5px;margin-top:-3px;
+  border-right:2px solid currentColor;border-bottom:2px solid currentColor;
+  transform:rotate(45deg);opacity:.5;transition:transform .2s,opacity .2s;
+}
+.nav-top:hover,.nav-group:hover .nav-top{color:var(--color-primary)}
+.nav-group:hover .nav-top::after{opacity:1;transform:rotate(225deg) translate(-2px,-2px)}
+.nav-menu{
+  position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%) translateY(-6px);
+  min-width:240px;padding:var(--space-5) var(--space-5) var(--space-4);
+  background:var(--color-surface);
+  border:1px solid var(--color-border);border-radius:var(--radius-lg);
+  box-shadow:var(--shadow-lg);
+  display:flex;flex-direction:column;gap:var(--space-1);
+  opacity:0;visibility:hidden;transition:opacity .18s,transform .18s,visibility .18s;
+  z-index:120;
+}
+.nav-group:hover .nav-menu,
+.nav-group:focus-within .nav-menu{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+.nav-menu-kicker{
+  font-size:var(--fs-xs);letter-spacing:0.14em;font-weight:700;
+  color:var(--color-accent-hover);margin-bottom:var(--space-3);
+  padding-bottom:var(--space-3);border-bottom:1px solid var(--color-border);
+}
+.nav-menu a{
+  display:block;padding:11px var(--space-3);border-radius:var(--radius-md);
+  color:var(--color-text-primary);font-weight:500;font-size:var(--fs-sm);
+  white-space:nowrap;transition:background .15s,color .15s;
+}
+.nav-menu a:hover{background:var(--color-primary-soft);color:var(--color-primary)}
+.nav-plain{font-weight:600!important;color:var(--color-ink)!important}
+.nav-plain:hover{color:var(--color-primary)!important}
 .nav-cta{
   background:var(--color-primary);color:var(--color-text-inverse);
   font-weight:600;font-size:var(--fs-sm);
@@ -228,6 +270,27 @@ nav{
   display:none;background:none;border:none;color:var(--color-ink);
   font-size:1.5rem;cursor:pointer;min-width:44px;min-height:44px;
 }
+/* 모바일: 펼침 메뉴 대신 묶음을 그대로 펼쳐 보여 준다 */
+@media(max-width:900px){
+  .nav-group{width:100%}
+  .nav-top{display:none}
+  .nav-menu{
+    position:static;transform:none;opacity:1;visibility:visible;
+    min-width:0;padding:0;background:none;border:none;box-shadow:none;
+    gap:var(--space-1);
+  }
+  .nav-menu-kicker{
+    margin-bottom:var(--space-2);padding-bottom:var(--space-2);
+    font-size:var(--fs-xs);
+  }
+  .nav-menu a{white-space:normal;padding:12px var(--space-3)}
+  .nav-plain{
+    display:block;width:100%;text-align:center;
+    padding:14px!important;margin-top:var(--space-2);
+    border:1px solid var(--color-border);border-radius:var(--radius-pill);
+  }
+}
+
 /* 새로고침 — 홈 화면에 추가하면 주소창이 없어 다시 불러올 방법이 없다 */
 .nav-refresh{display:none}
 @media(max-width:900px){
@@ -1224,14 +1287,41 @@ footer{background:var(--color-ink-deep);color:var(--color-text-inverse);padding:
     <span>FOR THE CHURCH · FOR THE KINGDOM</span>
   </div>
   <div class="nav-links">
-    <a href="#mission" data-en="Mission · Vision">사명 · 비전</a>
-    <a href="#vision" data-en="Reality">현실</a>
-    <a href="#journey" data-en="Journey">여정</a>
-    <a href="#coaching" data-en="Coaching">코칭</a>
-    <a href="#products" data-en="Platform">플랫폼</a>
-    <a href="#roadmap" data-en="Roadmap">로드맵</a>
-    <a href="#partner" data-en="Serve together">함께 섬김</a>
-    <a href="#contact" data-en="Contact">문의</a>
+
+    <div class="nav-group">
+      <button type="button" class="nav-top" aria-expanded="false" data-en="Find">찾고</button>
+      <div class="nav-menu">
+        <span class="nav-menu-kicker" data-en="Find · where it begins">찾고 — 시작하는 자리</span>
+        <a href="#mission" data-en="Mission · Vision">사명 · 비전</a>
+        <a href="#core" data-en="The heart">사역의 핵심</a>
+        <a href="#vision" data-en="Today's reality">오늘 교회의 현실</a>
+        <a href="#journey" data-en="One person's journey">한 사람의 여정</a>
+      </div>
+    </div>
+
+    <div class="nav-group">
+      <button type="button" class="nav-top" aria-expanded="false" data-en="Form">세우고</button>
+      <div class="nav-menu">
+        <span class="nav-menu-kicker" data-en="Form · how we build">세우고 — 세우는 자리</span>
+        <a href="#coaching" data-en="Pastoral coaching">목회 코칭 · 4동력</a>
+        <a href="#products" data-en="Hebron Platform">Hebron 플랫폼</a>
+        <a href="#pilot" data-en="Pilot churches">파일럿 교회</a>
+      </div>
+    </div>
+
+    <div class="nav-group">
+      <button type="button" class="nav-top" aria-expanded="false" data-en="Send">보낸다</button>
+      <div class="nav-menu">
+        <span class="nav-menu-kicker" data-en="Send · where it goes">보낸다 — 보내는 자리</span>
+        <a href="#bam" data-en="Business as Mission">Business as Mission</a>
+        <a href="#partner" data-en="Serve together">함께 섬기기</a>
+        <a href="#corps" data-en="Coaching partners">코칭 동역자</a>
+        <a href="#roadmap" data-en="Roadmap">로드맵</a>
+      </div>
+    </div>
+
+    <a href="#contact" class="nav-plain" data-en="Contact">문의</a>
+
     <button type="button" class="nav-refresh" onclick="hardRefresh()" data-en="Refresh page">
       <svg class="ic" aria-hidden="true"><use href="#ic-cycle"/></svg><span>새로고침</span>
     </button>
@@ -1688,7 +1778,7 @@ footer{background:var(--color-ink-deep);color:var(--color-text-inverse);padding:
 </section>
 
 <!-- PRICING (파일럿 단계 — 가격표 원문은 아래 주석에 보관) -->
-<section class="pricing-bg" id="pricing">
+<section class="pricing-bg" id="pilot">
   <div class="section-inner">
     <p class="sec-label">Hebron Platform 제공 · HebronAltar</p>
     <h2 class="sec-title fade-up">Hebron 앱 — 파일럿 교회를 모십니다</h2>
@@ -1717,7 +1807,7 @@ footer{background:var(--color-ink-deep);color:var(--color-text-inverse);padding:
 </section>
 
 <!-- ===== 보관: 유료 플랜 표 원문 (2027년 공개 시 복원) =====
-<section class="pricing-bg" id="pricing">
+<section class="pricing-bg" id="plans">
   <div class="section-inner">
     <p class="sec-label">Hebron Platform 제공 · HebronAltar 플랜</p>
     <h2 class="sec-title fade-up">교회 크기에 맞는 플랜</h2>
@@ -1805,7 +1895,7 @@ footer{background:var(--color-ink-deep);color:var(--color-text-inverse);padding:
 ===== 보관 끝 ===== -->
 
 <!-- BAM -->
-<section class="bam-bg">
+<section class="bam-bg" id="bam">
   <div class="section-inner">
     <p class="spine-tag fade-up" data-en="SEND">보낸다</p>
     <p class="sec-label">Business as Mission</p>
