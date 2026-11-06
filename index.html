@@ -243,6 +243,26 @@ section{padding:96px 24px}
   color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:10px;
 }
 .sec-label::after{content:'';flex:1;height:1px;background:rgba(201,162,39,0.2)}
+
+/* ── 축 표시 — 모든 섹션이 찾고 · 세우고 · 보낸다 아래로 들어간다 ── */
+.spine-tag{
+  display:inline-block;
+  padding:4px 13px;border-radius:20px;
+  background:rgba(240,192,64,0.12);
+  border:1px solid rgba(240,192,64,0.3);
+  color:var(--gold-l);
+  font-size:.64rem;letter-spacing:2.5px;font-weight:700;
+  margin-bottom:12px;
+}
+.spine-tag .arw{opacity:.5;margin:0 3px;letter-spacing:0}
+
+/* 히어로의 4동력은 '세우고'의 하위임을 보이게 한다 */
+.hp-caption{
+  align-self:center;
+  font-size:.68rem;letter-spacing:2px;
+  color:var(--muted);white-space:nowrap;
+  padding-right:4px;
+}
 .sec-title{
   font-family:'Cinzel',serif;
   font-size:clamp(1.5rem,4vw,2.5rem);font-weight:700;
@@ -1246,6 +1266,11 @@ footer{
 .sec-light .diag-badge .ic{stroke:#8a6410}
 
 /* 2) 섹션 라벨 — 작은 대문자라 더 진해야 함 */
+.sec-light .spine-tag{
+  background:rgba(125,95,22,0.1);
+  border-color:rgba(125,95,22,0.34);
+  color:#7d5f16;
+}
 .sec-light .sec-label{color:#7d5f16;font-weight:700}
 .sec-light .sec-label::after{background:rgba(125,95,22,0.35)}
 
@@ -1396,6 +1421,7 @@ footer{
       <a href="#coaching" class="btn-ghost" data-en="Explore the ministry">사역 둘러보기</a>
     </div>
     <div class="hero-products">
+      <div class="hp-caption" data-en="FORM · four forces">세우고 — 4동력</div>
       <div class="hp-tag hp-guide"><svg class="ic"><use href="#ic-sprout"/></svg> <span data-en="Plant">개척</span></div>
       <div class="hp-tag hp-altar"><svg class="ic"><use href="#ic-cap"/></svg> <span data-en="Train">훈련</span></div>
       <div class="hp-tag hp-app"><svg class="ic"><use href="#ic-chart"/></svg> <span data-en="Grow">성장</span></div>
@@ -1496,7 +1522,8 @@ footer{
 <!-- VISION -->
 <section class="vision-bg sec-light" id="vision">
   <div class="section-inner">
-    <p class="sec-label">오늘 교회가 처한 현실</p>
+    <p class="spine-tag fade-up" data-en="FIND">찾고</p>
+    <p class="sec-label" data-en="The reality churches face today">오늘 교회가 처한 현실</p>
     <h2 class="sec-title fade-up">혹시 이런 고민을<br>하고 계신가요?</h2>
     <p class="sec-desc fade-up">
       많은 목회자들이 혼자 감당하고 있습니다.<br>
@@ -1561,7 +1588,8 @@ footer{
 <!-- JOURNEY -->
 <section id="journey">
   <div class="section-inner">
-    <p class="sec-label">한 사람의 영적 여정</p>
+    <p class="spine-tag fade-up" data-en="FIND <span class=&quot;arw&quot;>→</span> FORM <span class=&quot;arw&quot;>→</span> SEND">찾고 <span class="arw">→</span> 세우고 <span class="arw">→</span> 보낸다</p>
+    <p class="sec-label" data-en="One person's spiritual journey">한 사람의 영적 여정</p>
     <h2 class="sec-title fade-up">비신자에서 선교사까지<br>하나로 연결된 파이프라인</h2>
     <p class="sec-desc fade-up">
       낯선 도시에 정착한 한 사람이 그리스도를 만나고,
@@ -1615,7 +1643,8 @@ footer{
 <!-- COACHING (비영리 사역의 핵심) -->
 <section class="coaching-bg sec-light" id="coaching">
   <div class="section-inner">
-    <p class="sec-label">Kchurch911이 다른 이유</p>
+    <p class="spine-tag fade-up" data-en="FORM">세우고</p>
+    <p class="sec-label" data-en="Why K-Church 911 is different">Kchurch911이 다른 이유</p>
     <h2 class="sec-title fade-up">우리는 처방보다<br>진단부터 시작합니다</h2>
     <p class="sec-desc fade-up" data-en="We don't reach for a solution first. We listen for where <strong>your church is stuck</strong>.">
       솔루션을 먼저 꺼내지 않습니다. 당신 교회의 <strong>막힌 지점</strong>을 먼저 듣습니다.
@@ -1697,7 +1726,8 @@ footer{
 <!-- PRODUCTS -->
 <section class="products-bg" id="products">
   <div class="section-inner">
-    <p class="sec-label">연계 파트너 · Hebron Platform (BAM)</p>
+    <p class="spine-tag fade-up" data-en="FORM">세우고</p>
+    <p class="sec-label" data-en="Partner · Hebron Platform (BAM)">연계 파트너 · Hebron Platform (BAM)</p>
     <h2 class="sec-title fade-up">사역을 떠받치는<br>네 개의 디지털 도구</h2>
     <p class="sec-desc fade-up">
       Hebron Platform은 비즈니스로 사역을 지속시키는(BAM) 연계 파트너입니다.
@@ -1925,6 +1955,7 @@ footer{
 <!-- BAM -->
 <section class="bam-bg">
   <div class="section-inner">
+    <p class="spine-tag fade-up" data-en="SEND">보낸다</p>
     <p class="sec-label">Business as Mission</p>
     <h2 class="sec-title fade-up">장막도, 제단도 — 모두 하나님 나라의 일</h2>
     <p class="sec-desc fade-up">
@@ -2008,6 +2039,7 @@ footer{
 <!-- PARTNERSHIP (비영리 함께 섬기기) -->
 <section class="partner-bg sec-light" id="partner">
   <div class="section-inner">
+    <p class="spine-tag fade-up" data-en="SEND">보낸다</p>
     <p class="sec-label" data-en="Serving together · Ministry partnership">함께 섬기기 · 사역 동역</p>
     <h2 class="sec-title fade-up" data-en="Lifting one church<br>is for the sake of the Kingdom">한 교회를 살리는 것은<br>하나님 나라를 위함입니다</h2>
     <p class="sec-desc fade-up" data-en="K-Church 911 is a ministry built on partnership and support. A church that has been helped goes on to build the next one — please walk this cycle with us.">
@@ -2056,7 +2088,8 @@ footer{
 <!-- COACHING CORPS (코칭 동역자) -->
 <section class="corps-bg" id="corps">
   <div class="section-inner">
-    <p class="sec-label">코칭 동역자를 찾습니다</p>
+    <p class="spine-tag fade-up" data-en="SEND">보낸다</p>
+    <p class="sec-label" data-en="Looking for coaching partners">코칭 동역자를 찾습니다</p>
     <h2 class="sec-title fade-up">당신의 30년이<br>다음 목회자의 첫 1년이 됩니다</h2>
     <p class="sec-desc fade-up">
       한 사람이 코칭할 수 있는 교회에는 한계가 있습니다.<br>
@@ -2074,7 +2107,7 @@ footer{
       <div class="crit fade-up">
         <div class="crit-icon"><svg class="ic"><use href="#ic-home"/></svg></div>
         <div class="crit-label">기준 02</div>
-        <h3>성경적 건강한 교회</h3>
+        <h3>성경적 교회</h3>
         <p>프로그램이 아니라 성경이 말하는 교회입니다. 섬김으로 이끌고,
            제자가 제자를 낳고, 일상이 선교지가 되는 정신을 함께 나눌 수 있는 분을 모십니다.</p>
       </div>
@@ -2167,6 +2200,7 @@ footer{
 <!-- CTA -->
 <section class="cta-section" id="contact">
   <div class="cta-inner">
+    <p class="spine-tag fade-up" data-en="FIND">찾고</p>
     <p style="font-size:.7rem;letter-spacing:4px;color:var(--gold);margin-bottom:16px;text-transform:uppercase">해결 · 3단계로 시작합니다</p>
     <h2>지금 당장<br>할 수 있는 한 가지</h2>
     <p>
