@@ -1114,6 +1114,22 @@ section{padding:var(--space-24) var(--space-6)}
 .rx-body{font-size:var(--fs-card);color:var(--color-text-secondary);line-height:1.8}
 .diag-rx-tool{font-size:var(--fs-card);color:var(--color-text-secondary);margin-bottom:var(--space-6)}
 .diag-rx-tool strong{color:var(--color-teal)}
+/* 연락하지 않아도 이번 주에 혼자 할 수 있는 한 가지 */
+.diag-week{
+  border-left:3px solid var(--color-accent-bright);
+  background:var(--color-surface-alt);
+  border-radius:0 var(--radius-md) var(--radius-md) 0;
+  padding:var(--space-5) var(--space-6);margin:var(--space-4) 0 var(--space-5);
+}
+.week-kicker{
+  display:block;font-size:var(--fs-xs);font-weight:700;letter-spacing:0.08em;
+  color:var(--color-accent-hover);margin-bottom:var(--space-2);
+}
+.week-body{font-size:var(--fs-card);color:var(--color-text-primary);line-height:1.85}
+.week-note{
+  display:block;margin-top:var(--space-3);
+  font-size:var(--fs-sm);color:var(--color-text-muted);line-height:1.7;
+}
 .diag-result-btns{display:flex;gap:var(--space-3);align-items:center;flex-wrap:wrap}
 .diag-disclaimer{font-size:var(--fs-sm);color:var(--color-text-muted);margin-top:var(--space-5);line-height:1.7}
 
@@ -2276,12 +2292,13 @@ footer{background:var(--color-ink-deep);color:var(--color-text-inverse);padding:
       <div class="diag-grade" id="diagGrade"></div>
       <div class="diag-score" id="diagScore"></div>
       <div class="diag-rx" id="diagRx"></div>
+      <div class="diag-week" id="diagWeek"></div>
       <div class="diag-rx-tool" id="diagTool"></div>
       <div class="diag-result-btns">
         <a href="#contact" class="diag-start" onclick="closeDiag()">이 진단으로 코칭 신청 →</a>
         <button class="diag-back" onclick="startDiag()">다시 진단</button>
       </div>
-      <p class="diag-disclaimer">※ 자가진단은 출발점입니다. 그다음은 목회 컨설팅에서 함께 설계합니다.</p>
+      <p class="diag-disclaimer">※ 자가진단은 출발점입니다. 한 주 해 보시고, 더 깊이 들어가고 싶을 때 함께 설계합니다.</p>
     </div>
   </div>
 </div>
@@ -2400,10 +2417,14 @@ const DIAG_Q = [
   {t:"다음세대(청년·2세)가 신앙의 의무가 아닌 자기 확신으로 교회 안에 있습니까?", c:"multiply"},
 ];
 const RX = {
-  plant:   {icon:'<svg class="ic"><use href="#ic-sprout"/></svg>', name:"개척 코칭", desc:"소명·DNA·핵심팀·재정 런웨이를 처음부터 다시 설계합니다. 작아도 배가하는 교회의 유전자를 심습니다.", tool:"심층 목회 컨설팅"},
-  train:   {icon:'<svg class="ic"><use href="#ic-cap"/></svg>', name:"훈련 코칭", desc:"청중이 아닌 재생산자를 세우는 제자 경로를 만들고, 목회자의 영혼·가정·안식을 함께 돌봅니다.", tool:"HebronAltar — 21일 경청·제자훈련"},
-  grow:    {icon:'<svg class="ic"><use href="#ic-chart"/></svg>', name:"성장 코칭", desc:"영적 깊이(예배·말씀·공동체)와 선교적 넓이(지역 섬김)의 균형을 회복합니다.", tool:"HebronGuide — 지역사회 접점"},
-  multiply:{icon:'<svg class="ic"><use href="#ic-cycle"/></svg>', name:"확산 코칭", desc:"더하기에서 곱하기로. 소그룹→교회→운동으로 이어지는 배가 구조를 설계합니다.", tool:"HebronApp — 목장 관리·배가"},
+  plant:   {icon:'<svg class="ic"><use href="#ic-sprout"/></svg>', name:"개척 코칭", desc:"소명·DNA·핵심팀·재정 런웨이를 처음부터 다시 설계합니다. 작아도 배가하는 교회의 유전자를 심습니다.", tool:"심층 목회 컨설팅",
+            week:"이번 주일, 성도 세 분에게 따로 물어보십시오. <strong>“우리 교회가 왜 이 자리에 있다고 생각하세요?”</strong> 설명하지 말고, 답을 그대로 받아 적으십시오. 세 답이 같은지 보십시오."},
+  train:   {icon:'<svg class="ic"><use href="#ic-cap"/></svg>', name:"훈련 코칭", desc:"청중이 아닌 재생산자를 세우는 제자 경로를 만들고, 목회자의 영혼·가정·안식을 함께 돌봅니다.", tool:"HebronAltar — 21일 경청·제자훈련",
+            week:"목사님이 직접 하고 계신 일 가운데 <strong>하나를 골라 한 사람에게 맡기십시오.</strong> 고치지 말고, 이번 주는 옆에서 보기만 하십시오."},
+  grow:    {icon:'<svg class="ic"><use href="#ic-chart"/></svg>', name:"성장 코칭", desc:"영적 깊이(예배·말씀·공동체)와 선교적 넓이(지역 섬김)의 균형을 회복합니다.", tool:"HebronGuide — 지역사회 접점",
+            week:"교회 문을 나와 열 걸음 안을 한 바퀴 걸으십시오. 거기 누가 있는지, <strong>이름을 하나라도 아는지</strong> 적어 보십시오."},
+  multiply:{icon:'<svg class="ic"><use href="#ic-cycle"/></svg>', name:"확산 코칭", desc:"더하기에서 곱하기로. 소그룹→교회→운동으로 이어지는 배가 구조를 설계합니다.", tool:"HebronApp — 목장 관리·배가",
+            week:"이번 주, <strong>교회 밖의 한 사람을 집 식탁에 초대하십시오.</strong> 전도하지 않으셔도 됩니다. 같이 밥만 드십시오."},
 };
 let dIdx=0, dAns=[];
 function openDiag(){document.getElementById('diagOverlay').classList.add('open');document.body.style.overflow='hidden';showStep('diagIntro');}
@@ -2420,7 +2441,7 @@ function renderQ(){
 function answer(v){dAns[dIdx]=v;dIdx++;if(dIdx>=DIAG_Q.length){showResult();}else{renderQ();}}
 function prevQ(){if(dIdx>0){dIdx--;renderQ();}}
 function showResult(){
-  const max=DIAG_Q.length*2;              // 12문항 × 2점 = 24
+  const max=DIAG_Q.length*2;              // 16문항 × 2점 = 32
   const total=dAns.reduce((a,b)=>a+b,0);
   const cat={plant:[0,0],train:[0,0],grow:[0,0],multiply:[0,0]};
   DIAG_Q.forEach((q,i)=>{cat[q.c][0]+=dAns[i];cat[q.c][1]+=2;});
@@ -2437,6 +2458,7 @@ function showResult(){
   document.getElementById('diagGrade').innerHTML=grade;
   document.getElementById('diagScore').innerHTML=`건강 점수 <strong>${total} / ${max}</strong> · ${gmsg}`;
   document.getElementById('diagRx').innerHTML=`<div class="rx-head">${r.icon} 가장 막힌 지점 — <strong>${r.name}</strong> 추천</div><div class="rx-body">${r.desc}</div>`;
+  document.getElementById('diagWeek').innerHTML=`<span class="week-kicker">이번 한 주, 이것 하나만</span><div class="week-body">${r.week}</div><span class="week-note">연락하지 않으셔도 됩니다. 혼자 해 보시고, 막히면 그때 찾아오셔도 늦지 않습니다.</span>`;
   document.getElementById('diagTool').innerHTML=`<svg class="ic"><use href="#ic-compass"/></svg> 함께 쓰면 좋은 도구: <strong>${r.tool}</strong>`;
   document.getElementById('diagBar').style.width='100%';
   showStep('diagResult');
