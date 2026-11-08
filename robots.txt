@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /123prayer/my.html
+Disallow: /123prayer/pray.html
+
+Sitemap: https://kchurch911.com/sitemap.xml
