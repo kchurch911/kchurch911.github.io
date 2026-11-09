@@ -1224,6 +1224,8 @@ footer{background:var(--color-ink-deep);color:var(--color-text-inverse);padding:
   text-decoration:none;margin-bottom:var(--space-3);transition:color .2s;
 }
 .footer-col a:hover{color:var(--color-accent-bright)}
+/* 장절 표기가 줄 사이에서 쪼개지지 않게 */
+.vref{white-space:nowrap}
 .footer-bottom{
   border-top:1px solid var(--color-border-inverse);padding-top:var(--space-8);
   display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:var(--space-3);
@@ -2284,7 +2286,7 @@ footer{background:var(--color-ink-deep);color:var(--color-text-inverse);padding:
     </div>
     <div class="footer-bottom">
       <p>© 2026 K-CHURCH 911 · HEBRON FAITH ECOSYSTEM · ALL RIGHTS RESERVED</p>
-      <p>GENESIS 13:14–18 · 2 TIMOTHY 2:2 · MATTHEW 28:18–20</p>
+      <p><span class="vref">GENESIS 13:14–18</span> · <span class="vref">2 TIMOTHY 2:2</span> · <span class="vref">JOHN 20:21</span> · <span class="vref">MATTHEW 28:18–20</span></p>
     </div>
   </div>
 </footer>
